@@ -275,13 +275,14 @@ RUN dnf install -y --allowerasing \
         curl \
         gcc && dnf clean all
 
-# Copy UCX libraries from builder
+# Copy UCX binaries from builder
 COPY --from=builder /usr/local/lib/libucp* /usr/local/lib/
 COPY --from=builder /usr/local/lib/libucs* /usr/local/lib/
 COPY --from=builder /usr/local/lib/libuct* /usr/local/lib/
 COPY --from=builder /usr/local/lib/libucm* /usr/local/lib/
 COPY --from=builder /usr/local/lib/ucx/ /usr/local/lib/ucx/
 COPY --from=builder /usr/local/lib64/libucx_utils.so /usr/local/lib64/
+COPY --from=builder /usr/local/bin/ucx* /usr/local/bin/
 
 
 # Copy gdrcopy libraries from builder
