@@ -315,7 +315,7 @@ COPY --from=builder /wheels/*.whl /tmp/wheels/
 
 # Define commit SHAs as build args to avoid layer invalidation
 ARG LMCACHE_COMMIT_SHA=c1563bc9c72ea0d71156a3d9a6cd643170828acf
-ARG VLLM_COMMIT_SHA=edf35b63cec7ca96776516daf1998883e6bdc231
+ARG VLLM_COMMIT_SHA=3956d8c
 
 
 # Install all packages
@@ -332,13 +332,11 @@ RUN --mount=type=cache,target=/var/cache/git \
     # (not reproducible )
     git clone -b one-pod-per-node-lb https://github.com/robertgshaw2-redhat/vllm.git && \
     cd vllm && \
+    git checkout ${VLLM_COMMIT_SHA} && \
     VLLM_USE_PRECOMPILED=1 uv pip install --editable . && \
     \
     # Cleanup (keep /tmp/vllm-${VLLM_COMMIT_SHA} for editable install)
     rm -rf /tmp/wheels
-
-ENV NEW_SHA=c130e8edeaa2ab9fbd5dba802bdc3d7be0c4dedc
-RUN cd /tmp/vllm-${VLLM_COMMIT_SHA} && git fetch && git checkout ${NEW_SHA}
 
 RUN dnf autoremove -y && dnf clean all
 
