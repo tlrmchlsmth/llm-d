@@ -1,0 +1,37 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../base
+  - pod-monitors.yaml
+patches:
+  - target:
+      kind: LeaderWorkerSet
+    patch: |-
+      ## We add the volume for different providers since the hostPath can be different.
+      #- op: replace
+      #  path: /spec/leaderWorkerTemplate/workerTemplate/spec/volumes/1
+      #  value:
+      #    name: hf-cache
+      #    hostPath:
+      #      path: /mnt/local/hf-cache
+      #      type: DirectoryOrCreate
+      #- op: replace
+      #  path: /spec/leaderWorkerTemplate/workerTemplate/spec/volumes/2
+      #  value:
+      #    name: jit-cache
+      #    hostPath:
+      #      path: /mnt/local/jit-cache
+      #      type: DirectoryOrCreate
+      # Since we are loading model in from a host storage, disable HF_XET
+      - op: add
+        path: /spec/leaderWorkerTemplate/workerTemplate/spec/containers/0/env/-
+        value:
+          name: HF_HUB_DISABLE_XET
+          value: "1"
+      # Add RMDA config.
+      #- op: add
+      #  path: /spec/leaderWorkerTemplate/workerTemplate/spec/containers/0/resources/limits/rdma~1rdma_shared_device_a
+      #  value: "1"
+      #- op: add
+      #  path: /spec/leaderWorkerTemplate/workerTemplate/spec/containers/0/resources/requests/rdma~1rdma_shared_device_a
+      #  value: "1"

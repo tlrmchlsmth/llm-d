@@ -4,7 +4,7 @@ metadata:
   name: wide-ep-llm-d-decode
   labels:
     llm-d.ai/inferenceServing: "true"
-    llm-d.ai/model: DeepSeek-R1-0528
+    llm-d.ai/model: Qwen3-30B-A3B-FP8
     llm-d.ai/role: decode
 spec:
   replicas: 1
@@ -14,10 +14,12 @@ spec:
       metadata:
         labels:
           llm-d.ai/inferenceServing: "true"
-          llm-d.ai/model: DeepSeek-R1-0528
+          llm-d.ai/model: Qwen3-30B-A3B-FP8
           llm-d.ai/role: decode
       spec:
-        serviceAccountName: deepseek-r1
+        dnsPolicy: ClusterFirstWithHostNet
+        hostNetwork: true
+        serviceAccountName: qwen
         initContainers:
           - name: routing-proxy
             args:
@@ -47,14 +49,18 @@ spec:
             emptyDir: {}
           - name: jit-cache
             emptyDir: {}
+          - name: devinf
+            hostPath:
+              path: /dev/infiniband
         containers:
         - name: vllm
-          image: ghcr.io/llm-d/llm-d-cuda:v0.4.0
+          image: quay.io/rh-ee-vsundarr/amd-vllm:latest
           securityContext:
+            privileged: true
             capabilities:
               add:
               - IPC_LOCK
-              - SYS_RAWIO
+              - CAP_SYS_ADMIN
             runAsGroup: 0
             runAsUser: 0
           imagePullPolicy: Always
@@ -77,9 +83,11 @@ spec:
               # --async-scheduling: Reduce white space between engine steps
               # --enable-dbo:  Dual batch overlap (DBO) overlaps compute with collective communication.
               # --enable-eplb: Expert-parallel load balancing reduces EP load imbalance by replicating heavily-used experts Performance-memory tradeoff: on DeepSeekV3 eplb uses an extra 2GB per redundant expert per GPU Divisibility constraint: num_routed_experts (256 for DSv3) + num_redundant_experts must be divisible by the number of GPUs.
+              # --enable-dbo \
+              #  --dbo-decode-token-threshold 32 \
 
               exec vllm serve \
-                deepseek-ai/DeepSeek-R1-0528 \
+                Qwen/Qwen3-30B-A3B-FP8 \
                 --port 8200 \
                 --trust-remote-code \
                 --disable-uvicorn-access-log \
@@ -95,8 +103,6 @@ spec:
                                         "kv_role":"kv_both",
                                         "kv_load_failure_policy":"fail"}' \
                 --async-scheduling \
-                --enable-dbo \
-                --dbo-decode-token-threshold 32 \
                 --enable-eplb \
                 --eplb-config '{"window_size":"1000",
                                 "step_interval":"3000",
@@ -144,6 +150,32 @@ spec:
             value: eth0
           - name: VLLM_LOGGING_LEVEL
             value: INFO
+          - name: ROCSHMEM_USE_IB_HCA
+            value: "mlx5_0,mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_7,mlx5_8,mlx5_9"
+          - name: NCCL_CUMEM_ENABLE
+            value: "0"
+          - name: NCCL_IB_TIMEOUT
+            value: "22"
+          - name: NCCL_IB_SL
+            value: "0"
+          - name: NCCL_IB_TC
+            value: "41"
+          - name: NCCL_IB_GID_INDEX
+            value: "3"
+          - name: NCCL_DEBUG
+            value: WARN
+          - name: NCCL_IB_QPS_PER_CONNECTION
+            value: "1"
+          - name: NCCL_IB_SPLIT_DATA_ON_QPS
+            value: "0"
+          - name: NCCL_IB_HCA
+            value: "mlx5_0,mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_7,mlx5_8,mlx5_9"
+          - name: NCCL_PXN_DISABLE
+            value: "0"
+          - name: NCCL_NET_PLUGIN
+            value: none
+          - name: ROCSHMEM_HEAP_SIZE 
+            value: "12884901888"
           - name: VLLM_NIXL_SIDE_CHANNEL_HOST
             valueFrom:
               fieldRef:
@@ -193,12 +225,12 @@ spec:
             limits:
               ephemeral-storage: 1Ti
               memory: 512Gi
-              nvidia.com/gpu: "8"
+              amd.com/gpu: "8"
             requests:
               cpu: 32
               ephemeral-storage: 1Ti
               memory: 512Gi
-              nvidia.com/gpu: "8"
+              amd.com/gpu: "8"
           volumeMounts:
             - name: dshm
               mountPath: /dev/shm
@@ -206,3 +238,5 @@ spec:
               mountPath: /var/cache/huggingface
             - name: jit-cache
               mountPath: /var/cache/vllm
+            - name: devinf
+              mountPath: /dev/infiniband
