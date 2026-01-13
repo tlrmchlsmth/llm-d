@@ -1,0 +1,39 @@
+# poker/values.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: poker
+  labels:
+    app: poker
+
+spec:
+  restartPolicy: Never
+
+  containers:
+    - name: poker
+      image: quay.io/tms/poker:0.0.10
+      imagePullPolicy: Always
+      stdin: true
+      tty: true
+
+      resources:
+        limits:
+          cpu: "16"
+          memory: "64Gi"
+
+      env:
+        - name: HF_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: hf-secret
+              key: HF_TOKEN
+              optional: true
+
+      volumeMounts:
+        - name: guide-llm
+          mountPath: /guide-llm
+
+  volumes:
+    - name: guide-llm
+      persistentVolumeClaim:
+        claimName: guide-llm
