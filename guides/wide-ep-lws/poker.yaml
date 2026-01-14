@@ -1,3 +1,19 @@
+# 1. The Storage Request (PVC)
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: guide-llm 
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi # Change this size if needed
+
+
+---
+
+
 # poker/values.yaml
 apiVersion: v1
 kind: Pod
@@ -8,6 +24,13 @@ metadata:
 
 spec:
   restartPolicy: Never
+  tolerations:
+  # (varun) This allows the pod to be placed in a node with
+  # a GPU. If I dont do this, then kubernetes can't find machine.
+  # Maybe there is a better way.
+  - key: "amd.com/gpu"
+    operator: "Exists"
+    effect: "NoSchedule"
 
   containers:
     - name: poker
@@ -15,12 +38,8 @@ spec:
       imagePullPolicy: Always
       stdin: true
       tty: true
-
-      resources:
-        limits:
-          cpu: "16"
-          memory: "64Gi"
-
+      securityContext:
+        privileged: true # for ulimit setting
       env:
         - name: HF_TOKEN
           valueFrom:

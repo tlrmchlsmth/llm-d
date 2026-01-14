@@ -56,11 +56,11 @@ spec:
         - name: vllm
           image: quay.io/rh-ee-vsundarr/amd-vllm:latest
           securityContext:
-            privileged: true
+            privileged: true # FIXME(varun)
             capabilities:
               add:
               - IPC_LOCK
-              - CAP_SYS_ADMIN
+              - CAP_SYS_ADMIN # FIXME (varun)
             runAsGroup: 0
             runAsUser: 0
           imagePullPolicy: Always
@@ -83,9 +83,8 @@ spec:
               # --async-scheduling: Reduce white space between engine steps
               # --enable-dbo:  Dual batch overlap (DBO) overlaps compute with collective communication.
               # --enable-eplb: Expert-parallel load balancing reduces EP load imbalance by replicating heavily-used experts Performance-memory tradeoff: on DeepSeekV3 eplb uses an extra 2GB per redundant expert per GPU Divisibility constraint: num_routed_experts (256 for DSv3) + num_redundant_experts must be divisible by the number of GPUs.
-              # --enable-dbo \
-              #  --dbo-decode-token-threshold 32 \
 
+              # TODO (varun) : Investigate DBO enablement
               exec vllm serve \
                 Qwen/Qwen3-30B-A3B-FP8 \
                 --port 8200 \
@@ -150,6 +149,7 @@ spec:
             value: eth0
           - name: VLLM_LOGGING_LEVEL
             value: INFO
+          # TODO (varun) - the following env var list could be pruned
           - name: ROCSHMEM_USE_IB_HCA
             value: "mlx5_0,mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_7,mlx5_8,mlx5_9"
           - name: NCCL_CUMEM_ENABLE
