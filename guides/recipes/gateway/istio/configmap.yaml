@@ -12,17 +12,18 @@ data:
         spec:
           containers:
           - name: istio-proxy
+            command:
+              - /bin/sh
+              - -c
             args:
-              - proxy
-              - router
-              - --domain
-              - $(POD_NAMESPACE).svc.cluster.local
-              - --proxyLogLevel
-              - warn
-              - --proxyComponentLogLevel
-              - misc:warn
-              - --log_output_level
-              - default:warn
+              - |-
+                ulimit -n 65536 && \
+                /usr/local/bin/pilot-agent proxy router \
+                --domain $(POD_NAMESPACE).svc.cluster.local \
+                --proxyLogLevel=warn \
+                --proxyComponentLogLevel=misc:warn \
+                --log_output_level=default:warn
+
             resources:
               limits:
                 cpu: "8"
@@ -30,6 +31,14 @@ data:
               requests:
                 cpu: 2
                 memory: 4Gi
+            # Note (varun): Required for ulimit setting
+            securityContext:
+              privileged: true
+              allowPrivilegeEscalation: true
+              runAsNonRoot: false
+              runAsUser: 0
+              capabilities:
+                drop: []
   service: |
     spec:
       type: LoadBalancer

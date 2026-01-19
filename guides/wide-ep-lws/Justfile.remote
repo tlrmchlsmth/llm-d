@@ -10,7 +10,7 @@ default:
 eval:
     .lm_eval/bin/lm_eval --model local-completions --tasks gsm8k \
     --model_args model={{MODEL}},base_url={{BASE_URL}}/v1/completions,num_concurrent=2000,max_retries=3,tokenized_requests=False \
-    --num_fewshot 10 \
+    --num_fewshot 10 --limit 100 \
 
 benchmark MC NUM_REQUESTS INPUT_LEN OUTPUT_LEN:
     vllm bench serve \
@@ -101,15 +101,18 @@ profile_all_decode:
   done
   wait
 
-  echo "All decode pods started profiling"
-  echo "Sleeping for 1 second..."
-  sleep 1
+  ## Note(varun) : max_iterations when set via --profile_config in `vllm serve` does not
+  ## require an explicit stop_profile.
 
-  echo "Stopping profile on all decode pods asynchronously..."
-  for IP in $DECODE_IPS; do
-    echo "  Stopping profile on $IP..."
-    curl -s -X POST http://$IP:8200/stop_profile &
-  done
-  wait
+  #echo "All decode pods started profiling"
+  #echo "Sleeping for 1 second..."
+  #sleep 1
+
+  #echo "Stopping profile on all decode pods asynchronously..."
+  #for IP in $DECODE_IPS; do
+  #  echo "  Stopping profile on $IP..."
+  #  curl -s -X POST http://$IP:8200/stop_profile &
+  #done
+  #wait
 
   echo "Profiling complete on all decode pods!"

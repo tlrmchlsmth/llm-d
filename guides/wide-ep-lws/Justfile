@@ -6,7 +6,8 @@ NAMESPACE := env("NAMESPACE")
 HF_TOKEN := env("HF_TOKEN")
 
 #MODEL := "deepseek-ai/DeepSeek-R1-0528"
-MODEL := "Qwen/Qwen3-30B-A3B-FP8"
+#MODEL := "Qwen/Qwen3-30B-A3B-FP8"
+MODEL := "mistralai/Mistral-Large-3-675B-Instruct-2512"
 
 KN := "kubectl -n " + NAMESPACE
 
@@ -48,7 +49,7 @@ start-poker:
     {{KN}} apply -f poker.yaml
 
 stop-poker:
-    {{KN}} delete pod poker
+    {{KN}} delete pod poker --ignore-not-found=true 
 
 restart-poker:
     just stop-poker && just start-poker
@@ -110,6 +111,17 @@ start:
   && {{KN}} apply -k ./manifests/modelserver/amd_oci \
   && just deploy_inferencepool \
   && kubectl apply -k ../recipes/gateway/istio -n {{NAMESPACE}}
+
+apply_bench_settings:
+  cd {{EXAMPLE_DIR}} \
+  && helm upgrade qwen \
+  oci://us-central1-docker.pkg.dev/k8s-staging-images/gateway-api-inference-extension/charts/inferencepool \
+  --version v1.2.0-rc.1 \
+  -n varun-llm-d-wide-ep \
+  --reuse-values \
+  -f ../prereq/gateway-provider/common-configurations/benchmarking.yaml \
+  && {{KN}} rollout restart deployment llm-d-inference-gateway-istio
+
 
 stop:
   cd {{EXAMPLE_DIR}} \

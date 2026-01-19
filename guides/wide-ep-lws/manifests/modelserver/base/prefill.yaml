@@ -32,6 +32,10 @@ spec:
             emptyDir: {}
           - name: jit-cache
             emptyDir: {}
+          - name: model-storage
+            hostPath:
+              path: /mnt/nvme/models
+              type: Directory
         containers:
         - name: vllm
           image: quay.io/rh-ee-vsundarr/amd-vllm:latest
@@ -65,8 +69,13 @@ spec:
               # --enable-eplb:  Expert-parallel load balancing reduces EP load imbalance by replicating heavily-used experts Performance-memory tradeoff: on DeepSeekV3 eplb uses an extra 2GB per redundant expert per GPU Divisibility constraint: num_routed_experts (256 for DSv3) + num_redundant_experts must be divisible by the number of GPUs.
 
               # TODO (varun) : Investigate DBO enablement
+              # TODO (varun) : use Mistral's default max-model-len
               exec vllm serve \
-                Qwen/Qwen3-30B-A3B-FP8 \
+                /mnt/models/mistralai/Mistral-Large-3-675B-Instruct-2512 \
+                --config_format mistral \
+                --load_format mistral \
+                --served-model-name  mistralai/Mistral-Large-3-675B-Instruct-2512 \
+                --all2all-backend deepep_high_throughput \
                 --port 8000 \
                 --trust-remote-code \
                 --disable-uvicorn-access-log \
@@ -82,6 +91,7 @@ spec:
                                         "kv_role":"kv_both",
                                         "kv_load_failure_policy":"fail"}' \
                 --async-scheduling \
+                --max-model-len 8192 \
                 --enable-eplb \
                 --eplb-config '{"window_size":"1000",
                                 "step_interval":"3000",
@@ -89,6 +99,8 @@ spec:
                                 "log_balancedness":"False"}' --gpu-memory-utilization 0.75
 
           env:
+          - name: VLLM_HTTP_TIMEOUT_KEEP_ALIVE
+            value: "60"
           - name: DP_SIZE_LOCAL
             value: "8"
           - name: TP_SIZE
@@ -100,9 +112,7 @@ spec:
           - name: VLLM_RANDOMIZE_DP_DUMMY_INPUTS
             value: "1"
           - name: VLLM_USE_DEEP_GEMM
-            value: "1"
-          - name: VLLM_ALL2ALL_BACKEND
-            value: deepep_high_throughput
+            value: "0"
           - name: NVIDIA_GDRCOPY
             value: enabled
           - name: NVSHMEM_REMOTE_TRANSPORT
@@ -149,6 +159,11 @@ spec:
             value: "12884901888"
           - name: ROCSHMEM_DEBUG_LEVEL
             value: INFO
+          - name: VLLM_ROCM_USE_AITER
+            value: "0"
+          # TODO (varun) : FixME - Plumb AiterExperts with DeepEP High Throughput
+          - name: VLLM_ROCM_USE_AITER_MOE
+            value: "0"
 
           # Use cache directories from the mounted volume under one easy to mount
           # root directory.
@@ -209,3 +224,6 @@ spec:
               mountPath: /var/cache/vllm   
             - name: devinf
               mountPath: /dev/infiniband
+            - name: model-storage
+              mountPath: /mnt/models
+              readOnly: true

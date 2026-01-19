@@ -52,6 +52,10 @@ spec:
           - name: devinf
             hostPath:
               path: /dev/infiniband
+          - name: model-storage
+            hostPath:
+              path: /mnt/nvme/models
+              type: Directory
         containers:
         - name: vllm
           image: quay.io/rh-ee-vsundarr/amd-vllm:latest
@@ -85,8 +89,13 @@ spec:
               # --enable-eplb: Expert-parallel load balancing reduces EP load imbalance by replicating heavily-used experts Performance-memory tradeoff: on DeepSeekV3 eplb uses an extra 2GB per redundant expert per GPU Divisibility constraint: num_routed_experts (256 for DSv3) + num_redundant_experts must be divisible by the number of GPUs.
 
               # TODO (varun) : Investigate DBO enablement
+              # TODO (varun) : use Mistral's default max-model-len
               exec vllm serve \
-                Qwen/Qwen3-30B-A3B-FP8 \
+                /mnt/models/mistralai/Mistral-Large-3-675B-Instruct-2512 \
+                --config_format mistral \
+                --load_format mistral \
+                --served-model-name  mistralai/Mistral-Large-3-675B-Instruct-2512 \
+                --all2all-backend deepep_low_latency \
                 --port 8200 \
                 --trust-remote-code \
                 --disable-uvicorn-access-log \
@@ -102,6 +111,7 @@ spec:
                                         "kv_role":"kv_both",
                                         "kv_load_failure_policy":"fail"}' \
                 --async-scheduling \
+                --max-model-len 8192 \
                 --enable-eplb \
                 --eplb-config '{"window_size":"1000",
                                 "step_interval":"3000",
@@ -109,6 +119,7 @@ spec:
                                 "log_balancedness":"False"}' \
                 --compilation_config '{"cudagraph_mode": "FULL_DECODE_ONLY"}' \
                 --kv-cache-memory-bytes=${KV_CACHE_MEMORY_BYTES-}
+
           env:
           # VLLM_MOE_DP_CHUNK_SIZE is a tunable parameter.
           # Higher values increase the memory footprint of the hidden states in the MoE layers,
@@ -119,6 +130,8 @@ spec:
           # default NVSHMEM_QP_DEPTH to be at least 2 * (chunk_size + 1), which will increase the
           # memory NVSHMEM allocates up front.
           # Has no effect when VLLM_ALL2ALL_BACKEND=deepep_high_throughput.
+          - name: VLLM_HTTP_TIMEOUT_KEEP_ALIVE
+            value: "60"
           - name: VLLM_MOE_DP_CHUNK_SIZE
             value: "384" # vLLM default is 256
           - name: DP_SIZE_LOCAL
@@ -132,9 +145,7 @@ spec:
           - name: VLLM_RANDOMIZE_DP_DUMMY_INPUTS
             value: "1"
           - name: VLLM_USE_DEEP_GEMM
-            value: "1"
-          - name: VLLM_ALL2ALL_BACKEND
-            value: deepep_low_latency
+            value: "0"
           - name: NVIDIA_GDRCOPY
             value: enabled
           - name: NVSHMEM_REMOTE_TRANSPORT
@@ -176,6 +187,11 @@ spec:
             value: none
           - name: ROCSHMEM_HEAP_SIZE 
             value: "12884901888"
+          # TODO (varun) : Poor lm-eval with VLLM_ROCM_USE_AITER
+          - name: VLLM_ROCM_USE_AITER
+            value: "0"
+          - name: VLLM_ROCM_USE_AITER_MOE
+            value: "0"
           - name: VLLM_NIXL_SIDE_CHANNEL_HOST
             valueFrom:
               fieldRef:
@@ -240,3 +256,6 @@ spec:
               mountPath: /var/cache/vllm
             - name: devinf
               mountPath: /dev/infiniband
+            - name: model-storage
+              mountPath: /mnt/models
+              readOnly: true
