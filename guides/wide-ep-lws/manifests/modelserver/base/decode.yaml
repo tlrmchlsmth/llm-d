@@ -119,6 +119,8 @@ spec:
           # default NVSHMEM_QP_DEPTH to be at least 2 * (chunk_size + 1), which will increase the
           # memory NVSHMEM allocates up front.
           # Has no effect when VLLM_ALL2ALL_BACKEND=deepep_high_throughput.
+          - name: VLLM_HTTP_TIMEOUT_KEEP_ALIVE
+            value: "60"
           - name: VLLM_MOE_DP_CHUNK_SIZE
             value: "384" # vLLM default is 256
           - name: DP_SIZE_LOCAL
@@ -132,7 +134,7 @@ spec:
           - name: VLLM_RANDOMIZE_DP_DUMMY_INPUTS
             value: "1"
           - name: VLLM_USE_DEEP_GEMM
-            value: "1"
+            value: "0"
           - name: VLLM_ALL2ALL_BACKEND
             value: deepep_low_latency
           - name: NVIDIA_GDRCOPY
@@ -176,6 +178,10 @@ spec:
             value: none
           - name: ROCSHMEM_HEAP_SIZE 
             value: "12884901888"
+          - name: VLLM_ROCM_USE_AITER
+            value: "1"
+          - name: VLLM_ROCM_USE_AITER_MOE
+            value: "0"
           - name: VLLM_NIXL_SIDE_CHANNEL_HOST
             valueFrom:
               fieldRef:
