@@ -56,6 +56,10 @@ spec:
             hostPath:
               path: /mnt/nvme/models
               type: Directory
+          - name: aiter-cache
+            hostPath:
+              path: /mnt/nvme/cache
+              type: Directory
         containers:
         - name: vllm
           image: quay.io/rh-ee-vsundarr/amd-vllm:latest
@@ -112,11 +116,6 @@ spec:
                                         "kv_load_failure_policy":"fail"}' \
                 --async-scheduling \
                 --max-model-len 8192 \
-                --enable-eplb \
-                --eplb-config '{"window_size":"1000",
-                                "step_interval":"3000",
-                                "num_redundant_experts":"32",
-                                "log_balancedness":"False"}' \
                 --compilation_config '{"cudagraph_mode": "FULL_DECODE_ONLY"}' \
                 --kv-cache-memory-bytes=${KV_CACHE_MEMORY_BYTES-}
 
@@ -189,7 +188,7 @@ spec:
             value: "12884901888"
           # TODO (varun) : Poor lm-eval with VLLM_ROCM_USE_AITER
           - name: VLLM_ROCM_USE_AITER
-            value: "0"
+            value: "1"
           - name: VLLM_ROCM_USE_AITER_MOE
             value: "0"
           - name: VLLM_NIXL_SIDE_CHANNEL_HOST
@@ -210,6 +209,12 @@ spec:
           # HuggingFace is likely to be quite a bit larger, give it its own cache
           - name: HF_HUB_CACHE
             value: /var/cache/huggingface
+          - name: AITER_JIT_DIR
+            value: /mnt/aiter-cache
+          - name: NIXL_LOG_LEVEL
+            value: warn
+          - name: TORCHINDUCTOR_MAX_AUTOTUNE
+            value: "1"
 
           ports:
           - containerPort: 8200
@@ -259,3 +264,5 @@ spec:
             - name: model-storage
               mountPath: /mnt/models
               readOnly: true
+            - name: aiter-cache
+              mountPath: /mnt/aiter-cache
