@@ -1,0 +1,385 @@
+
+==============================================
+Discovering DeepEP LWS Pods in namespace: raj-network-debug
+==============================================
+
+Discovered DeepEP Pods:
+deepep-test-ll-lws-0 10.0.73.241
+deepep-test-ll-lws-0-1 10.0.69.254
+
+Found 2 DeepEP pods (using first 2 for leader/worker test)
+
+DEEPEP POD                NODE NAME          NETWORKING DEBUG POD                    
+------------------------- ------------------ ----------------------------------------
+deepep-test-ll-lws-0      10.0.73.241        networking-debug-pod-10.0.73.241        
+deepep-test-ll-lws-0-1    10.0.69.254        networking-debug-pod-10.0.69.254        
+
+==============================================
+Collecting NIC Counters BEFORE Test
+==============================================
+  Collecting from networking-debug-pod-10.0.73.241...
+
+==================================================================================================================================
+NIC Counters (BEFORE) for: deepep-test-ll-lws-0 (Node: 10.0.73.241)
+==================================================================================================================================
+NIC      p0_pkts      p0_disc      p1_pkts      p1_disc      p5_pkts      p5_disc      phy_pkts       rdma_uni      
+-------- ------------ ------------ ------------ ------------ ------------ ------------ -------------- --------------
+rdma0    227069113    0            18397184     206870       59940206     0            310270717      315614153     
+rdma1    227210546    0            18724667     221987       29843723     0            275881143      280831564     
+rdma2    227096358    0            18723522     218260       16654259     0            262553634      267497509     
+rdma3    227256862    0            18715785     241996       16577527     0            262642047      267578104     
+rdma4    227084482    0            19089628     259095       55846793     0            306963590      311864819     
+rdma5    226868548    0            18725116     227713       29287188     0            274973849      279879103     
+rdma6    227022641    0            18945098     223274       16327191     0            262370999      267296414     
+rdma7    227206358    0            18783959     237881       16195649     0            262257384      267188240     
+
+PFC Pause Counters (BEFORE) - Priorities 0 and 5:
+NIC      tx_p0_paus   rx_p0_paus   tx_p5_paus   rx_p5_paus   tx_p0_dur      rx_p0_dur      tx_p5_dur      rx_p5_dur     
+-------- ------------ ------------ ------------ ------------ -------------- -------------- -------------- --------------
+rdma0    85904        0            85904        0            3232345        0              3232345        0             
+rdma1    2295         0            2295         0            59642          0              59642          0             
+rdma2    1607         0            1607         0            38961          0              38961          0             
+rdma3    2854         0            2854         0            74164          0              74164          0             
+rdma4    77873        0            77873        0            2888066        0              2888066        0             
+rdma5    1805         0            1805         0            45519          0              45519          0             
+rdma6    1108         0            1108         0            26565          0              26565          0             
+rdma7    1079         0            1079         0            26294          0              26294          0             
+  Collecting from networking-debug-pod-10.0.69.254...
+
+==================================================================================================================================
+NIC Counters (BEFORE) for: deepep-test-ll-lws-0-1 (Node: 10.0.69.254)
+==================================================================================================================================
+NIC      p0_pkts      p0_disc      p1_pkts      p1_disc      p5_pkts      p5_disc      phy_pkts       rdma_uni      
+-------- ------------ ------------ ------------ ------------ ------------ ------------ -------------- --------------
+rdma0    440984769    0            23559185     247800       103228344    0            569803208      579372912     
+rdma1    441140366    0            14050528     216603       53843330     0            509110326      518276303     
+rdma2    440265874    0            13668934     217564       32581873     0            486581927      495644445     
+rdma3    440700973    0            13702044     237686       32339721     0            486825214      495910442     
+rdma4    440670998    0            13748895     239032       94440144     0            550794280      559869446     
+rdma5    439558163    0            13592562     195394       52019328     0            505248311      514229292     
+rdma6    439442266    0            13679897     223584       32077939     0            485267943      494210966     
+rdma7    438887488    0            13763678     237869       32227735     0            484928467      493798997     
+
+PFC Pause Counters (BEFORE) - Priorities 0 and 5:
+NIC      tx_p0_paus   rx_p0_paus   tx_p5_paus   rx_p5_paus   tx_p0_dur      rx_p0_dur      tx_p5_dur      rx_p5_dur     
+-------- ------------ ------------ ------------ ------------ -------------- -------------- -------------- --------------
+rdma0    446988       0            446988       0            16521941       0              16521941       0             
+rdma1    4237         0            4237         0            99830          0              99830          0             
+rdma2    4716         0            4716         0            94713          0              94713          0             
+rdma3    4184         0            4184         0            101899         0              101899         0             
+rdma4    455423       0            455423       0            17084156       0              17084156       0             
+rdma5    4256         0            4256         0            100859         0              100859         0             
+rdma6    3285         0            3285         0            81666          0              81666          0             
+rdma7    3633         0            3633         0            87116          0              87116          0             
+
+==============================================
+ECN Hardware Counters BEFORE Test
+==============================================
+POD                       ecn_marked         cnp_sent           cnp_handled       
+------------------------- ------------------ ------------------ ------------------
+deepep-test-ll-lws-0      14369995           3529817            52609445          
+deepep-test-ll-lws-0-1    71816759           8815364            46261946          
+
+==============================================
+Running DeepEP Low Latency Test
+==============================================
+
+[Leader] Starting on deepep-test-ll-lws-0...
+[Worker] Starting on deepep-test-ll-lws-0-1...
+[Leader] Allocating buffer size: 2116.293248 MB ...
+[Leader] [rank 0] Dispatch + combine bandwidth: 1.42 GB/s, avg_t=15503.63 us, min_t=12984.02 us, max_t=22004.08 us
+[Leader] [rank 1] Dispatch + combine bandwidth: 1.42 GB/s, avg_t=15499.31 us, min_t=12625.26 us, max_t=21899.35 us
+[Leader] [rank 2] Dispatch + combine bandwidth: 1.42 GB/s, avg_t=15489.84 us, min_t=12535.80 us, max_t=21720.91 us
+[Leader] [rank 5] Dispatch + combine bandwidth: 1.42 GB/s, avg_t=15489.85 us, min_t=12922.23 us, max_t=21181.99 us
+[Leader] [rank 4] Dispatch + combine bandwidth: 1.42 GB/s, avg_t=15495.12 us, min_t=12534.64 us, max_t=21818.95 us
+[Leader] [rank 7] Dispatch + combine bandwidth: 1.42 GB/s, avg_t=15505.86 us, min_t=11772.41 us, max_t=21738.11 us
+[Leader] [rank 6] Dispatch + combine bandwidth: 1.42 GB/s, avg_t=15503.26 us, min_t=13156.56 us, max_t=22375.79 us
+[Leader] [rank 3] Dispatch + combine bandwidth: 1.42 GB/s, avg_t=15501.08 us, min_t=11955.34 us, max_t=23851.81 us
+[Leader] [rank 1] Dispatch bandwidth: 1.40 GB/s, avg_t=5359.00 us | Combine bandwidth: 1.51 GB/s, avg_t=9642.00 us
+[Leader] [rank 1] Dispatch send/recv time: 1393.34 us | Combine send/recv time: 11406.00 us
+[Leader] [rank 3] Dispatch bandwidth: 1.58 GB/s, avg_t=4765.00 us | Combine bandwidth: 1.42 GB/s, avg_t=10239.00 us
+[Leader] [rank 3] Dispatch send/recv time: 905.46 us | Combine send/recv time: 11758.00 us
+[Leader] [rank 2] Dispatch bandwidth: 1.48 GB/s, avg_t=5080.00 us | Combine bandwidth: 1.47 GB/s, avg_t=9920.00 us
+[Leader] [rank 2] Dispatch send/recv time: 772.26 us | Combine send/recv time: 12208.00 us
+[Leader] [rank 6] Dispatch bandwidth: 1.53 GB/s, avg_t=4924.00 us | Combine bandwidth: 1.44 GB/s, avg_t=10075.00 us
+[Leader] [rank 6] Dispatch send/recv time: 564.82 us | Combine send/recv time: 11874.00 us
+[Leader] [rank 5] Dispatch bandwidth: 1.49 GB/s, avg_t=5049.00 us | Combine bandwidth: 1.46 GB/s, avg_t=9949.00 us
+[Leader] [rank 5] Dispatch send/recv time: 1098.34 us | Combine send/recv time: 11634.00 us
+[Leader] [rank 0] Dispatch bandwidth: 1.38 GB/s, avg_t=5449.00 us | Combine bandwidth: 1.52 GB/s, avg_t=9549.00 us
+[Leader] [rank 0] Dispatch send/recv time: 1114.03 us | Combine send/recv time: 11770.00 us
+[Leader] [rank 4] Dispatch bandwidth: 1.45 GB/s, avg_t=5167.00 us | Combine bandwidth: 1.48 GB/s, avg_t=9833.00 us
+[Leader] [rank 4] Dispatch send/recv time: 1261.48 us | Combine send/recv time: 11524.00 us
+[Leader] [rank 7] Dispatch bandwidth: 1.51 GB/s, avg_t=4969.00 us | Combine bandwidth: 1.45 GB/s, avg_t=10027.00 us
+[Leader] [rank 7] Dispatch send/recv time: 1083.35 us | Combine send/recv time: 11894.00 us
+[Leader] [rank0]:[W126 21:31:19.209382377 ProcessGroupNCCL.cpp:1524] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+[Leader] [rank5]:[W126 21:31:21.115117488 TCPStore.cpp:125] [c10d] recvValue failed on SocketImpl(fd=7, addr=[10-0-73-241.llmd-kube-prometheus-stack-kube-proxy.kube-system.svc.cluster.local]:60810, remote=[10-0-73-241.prometheus-prometheus-node-exporter.cluster-tools.svc.cluster.local]:8361): Failed to recv, got 0 bytes. Connection was likely closed. Did the remote server shutdown or crash?
+[Leader] Exception raised from recvBytes at /app/pytorch/torch/csrc/distributed/c10d/Utils.hpp:682 (most recent call first):
+[Leader] frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x9c (0x7f5df71a83bc in /usr/local/lib/python3.12/dist-packages/torch/lib/libc10.so)
+[Leader] frame #1: <unknown function> + 0x629a142 (0x7f5e3fdfb142 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Leader] frame #2: <unknown function> + 0x629b495 (0x7f5e3fdfc495 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Leader] frame #3: <unknown function> + 0x629c071 (0x7f5e3fdfd071 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Leader] frame #4: c10d::TCPStore::check(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&) + 0x2c9 (0x7f5e3fdf7c69 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Leader] frame #5: c10d::ProcessGroupNCCL::HeartbeatMonitor::runLoop() + 0x3c3 (0x7f5e3505a203 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_hip.so)
+[Leader] frame #6: <unknown function> + 0xdc253 (0x7f5df562b253 in /lib/x86_64-linux-gnu/libstdc++.so.6)
+[Leader] frame #7: <unknown function> + 0x94ac3 (0x7f5e496a0ac3 in /lib/x86_64-linux-gnu/libc.so.6)
+[Leader] frame #8: <unknown function> + 0x1268c0 (0x7f5e497328c0 in /lib/x86_64-linux-gnu/libc.so.6)
+[Leader] 
+[Leader] [rank4]:[W126 21:31:21.115109443 TCPStore.cpp:125] [c10d] recvValue failed on SocketImpl(fd=6, addr=[10-0-73-241.prometheus-prometheus-node-exporter.cluster-tools.svc.cluster.local]:60758, remote=[deepep-test-ll-lws-0.deepep-test-ll-lws.raj-network-debug.svc.cluster.local]:8361): Failed to recv, got 0 bytes. Connection was likely closed. Did the remote server shutdown or crash?
+[Leader] Exception raised from recvBytes at /app/pytorch/torch/csrc/distributed/c10d/Utils.hpp:682 (most recent call first):
+[Leader] frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x9c (0x7f4756dac3bc in /usr/local/lib/python3.12/dist-packages/torch/lib/libc10.so)
+[Leader] frame #1: <unknown function> + 0x629a142 (0x7f479f9ff142 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Leader] frame #2: <unknown function> + 0x629b495 (0x7f479fa00495 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Leader] frame #3: <unknown function> + 0x629c071 (0x7f479fa01071 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Leader] frame #4: c10d::TCPStore::check(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&) + 0x2c9 (0x7f479f9fbc69 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Leader] frame #5: c10d::ProcessGroupNCCL::HeartbeatMonitor::runLoop() + 0x3c3 (0x7f4794c5e203 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_hip.so)
+[Leader] frame #6: <unknown function> + 0xdc253 (0x7f475522f253 in /lib/x86_64-linux-gnu/libstdc++.so.6)
+[Leader] frame #7: <unknown function> + 0x94ac3 (0x7f47a92a4ac3 in /lib/x86_64-linux-gnu/libc.so.6)
+[Leader] frame #8: <unknown function> + 0x1268c0 (0x7f47a93368c0 in /lib/x86_64-linux-gnu/libc.so.6)
+[Leader] 
+[Leader] [rank3]:[W126 21:31:21.115129707 TCPStore.cpp:125] [c10d] recvValue failed on SocketImpl(fd=7, addr=[10-0-73-241.prometheus-prometheus-node-exporter.cluster-tools.svc.cluster.local]:60786, remote=[10-0-73-241.prometheus-prometheus-node-exporter.cluster-tools.svc.cluster.local]:8361): Failed to recv, got 0 bytes. Connection was likely closed. Did the remote server shutdown or crash?
+[Leader] Exception raised from recvBytes at /app/pytorch/torch/csrc/distributed/c10d/Utils.hpp:682 (most recent call first):
+[Leader] frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x9c (0x7fe27592f3bc in /usr/local/lib/python3.12/dist-packages/torch/lib/libc10.so)
+[Leader] frame #1: <unknown function> + 0x629a142 (0x7fe2be582142 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Leader] frame #2: <unknown function> + 0x629b495 (0x7fe2be583495 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Leader] frame #3: <unknown function> + 0x629c071 (0x7fe2be584071 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Leader] frame #4: c10d::TCPStore::check(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&) + 0x2c9 (0x7fe2be57ec69 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Leader] frame #5: c10d::ProcessGroupNCCL::HeartbeatMonitor::runLoop() + 0x3c3 (0x7fe2b37e1203 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_hip.so)
+[Leader] frame #6: <unknown function> + 0xdc253 (0x7fe273db2253 in /lib/x86_64-linux-gnu/libstdc++.so.6)
+[Leader] frame #7: <unknown function> + 0x94ac3 (0x7fe2c7e27ac3 in /lib/x86_64-linux-gnu/libc.so.6)
+[Leader] frame #8: <unknown function> + 0x1268c0 (0x7fe2c7eb98c0 in /lib/x86_64-linux-gnu/libc.so.6)
+[Leader] 
+[Leader] [rank6]:[W126 21:31:21.115113825 TCPStore.cpp:125] [c10d] recvValue failed on SocketImpl(fd=7, addr=[10-0-73-241.prometheus-prometheus-node-exporter.cluster-tools.svc.cluster.local]:60806, remote=[10-0-73-241.prometheus-prometheus-node-exporter.cluster-tools.svc.cluster.local]:8361): Failed to recv, got 0 bytes. Connection was likely closed. Did the remote server shutdown or crash?
+[Leader] Exception raised from recvBytes at /app/pytorch/torch/csrc/distributed/c10d/Utils.hpp:682 (most recent call first):
+[Leader] frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x9c (0x7fa525af13bc in /usr/local/lib/python3.12/dist-packages/torch/lib/libc10.so)
+[Leader] frame #1: <unknown function> + 0x629a142 (0x7fa56e744142 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Leader] frame #2: <unknown function> + 0x629b495 (0x7fa56e745495 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Leader] frame #3: <unknown function> + 0x629c071 (0x7fa56e746071 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Leader] frame #4: c10d::TCPStore::check(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&) + 0x2c9 (0x7fa56e740c69 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Leader] frame #5: c10d::ProcessGroupNCCL::HeartbeatMonitor::runLoop() + 0x3c3 (0x7fa5639a3203 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_hip.so)
+[Leader] frame #6: <unknown function> + 0xdc253 (0x7fa523f74253 in /lib/x86_64-linux-gnu/libstdc++.so.6)
+[Leader] frame #7: <unknown function> + 0x94ac3 (0x7fa577fe9ac3 in /lib/x86_64-linux-gnu/libc.so.6)
+[Leader] frame #8: <unknown function> + 0x1268c0 (0x7fa57807b8c0 in /lib/x86_64-linux-gnu/libc.so.6)
+[Leader] 
+[Leader] [rank7]:[W126 21:31:21.115145185 TCPStore.cpp:125] [c10d] recvValue failed on SocketImpl(fd=7, addr=[10-0-73-241.llmd-kube-prometheus-stack-kube-proxy.kube-system.svc.cluster.local]:60772, remote=[10-0-73-241.llmd-kube-prometheus-stack-kubelet.kube-system.svc.cluster.local]:8361): Failed to recv, got 0 bytes. Connection was likely closed. Did the remote server shutdown or crash?
+[Leader] Exception raised from recvBytes at /app/pytorch/torch/csrc/distributed/c10d/Utils.hpp:682 (most recent call first):
+[Leader] frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x9c (0x7fcc38ec53bc in /usr/local/lib/python3.12/dist-packages/torch/lib/libc10.so)
+[Leader] frame #1: <unknown function> + 0x629a142 (0x7fcc81b18142 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Leader] frame #2: <unknown function> + 0x629b495 (0x7fcc81b19495 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Leader] frame #3: <unknown function> + 0x629c071 (0x7fcc81b1a071 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Leader] frame #4: c10d::TCPStore::check(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&) + 0x2c9 (0x7fcc81b14c69 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Leader] frame #5: c10d::ProcessGroupNCCL::HeartbeatMonitor::runLoop() + 0x3c3 (0x7fcc76d77203 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_hip.so)
+[Leader] frame #6: <unknown function> + 0xdc253 (0x7fcc37348253 in /lib/x86_64-linux-gnu/libstdc++.so.6)
+[Leader] frame #7: <unknown function> + 0x94ac3 (0x7fcc8b3bdac3 in /lib/x86_64-linux-gnu/libc.so.6)
+[Leader] frame #8: <unknown function> + 0x1268c0 (0x7fcc8b44f8c0 in /lib/x86_64-linux-gnu/libc.so.6)
+[Leader] 
+[Leader] [rank6]:[W126 21:31:21.119253411 ProcessGroupNCCL.cpp:1771] [PG ID 0 PG GUID 0(default_pg) Rank 6] Failed to check the "should dump" flag on TCPStore, (maybe TCPStore server has shut down too early), with error: Failed to recv, got 0 bytes. Connection was likely closed. Did the remote server shutdown or crash?
+[Leader] [rank4]:[W126 21:31:21.119254701 ProcessGroupNCCL.cpp:1771] [PG ID 0 PG GUID 0(default_pg) Rank 4] Failed to check the "should dump" flag on TCPStore, (maybe TCPStore server has shut down too early), with error: Failed to recv, got 0 bytes. Connection was likely closed. Did the remote server shutdown or crash?
+[Leader] [rank3]:[W126 21:31:21.119253558 ProcessGroupNCCL.cpp:1771] [PG ID 0 PG GUID 0(default_pg) Rank 3] Failed to check the "should dump" flag on TCPStore, (maybe TCPStore server has shut down too early), with error: Failed to recv, got 0 bytes. Connection was likely closed. Did the remote server shutdown or crash?
+[Leader] [rank5]:[W126 21:31:21.119253224 ProcessGroupNCCL.cpp:1771] [PG ID 0 PG GUID 0(default_pg) Rank 5] Failed to check the "should dump" flag on TCPStore, (maybe TCPStore server has shut down too early), with error: Failed to recv, got 0 bytes. Connection was likely closed. Did the remote server shutdown or crash?
+[Leader] [rank7]:[W126 21:31:21.119255494 ProcessGroupNCCL.cpp:1771] [PG ID 0 PG GUID 0(default_pg) Rank 7] Failed to check the "should dump" flag on TCPStore, (maybe TCPStore server has shut down too early), with error: Failed to recv, got 0 bytes. Connection was likely closed. Did the remote server shutdown or crash?
+[Leader] [rank2]:[W126 21:31:21.115109392 TCPStore.cpp:125] [c10d] recvValue failed on SocketImpl(fd=7, addr=[10-0-73-241.prometheus-prometheus-node-exporter.cluster-tools.svc.cluster.local]:60792, remote=[10-0-73-241.llmd-kube-prometheus-stack-kubelet.kube-system.svc.cluster.local]:8361): Failed to recv, got 0 bytes. Connection was likely closed. Did the remote server shutdown or crash?
+[Leader] Exception raised from recvBytes at /app/pytorch/torch/csrc/distributed/c10d/Utils.hpp:682 (most recent call first):
+[Leader] frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x9c (0x7f7375ab63bc in /usr/local/lib/python3.12/dist-packages/torch/lib/libc10.so)
+[Leader] frame #1: <unknown function> + 0x629a142 (0x7f73be709142 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Leader] frame #2: <unknown function> + 0x629b495 (0x7f73be70a495 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Leader] frame #3: <unknown function> + 0x629c071 (0x7f73be70b071 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Leader] frame #4: c10d::TCPStore::check(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&) + 0x2c9 (0x7f73be705c69 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Leader] frame #5: c10d::ProcessGroupNCCL::HeartbeatMonitor::runLoop() + 0x3c3 (0x7f73b3968203 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_hip.so)
+[Leader] frame #6: <unknown function> + 0xdc253 (0x7f7373f39253 in /lib/x86_64-linux-gnu/libstdc++.so.6)
+[Leader] frame #7: <unknown function> + 0x94ac3 (0x7f73c7faeac3 in /lib/x86_64-linux-gnu/libc.so.6)
+[Leader] frame #8: <unknown function> + 0x1268c0 (0x7f73c80408c0 in /lib/x86_64-linux-gnu/libc.so.6)
+[Leader] 
+[Leader] [rank2]:[W126 21:31:21.119350425 ProcessGroupNCCL.cpp:1771] [PG ID 0 PG GUID 0(default_pg) Rank 2] Failed to check the "should dump" flag on TCPStore, (maybe TCPStore server has shut down too early), with error: Failed to recv, got 0 bytes. Connection was likely closed. Did the remote server shutdown or crash?
+[Worker] Allocating buffer size: 2116.293248 MB ...
+[Worker] [rank 10] Dispatch + combine bandwidth: 1.42 GB/s, avg_t=15496.07 us, min_t=11986.31 us, max_t=24339.98 us
+[Worker] [rank 13] Dispatch + combine bandwidth: 1.42 GB/s, avg_t=15505.87 us, min_t=12253.28 us, max_t=22174.58 us
+[Worker] [rank 12] Dispatch + combine bandwidth: 1.42 GB/s, avg_t=15503.29 us, min_t=13054.67 us, max_t=21666.34 us
+[Worker] [rank 15] Dispatch + combine bandwidth: 1.42 GB/s, avg_t=15501.46 us, min_t=12511.91 us, max_t=20964.73 us
+[Worker] [rank 11] Dispatch + combine bandwidth: 1.42 GB/s, avg_t=15492.63 us, min_t=12446.24 us, max_t=21669.63 us
+[Worker] [rank 8] Dispatch + combine bandwidth: 1.42 GB/s, avg_t=15495.42 us, min_t=12409.19 us, max_t=21810.79 us
+[Worker] [rank 14] Dispatch + combine bandwidth: 1.42 GB/s, avg_t=15502.17 us, min_t=12720.71 us, max_t=24408.93 us
+[Worker] [rank 9] Dispatch + combine bandwidth: 1.42 GB/s, avg_t=15499.19 us, min_t=11926.29 us, max_t=22870.21 us
+[Worker] [rank 8] Dispatch bandwidth: 1.67 GB/s, avg_t=4503.00 us | Combine bandwidth: 1.38 GB/s, avg_t=10504.00 us
+[Worker] [rank 8] Dispatch send/recv time: 875.49 us | Combine send/recv time: 11402.00 us
+[Worker] [rank 12] Dispatch bandwidth: 1.58 GB/s, avg_t=4740.00 us | Combine bandwidth: 1.42 GB/s, avg_t=10267.00 us
+[Worker] [rank 12] Dispatch send/recv time: 617.97 us | Combine send/recv time: 11752.00 us
+[Worker] [rank 11] Dispatch bandwidth: 1.73 GB/s, avg_t=4347.00 us | Combine bandwidth: 1.36 GB/s, avg_t=10657.00 us
+[Worker] [rank 11] Dispatch send/recv time: 723.54 us | Combine send/recv time: 11354.00 us
+[Worker] [rank 9] Dispatch bandwidth: 1.72 GB/s, avg_t=4355.00 us | Combine bandwidth: 1.36 GB/s, avg_t=10653.00 us
+[Worker] [rank 9] Dispatch send/recv time: 709.91 us | Combine send/recv time: 11434.00 us
+[Worker] [rank 14] Dispatch bandwidth: 1.65 GB/s, avg_t=4554.00 us | Combine bandwidth: 1.39 GB/s, avg_t=10453.00 us
+[Worker] [rank 14] Dispatch send/recv time: 737.35 us | Combine send/recv time: 11290.00 us
+[Worker] [rank 15] Dispatch bandwidth: 1.61 GB/s, avg_t=4673.00 us | Combine bandwidth: 1.41 GB/s, avg_t=10334.00 us
+[Worker] [rank 15] Dispatch send/recv time: 723.34 us | Combine send/recv time: 11590.00 us
+[Worker] [rank 13] Dispatch bandwidth: 1.58 GB/s, avg_t=4765.00 us | Combine bandwidth: 1.42 GB/s, avg_t=10240.00 us
+[Worker] [rank 13] Dispatch send/recv time: 2028.00 us | Combine send/recv time: 10080.00 us
+[Worker] [rank 10] Dispatch bandwidth: 1.57 GB/s, avg_t=4771.00 us | Combine bandwidth: 1.42 GB/s, avg_t=10237.00 us
+[Worker] [rank 10] Dispatch send/recv time: 1109.78 us | Combine send/recv time: 11192.00 us
+[Worker] [rank8]:[W126 21:31:19.510637498 ProcessGroupNCCL.cpp:1524] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+
+Waiting for leader to complete...
+
+==============================================
+DeepEP Low Latency Test Completed
+==============================================
+
+==============================================
+Collecting NIC Counters AFTER Test
+==============================================
+  Collecting from networking-debug-pod-10.0.73.241...
+
+==================================================================================================================================
+NIC Counters (AFTER) for: deepep-test-ll-lws-0 (Node: 10.0.73.241)
+==================================================================================================================================
+NIC      p0_pkts      p0_disc      p1_pkts      p1_disc      p5_pkts      p5_disc      phy_pkts       rdma_uni      
+-------- ------------ ------------ ------------ ------------ ------------ ------------ -------------- --------------
+rdma0    227069533    0            18397185     206870       59940206     0            310271138      315614529     
+rdma1    227210768    0            18724668     221987       29843723     0            275881366      280831741     
+rdma2    227096403    0            18723523     218260       16654259     0            262553680      267497509     
+rdma3    227256907    0            18715786     241996       16577527     0            262642093      267578104     
+rdma4    227084527    0            19089629     259095       55846793     0            306963636      311864819     
+rdma5    226868592    0            18725117     227713       29287188     0            274973894      279879103     
+rdma6    227022806    0            18945100     223274       16327191     0            262371166      267296534     
+rdma7    227206683    0            18783961     237881       16195649     0            262257711      267188520     
+
+PFC Pause Counters (AFTER) - Priorities 0 and 5:
+NIC      tx_p0_paus   rx_p0_paus   tx_p5_paus   rx_p5_paus   tx_p0_dur      rx_p0_dur      tx_p5_dur      rx_p5_dur     
+-------- ------------ ------------ ------------ ------------ -------------- -------------- -------------- --------------
+rdma0    85904        0            85904        0            3232345        0              3232345        0             
+rdma1    2295         0            2295         0            59642          0              59642          0             
+rdma2    1607         0            1607         0            38961          0              38961          0             
+rdma3    2854         0            2854         0            74164          0              74164          0             
+rdma4    77873        0            77873        0            2888066        0              2888066        0             
+rdma5    1805         0            1805         0            45519          0              45519          0             
+rdma6    1108         0            1108         0            26565          0              26565          0             
+rdma7    1079         0            1079         0            26294          0              26294          0             
+  Collecting from networking-debug-pod-10.0.69.254...
+
+==================================================================================================================================
+NIC Counters (AFTER) for: deepep-test-ll-lws-0-1 (Node: 10.0.69.254)
+==================================================================================================================================
+NIC      p0_pkts      p0_disc      p1_pkts      p1_disc      p5_pkts      p5_disc      phy_pkts       rdma_uni      
+-------- ------------ ------------ ------------ ------------ ------------ ------------ -------------- --------------
+rdma0    440985111    0            23559187     247800       103228344    0            569803552      579373222     
+rdma1    441140519    0            14050530     216603       53843330     0            509110481      518276423     
+rdma2    440265907    0            13668936     217564       32581873     0            486581962      495644445     
+rdma3    440701005    0            13702046     237686       32339721     0            486825248      495910442     
+rdma4    440671031    0            13748897     239032       94440144     0            550794315      559869446     
+rdma5    439558196    0            13592564     195394       52019328     0            505248346      514229292     
+rdma6    439442478    0            13679899     223584       32077939     0            485268157      494211145     
+rdma7    438887867    0            13763680     237869       32227735     0            484928848      493799343     
+
+PFC Pause Counters (AFTER) - Priorities 0 and 5:
+NIC      tx_p0_paus   rx_p0_paus   tx_p5_paus   rx_p5_paus   tx_p0_dur      rx_p0_dur      tx_p5_dur      rx_p5_dur     
+-------- ------------ ------------ ------------ ------------ -------------- -------------- -------------- --------------
+rdma0    446988       0            446988       0            16521941       0              16521941       0             
+rdma1    4237         0            4237         0            99830          0              99830          0             
+rdma2    4716         0            4716         0            94713          0              94713          0             
+rdma3    4184         0            4184         0            101899         0              101899         0             
+rdma4    455423       0            455423       0            17084156       0              17084156       0             
+rdma5    4256         0            4256         0            100859         0              100859         0             
+rdma6    3285         0            3285         0            81666          0              81666          0             
+rdma7    3633         0            3633         0            87116          0              87116          0             
+
+==============================================
+ECN Hardware Counters AFTER Test
+==============================================
+POD                       ecn_marked         cnp_sent           cnp_handled       
+------------------------- ------------------ ------------------ ------------------
+deepep-test-ll-lws-0      14369995           3533941            52667841          
+deepep-test-ll-lws-0-1    71816759           8818922            46330092          
+
+==============================================
+NIC Counter DIFFERENCES (After - Before)
+==============================================
+
+==================================================================================================================================
+NIC Counter DIFFERENCE for: deepep-test-ll-lws-0 (Node: 10.0.73.241)
+==================================================================================================================================
+NIC      p0_pkts      p0_disc      p1_pkts      p1_disc      p5_pkts      p5_disc      phy_pkts       rdma_uni      
+-------- ------------ ------------ ------------ ------------ ------------ ------------ -------------- --------------
+rdma0    420          0            1            0            0            0            421            376           
+rdma1    222          0            1            0            0            0            223            177           
+rdma2    45           0            1            0            0            0            46             0             
+rdma3    45           0            1            0            0            0            46             0             
+rdma4    45           0            1            0            0            0            46             0             
+rdma5    44           0            1            0            0            0            45             0             
+rdma6    165          0            2            0            0            0            167            120           
+rdma7    325          0            2            0            0            0            327            280           
+
+PFC Pause Counter DIFFERENCE - Priorities 0 and 5:
+NIC      tx_p0_paus   rx_p0_paus   tx_p5_paus   rx_p5_paus   tx_p0_dur      rx_p0_dur      tx_p5_dur      rx_p5_dur     
+-------- ------------ ------------ ------------ ------------ -------------- -------------- -------------- --------------
+rdma0    0            0            0            0            0              0              0              0             
+rdma1    0            0            0            0            0              0              0              0             
+rdma2    0            0            0            0            0              0              0              0             
+rdma3    0            0            0            0            0              0              0              0             
+rdma4    0            0            0            0            0              0              0              0             
+rdma5    0            0            0            0            0              0              0              0             
+rdma6    0            0            0            0            0              0              0              0             
+rdma7    0            0            0            0            0              0              0              0             
+
+==================================================================================================================================
+NIC Counter DIFFERENCE for: deepep-test-ll-lws-0-1 (Node: 10.0.69.254)
+==================================================================================================================================
+NIC      p0_pkts      p0_disc      p1_pkts      p1_disc      p5_pkts      p5_disc      phy_pkts       rdma_uni      
+-------- ------------ ------------ ------------ ------------ ------------ ------------ -------------- --------------
+rdma0    342          0            2            0            0            0            344            310           
+rdma1    153          0            2            0            0            0            155            120           
+rdma2    33           0            2            0            0            0            35             0             
+rdma3    32           0            2            0            0            0            34             0             
+rdma4    33           0            2            0            0            0            35             0             
+rdma5    33           0            2            0            0            0            35             0             
+rdma6    212          0            2            0            0            0            214            179           
+rdma7    379          0            2            0            0            0            381            346           
+
+PFC Pause Counter DIFFERENCE - Priorities 0 and 5:
+NIC      tx_p0_paus   rx_p0_paus   tx_p5_paus   rx_p5_paus   tx_p0_dur      rx_p0_dur      tx_p5_dur      rx_p5_dur     
+-------- ------------ ------------ ------------ ------------ -------------- -------------- -------------- --------------
+rdma0    0            0            0            0            0              0              0              0             
+rdma1    0            0            0            0            0              0              0              0             
+rdma2    0            0            0            0            0              0              0              0             
+rdma3    0            0            0            0            0              0              0              0             
+rdma4    0            0            0            0            0              0              0              0             
+rdma5    0            0            0            0            0              0              0              0             
+rdma6    0            0            0            0            0              0              0              0             
+rdma7    0            0            0            0            0              0              0              0             
+
+==================================================================================================================================
+SUMMARY: Priority Packet Counter Differences
+==================================================================================================================================
+POD                       p0_pkts     p0_disc     p1_pkts     p1_disc     p5_pkts     p5_disc     phy_pkts      rdma_uni     
+------------------------- ----------- ----------- ----------- ----------- ----------- ----------- ------------- -------------
+deepep-test-ll-lws-0      1311        0           10          0           0           0           1321          953          
+deepep-test-ll-lws-0-1    1217        0           16          0           0           0           1233          955          
+------------------------- ----------- ----------- ----------- ----------- ----------- ----------- ------------- -------------
+TOTAL                     2528        0           26          0           0           0           2554          1908         
+
+==================================================================================================================================
+SUMMARY: PFC Pause Counter Differences (Priorities 0 and 5)
+==================================================================================================================================
+POD                       tx_p0      rx_p0      tx_p5      rx_p5      tx_p0_dur    rx_p0_dur    tx_p5_dur    rx_p5_dur   
+------------------------- ---------- ---------- ---------- ---------- ------------ ------------ ------------ ------------
+deepep-test-ll-lws-0      0          0          0          0          0            0            0            0           
+deepep-test-ll-lws-0-1    0          0          0          0          0            0            0            0           
+------------------------- ---------- ---------- ---------- ---------- ------------ ------------ ------------ ------------
+TOTAL                     0          0          0          0          0            0            0            0           
+
+==================================================================================================================================
+SUMMARY: ECN Counter Differences
+==================================================================================================================================
+POD                       ecn_marked         cnp_sent           cnp_handled       
+------------------------- ------------------ ------------------ ------------------
+deepep-test-ll-lws-0      0                  4124               58396             
+deepep-test-ll-lws-0-1    0                  3558               68146             
+------------------------- ------------------ ------------------ ------------------
+TOTAL                     0                  7682               126542            
+
+==============================================
+Notes:
+==============================================
+- PFC is enabled for priorities 0 and 5
+- Traffic uses: Priority 0 (NCCL bootstrap), Priority 5 (rocSHMEM/DeepEP)
+- ECN counters: ecn_marked=packets marked by network, cnp_sent/handled=congestion notifications
+- PFC pause: tx=sent pause frames, rx=received pause frames
+- PFC pause_duration: cumulative time paused (in device-specific units, often μs)

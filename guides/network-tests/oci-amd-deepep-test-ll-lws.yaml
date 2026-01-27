@@ -1,0 +1,162 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: deepep-test-ll-script
+  namespace: raj-network-debug
+data:
+  get-deepep.sh: |
+    #!/bin/bash
+    if [ -d "ROCm-DeepEP" ]; then echo "Repo exists, skipping download."; exit 0; fi
+    git clone -b varun/add-hidden-dim --single-branch https://github.com/varun-sundar-rabindranath/ROCm-DeepEP.git
+  run-test-ll.sh: |
+    #!/bin/bash
+    export ROCSHMEM_DEBUG=1
+    export SHMEM_DEBUG=1
+    export ROCSHMEM_DEBUG_LEVEL=INFO
+    export RCCL_DEBUG=INFO
+    export RCCL_DEBUG_SUBSYS=INIT,NET
+    export ROCSHMEM_HEAP_SIZE=8589934592
+    # Force GDA backend for rocSHMEM
+    export ROCSHMEM_BACKEND=gda
+    
+    # RoCEv2 CX-7 NICs
+    export ROCSHMEM_USE_IB_HCA=mlx5_0,mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_7,mlx5_8,mlx5_9
+    
+    # UCX configuration for RoCE
+    export UCX_LOG_LEVEL=info
+    export UCX_TLS=rc,ud,sm,self
+    export UCX_NET_DEVICES=mlx5_0:1,mlx5_2:1,mlx5_3:1,mlx5_4:1,mlx5_5:1,mlx5_7:1,mlx5_8:1,mlx5_9:1
+    export UCX_IB_GID_INDEX=3
+    # Traffic Class = (DSCP << 2) | ECN = (26 << 2) | 2 = 106 for priority 5 with ECN
+    export UCX_IB_TRAFFIC_CLASS=106
+    
+    # rocSHMEM GDA backend Traffic Class (this is the key one for DeepEP!)
+    # TC = (DSCP << 2) | ECN = (26 << 2) | 2 = 106 for priority 5 with ECN
+    export ROCSHMEM_GDA_TRAFFIC_CLASS=106
+    
+    # NCCL/RCCL configuration for RoCE
+    export NCCL_SOCKET_IFNAME="eth0"
+    export NCCL_IB_HCA=mlx5_0,mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_7,mlx5_8,mlx5_9
+    export NCCL_IB_GID_INDEX=3
+    export NCCL_NET_GDR_LEVEL=5
+    export NCCL_IB_DISABLE=0
+    # Traffic Class for NCCL/RCCL: (DSCP 10 << 2) | 1 = 41 (matching wide-ep, priority 0 with ECN)
+    export NCCL_IB_TC=41
+    
+    export DP_SIZE_LOCAL=8
+    export START_RANK=$(( ${LWS_WORKER_INDEX:-0} * ${DP_SIZE_LOCAL} ))
+    export WORLD_SIZE=2
+    export RANK=${LWS_WORKER_INDEX}
+    export MASTER_ADDR=${LWS_LEADER_ADDRESS}
+    export MASTER_PORT=8361
+
+    cd ROCm-DeepEP
+    python tests/test_low_latency.py --num-processes 8 --num-experts 256
+    sleep infinity
+---
+apiVersion: leaderworkerset.x-k8s.io/v1
+kind: LeaderWorkerSet
+metadata:
+  name: deepep-test-ll-lws
+  namespace: raj-network-debug
+spec:
+  replicas: 1
+  leaderWorkerTemplate:
+    size: 2
+    workerTemplate:
+      metadata:
+        annotations:
+          # --security-opt seccomp=unconfined
+          container.seccomp.security.alpha.kubernetes.io/deepep-test-ll-lws: unconfined
+      spec:
+        # --network=host
+        hostNetwork: true
+        dnsPolicy: ClusterFirstWithHostNet
+        # --ipc=host
+        hostIPC: true
+        # --group-add=video (video group is typically GID 44)
+        securityContext:
+          supplementalGroups: [44]
+        # Exclude problematic node
+        affinity:
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+                - matchExpressions:
+                    - key: kubernetes.io/hostname
+                      operator: NotIn
+                      values:
+                        - "10.0.65.77"
+        volumes:
+          - name: scripts-vol
+            configMap: { name: deepep-test-ll-script, defaultMode: 0777 }
+          # -v /mnt/nvme/models:/mnt/models
+          - name: models-vol
+            hostPath:
+              path: /mnt/nvme/models
+              type: Directory
+          # --device /dev/kfd
+          - name: dev-kfd
+            hostPath:
+              path: /dev/kfd
+              type: CharDevice
+          # --device /dev/dri
+          - name: dev-dri
+            hostPath:
+              path: /dev/dri
+              type: Directory
+          # --device /dev/infiniband
+          - name: dev-infiniband
+            hostPath:
+              path: /dev/infiniband
+              type: Directory
+          # InfiniBand sysfs for device discovery
+          - name: sys-infiniband
+            hostPath:
+              path: /sys/class/infiniband
+              type: Directory
+        containers:
+        - name: deepep-test-ll-lws
+          image: quay.io/rh-ee-vsundarr/amd-vllm:latest
+          securityContext:
+            # Full privileged access for RDMA/IB
+            privileged: true
+            runAsGroup: 0
+            runAsUser: 0
+          imagePullPolicy: Always
+          env:
+            # Traffic Class for rocSHMEM GDA backend - set at container level
+            - name: ROCSHMEM_GDA_TRAFFIC_CLASS
+              value: "106"
+            - name: UCX_IB_TRAFFIC_CLASS
+              value: "106"
+            - name: NCCL_IB_TC
+              value: "41"
+          volumeMounts:
+            - name: scripts-vol
+              mountPath: /scripts-ro
+            - name: models-vol
+              mountPath: /mnt/models
+            - name: dev-kfd
+              mountPath: /dev/kfd
+            - name: dev-dri
+              mountPath: /dev/dri
+            - name: dev-infiniband
+              mountPath: /dev/infiniband
+            - name: sys-infiniband
+              mountPath: /sys/class/infiniband
+          # Override default entrypoint
+          command: ["/bin/bash", "-c"]
+          args:
+            - |
+              cp /scripts-ro/*.sh ~/ && chmod +x ~/*.sh
+              ~/get-deepep.sh && ~/run-test-ll.sh
+          resources:
+            limits:
+              ephemeral-storage: 128Gi
+              amd.com/gpu: "8"
+            requests:
+              cpu: 32
+              ephemeral-storage: 128Gi
+              memory: 512Gi
+              amd.com/gpu: "8"

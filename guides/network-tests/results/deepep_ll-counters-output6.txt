@@ -1,0 +1,684 @@
+
+==============================================
+Discovering DeepEP LWS Pods in namespace: raj-network-debug
+==============================================
+
+Discovered DeepEP Pods:
+deepep-test-ll-lws-0 10.0.73.241
+deepep-test-ll-lws-0-1 10.0.67.106
+
+Found 2 DeepEP pods (using first 2 for leader/worker test)
+
+DEEPEP POD                NODE NAME          NETWORKING DEBUG POD                    
+------------------------- ------------------ ----------------------------------------
+deepep-test-ll-lws-0      10.0.73.241        networking-debug-pod-10.0.73.241        
+deepep-test-ll-lws-0-1    10.0.67.106        networking-debug-pod-10.0.67.106        
+
+==============================================
+Collecting NIC Counters BEFORE Test
+==============================================
+  Collecting from networking-debug-pod-10.0.73.241...
+
+==================================================================================================================================
+NIC Counters (BEFORE) for: deepep-test-ll-lws-0 (Node: 10.0.73.241)
+==================================================================================================================================
+NIC      p0_pkts      p0_disc      p1_pkts      p1_disc      p5_pkts      p5_disc      phy_pkts       rdma_uni      
+-------- ------------ ------------ ------------ ------------ ------------ ------------ -------------- --------------
+rdma0    227068386    0            18397181     206870       59940206     0            310269987      315613583     
+rdma1    227210039    0            18724664     221987       29843723     0            275880633      280831213     
+rdma2    227096202    0            18723519     218260       16654259     0            262553475      267497509     
+rdma3    227256706    0            18715782     241996       16577527     0            262641888      267578104     
+rdma4    227084326    0            19089625     259095       55846793     0            306963431      311864819     
+rdma5    226868392    0            18725113     227713       29287188     0            274973690      279879103     
+rdma6    227022365    0            18945095     223274       16327191     0            262370720      267296294     
+rdma7    227205914    0            18783956     237881       16195649     0            262256937      267187952     
+
+PFC Pause Counters (BEFORE) - Priorities 0 and 5:
+NIC      tx_p0_paus   rx_p0_paus   tx_p5_paus   rx_p5_paus   tx_p0_dur      rx_p0_dur      tx_p5_dur      rx_p5_dur     
+-------- ------------ ------------ ------------ ------------ -------------- -------------- -------------- --------------
+rdma0    85904        0            85904        0            3232345        0              3232345        0             
+rdma1    2295         0            2295         0            59642          0              59642          0             
+rdma2    1607         0            1607         0            38961          0              38961          0             
+rdma3    2854         0            2854         0            74164          0              74164          0             
+rdma4    77873        0            77873        0            2888066        0              2888066        0             
+rdma5    1805         0            1805         0            45519          0              45519          0             
+rdma6    1108         0            1108         0            26565          0              26565          0             
+rdma7    1079         0            1079         0            26294          0              26294          0             
+  Collecting from networking-debug-pod-10.0.67.106...
+
+==================================================================================================================================
+NIC Counters (BEFORE) for: deepep-test-ll-lws-0-1 (Node: 10.0.67.106)
+==================================================================================================================================
+NIC      p0_pkts      p0_disc      p1_pkts      p1_disc      p5_pkts      p5_disc      phy_pkts       rdma_uni      
+-------- ------------ ------------ ------------ ------------ ------------ ------------ -------------- --------------
+rdma0    244736327    0            196198054    10937038     89547609     0            531386810      535493988     
+rdma1    244911392    0            36306980     0            49911594     0            331171772      338271970     
+rdma2    244811393    0            36036908     0            33266368     0            314151350      321237779     
+rdma3    245322275    0            36434543     210          32961466     0            314759858      321909594     
+rdma4    245634221    0            36065976     0            85196626     0            367405405      374599386     
+rdma5    244770968    0            36190491     0            49820004     0            330821212      337914990     
+rdma6    246469793    0            35903368     0            33059358     0            315467283      322770272     
+rdma7    245602543    0            36055314     0            33117163     0            314804118      322009659     
+
+PFC Pause Counters (BEFORE) - Priorities 0 and 5:
+NIC      tx_p0_paus   rx_p0_paus   tx_p5_paus   rx_p5_paus   tx_p0_dur      rx_p0_dur      tx_p5_dur      rx_p5_dur     
+-------- ------------ ------------ ------------ ------------ -------------- -------------- -------------- --------------
+rdma0    366543       0            366543       0            14468850       0              14468850       0             
+rdma1    7702         0            7702         0            172829         0              172829         0             
+rdma2    5444         0            5444         0            139430         0              139430         0             
+rdma3    7158         0            7158         0            179998         0              179998         0             
+rdma4    365033       0            365033       0            14423771       0              14423771       0             
+rdma5    6054         0            6054         0            155087         0              155087         0             
+rdma6    5364         0            5364         0            138452         0              138452         0             
+rdma7    3965         0            3965         0            99152          0              99152          0             
+
+==============================================
+ECN Hardware Counters BEFORE Test
+==============================================
+POD                       ecn_marked         cnp_sent           cnp_handled       
+------------------------- ------------------ ------------------ ------------------
+deepep-test-ll-lws-0      14369995           3522331            52503877          
+deepep-test-ll-lws-0-1    64279406           9576598            57489866          
+
+==============================================
+Running DeepEP Low Latency Test
+==============================================
+
+[Leader] Starting on deepep-test-ll-lws-0...
+[Worker] Starting on deepep-test-ll-lws-0-1...
+[Leader] W0126 21:25:21.321000 864 torch/multiprocessing/spawn.py:174] Terminating process 930 via signal SIGTERM
+[Leader] W0126 21:25:21.321000 864 torch/multiprocessing/spawn.py:174] Terminating process 931 via signal SIGTERM
+[Leader] W0126 21:25:21.322000 864 torch/multiprocessing/spawn.py:174] Terminating process 932 via signal SIGTERM
+[Leader] W0126 21:25:21.323000 864 torch/multiprocessing/spawn.py:174] Terminating process 933 via signal SIGTERM
+[Leader] W0126 21:25:21.323000 864 torch/multiprocessing/spawn.py:174] Terminating process 934 via signal SIGTERM
+[Leader] W0126 21:25:21.323000 864 torch/multiprocessing/spawn.py:174] Terminating process 935 via signal SIGTERM
+[Leader] W0126 21:25:21.324000 864 torch/multiprocessing/spawn.py:174] Terminating process 936 via signal SIGTERM
+[Leader] Traceback (most recent call last):
+[Leader]   File "/app/ROCm-DeepEP/tests/test_low_latency.py", line 177, in <module>
+[Leader]     torch.multiprocessing.spawn(test_loop, args=(num_processes,), nprocs=num_processes)
+[Leader]   File "/usr/local/lib/python3.12/dist-packages/torch/multiprocessing/spawn.py", line 364, in spawn
+[Leader]     return start_processes(fn, args, nprocs, join, daemon, start_method="spawn")
+[Leader]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[Leader]   File "/usr/local/lib/python3.12/dist-packages/torch/multiprocessing/spawn.py", line 320, in start_processes
+[Leader]     while not context.join():
+[Leader]               ^^^^^^^^^^^^^^
+[Leader]   File "/usr/local/lib/python3.12/dist-packages/torch/multiprocessing/spawn.py", line 220, in join
+[Leader]     raise ProcessRaisedException(msg, error_index, failed_process.pid)
+[Leader] torch.multiprocessing.spawn.ProcessRaisedException: 
+[Leader] 
+[Leader] -- Process 0 terminated with the following error:
+[Leader] Traceback (most recent call last):
+[Leader]   File "/usr/local/lib/python3.12/dist-packages/torch/multiprocessing/spawn.py", line 95, in _wrap
+[Leader]     fn(i, *args)
+[Leader]   File "/app/ROCm-DeepEP/tests/test_low_latency.py", line 154, in test_loop
+[Leader]     rank, num_ranks, group = init_dist(local_rank, num_local_ranks)
+[Leader]                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[Leader]   File "/app/ROCm-DeepEP/tests/utils.py", line 18, in init_dist
+[Leader]     dist.init_process_group(
+[Leader]   File "/usr/local/lib/python3.12/dist-packages/torch/distributed/c10d_logger.py", line 81, in wrapper
+[Leader]     return func(*args, **kwargs)
+[Leader]            ^^^^^^^^^^^^^^^^^^^^^
+[Leader]   File "/usr/local/lib/python3.12/dist-packages/torch/distributed/c10d_logger.py", line 95, in wrapper
+[Leader]     func_return = func(*args, **kwargs)
+[Leader]                   ^^^^^^^^^^^^^^^^^^^^^
+[Leader]   File "/usr/local/lib/python3.12/dist-packages/torch/distributed/distributed_c10d.py", line 1762, in init_process_group
+[Leader]     store, rank, world_size = next(rendezvous_iterator)
+[Leader]                               ^^^^^^^^^^^^^^^^^^^^^^^^^
+[Leader]   File "/usr/local/lib/python3.12/dist-packages/torch/distributed/rendezvous.py", line 230, in _tcp_rendezvous_handler
+[Leader]     store = _create_c10d_store(
+[Leader]             ^^^^^^^^^^^^^^^^^^^
+[Leader]   File "/usr/local/lib/python3.12/dist-packages/torch/distributed/rendezvous.py", line 198, in _create_c10d_store
+[Leader]     return TCPStore(
+[Leader]            ^^^^^^^^^
+[Leader] torch.distributed.DistNetworkError: The server socket has failed to listen on any local network address. port: 8361, useIpv6: false, code: -98, name: EADDRINUSE, message: address already in use
+[Leader] 
+[Leader] command terminated with exit code 1
+[Worker] Allocating buffer size: 2116.293248 MB ...
+[Worker] [rank11]:[W126 21:25:28.061419295 TCPStore.cpp:125] [c10d] recvValue failed on SocketImpl(fd=6, addr=[deepep-test-ll-lws-0-1.deepep-test-ll-lws.raj-network-debug.svc.cluster.local]:46760, remote=[deepep-test-ll-lws-0.deepep-test-ll-lws.raj-network-debug.svc.cluster.local]:8361): Failed to recv, got 0 bytes. Connection was likely closed. Did the remote server shutdown or crash?
+[Worker] Exception raised from recvBytes at /app/pytorch/torch/csrc/distributed/c10d/Utils.hpp:682 (most recent call first):
+[Worker] frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x9c (0x7f6445f383bc in /usr/local/lib/python3.12/dist-packages/torch/lib/libc10.so)
+[Worker] frame #1: <unknown function> + 0x629a142 (0x7f648eb8b142 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #2: <unknown function> + 0x629b495 (0x7f648eb8c495 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #3: <unknown function> + 0x629c071 (0x7f648eb8d071 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #4: c10d::TCPStore::check(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&) + 0x2c9 (0x7f648eb87c69 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #5: c10d::ProcessGroupNCCL::HeartbeatMonitor::runLoop() + 0x3c3 (0x7f6483dea203 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_hip.so)
+[Worker] frame #6: <unknown function> + 0xdc253 (0x7f64443bb253 in /lib/x86_64-linux-gnu/libstdc++.so.6)
+[Worker] frame #7: <unknown function> + 0x94ac3 (0x7f6498430ac3 in /lib/x86_64-linux-gnu/libc.so.6)
+[Worker] frame #8: <unknown function> + 0x1268c0 (0x7f64984c28c0 in /lib/x86_64-linux-gnu/libc.so.6)
+[Worker] 
+[Worker] [rank11]:[W126 21:25:28.065632345 ProcessGroupNCCL.cpp:1771] [PG ID 0 PG GUID 0 Rank 11] Failed to check the "should dump" flag on TCPStore, (maybe TCPStore server has shut down too early), with error: Failed to recv, got 0 bytes. Connection was likely closed. Did the remote server shutdown or crash?
+[Worker] [rank8]:[W126 21:25:28.097809323 TCPStore.cpp:125] [c10d] recvValue failed on SocketImpl(fd=7, addr=[10-0-67-106.llmd-kube-prometheus-stack-kube-proxy.kube-system.svc.cluster.local]:46784, remote=[10-0-73-241.llmd-kube-prometheus-stack-kube-proxy.kube-system.svc.cluster.local]:8361): Failed to recv, got 0 bytes. Connection was likely closed. Did the remote server shutdown or crash?
+[Worker] Exception raised from recvBytes at /app/pytorch/torch/csrc/distributed/c10d/Utils.hpp:682 (most recent call first):
+[Worker] frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x9c (0x7f17bc4813bc in /usr/local/lib/python3.12/dist-packages/torch/lib/libc10.so)
+[Worker] frame #1: <unknown function> + 0x629a142 (0x7f18050d4142 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #2: <unknown function> + 0x629b495 (0x7f18050d5495 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #3: <unknown function> + 0x629c071 (0x7f18050d6071 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #4: c10d::TCPStore::check(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&) + 0x2c9 (0x7f18050d0c69 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #5: c10d::ProcessGroupNCCL::HeartbeatMonitor::runLoop() + 0x3c3 (0x7f17fa333203 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_hip.so)
+[Worker] frame #6: <unknown function> + 0xdc253 (0x7f17ba904253 in /lib/x86_64-linux-gnu/libstdc++.so.6)
+[Worker] frame #7: <unknown function> + 0x94ac3 (0x7f180e979ac3 in /lib/x86_64-linux-gnu/libc.so.6)
+[Worker] frame #8: <unknown function> + 0x1268c0 (0x7f180ea0b8c0 in /lib/x86_64-linux-gnu/libc.so.6)
+[Worker] 
+[Worker] [rank10]:[W126 21:25:28.098100508 TCPStore.cpp:125] [c10d] recvValue failed on SocketImpl(fd=6, addr=[deepep-test-ll-lws-0-1.deepep-test-ll-lws.raj-network-debug.svc.cluster.local]:46778, remote=[deepep-test-ll-lws-0.deepep-test-ll-lws.raj-network-debug.svc.cluster.local]:8361): Failed to recv, got 0 bytes. Connection was likely closed. Did the remote server shutdown or crash?
+[Worker] Exception raised from recvBytes at /app/pytorch/torch/csrc/distributed/c10d/Utils.hpp:682 (most recent call first):
+[Worker] frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x9c (0x7fc5648c33bc in /usr/local/lib/python3.12/dist-packages/torch/lib/libc10.so)
+[Worker] frame #1: <unknown function> + 0x629a142 (0x7fc5ad516142 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #2: <unknown function> + 0x629b495 (0x7fc5ad517495 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #3: <unknown function> + 0x629c071 (0x7fc5ad518071 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #4: c10d::TCPStore::check(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&) + 0x2c9 (0x7fc5ad512c69 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #5: c10d::ProcessGroupNCCL::HeartbeatMonitor::runLoop() + 0x3c3 (0x7fc5a2775203 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_hip.so)
+[Worker] frame #6: <unknown function> + 0xdc253 (0x7fc562d46253 in /lib/x86_64-linux-gnu/libstdc++.so.6)
+[Worker] frame #7: <unknown function> + 0x94ac3 (0x7fc5b6dbbac3 in /lib/x86_64-linux-gnu/libc.so.6)
+[Worker] frame #8: <unknown function> + 0x1268c0 (0x7fc5b6e4d8c0 in /lib/x86_64-linux-gnu/libc.so.6)
+[Worker] 
+[Worker] [rank8]:[W126 21:25:28.102100646 ProcessGroupNCCL.cpp:1771] [PG ID 0 PG GUID 0 Rank 8] Failed to check the "should dump" flag on TCPStore, (maybe TCPStore server has shut down too early), with error: Failed to recv, got 0 bytes. Connection was likely closed. Did the remote server shutdown or crash?
+[Worker] [rank10]:[W126 21:25:28.102144792 ProcessGroupNCCL.cpp:1771] [PG ID 0 PG GUID 0 Rank 10] Failed to check the "should dump" flag on TCPStore, (maybe TCPStore server has shut down too early), with error: Failed to recv, got 0 bytes. Connection was likely closed. Did the remote server shutdown or crash?
+[Worker] [rank9]:[W126 21:25:28.108166501 TCPStore.cpp:125] [c10d] recvValue failed on SocketImpl(fd=7, addr=[10-0-67-106.prometheus-prometheus-node-exporter.cluster-tools.svc.cluster.local]:46776, remote=[deepep-test-ll-lws-0.deepep-test-ll-lws.raj-network-debug.svc.cluster.local]:8361): Failed to recv, got 0 bytes. Connection was likely closed. Did the remote server shutdown or crash?
+[Worker] Exception raised from recvBytes at /app/pytorch/torch/csrc/distributed/c10d/Utils.hpp:682 (most recent call first):
+[Worker] frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x9c (0x7f528c6293bc in /usr/local/lib/python3.12/dist-packages/torch/lib/libc10.so)
+[Worker] frame #1: <unknown function> + 0x629a142 (0x7f52d527c142 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #2: <unknown function> + 0x629b495 (0x7f52d527d495 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #3: <unknown function> + 0x629c071 (0x7f52d527e071 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #4: c10d::TCPStore::check(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&) + 0x2c9 (0x7f52d5278c69 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #5: c10d::ProcessGroupNCCL::HeartbeatMonitor::runLoop() + 0x3c3 (0x7f52ca4db203 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_hip.so)
+[Worker] frame #6: <unknown function> + 0xdc253 (0x7f528aaac253 in /lib/x86_64-linux-gnu/libstdc++.so.6)
+[Worker] frame #7: <unknown function> + 0x94ac3 (0x7f52deb21ac3 in /lib/x86_64-linux-gnu/libc.so.6)
+[Worker] frame #8: <unknown function> + 0x1268c0 (0x7f52debb38c0 in /lib/x86_64-linux-gnu/libc.so.6)
+[Worker] 
+[Worker] [rank9]:[W126 21:25:28.112180139 ProcessGroupNCCL.cpp:1771] [PG ID 0 PG GUID 0 Rank 9] Failed to check the "should dump" flag on TCPStore, (maybe TCPStore server has shut down too early), with error: Failed to recv, got 0 bytes. Connection was likely closed. Did the remote server shutdown or crash?
+[Worker] [rank13]:[W126 21:25:28.115309975 TCPStore.cpp:125] [c10d] recvValue failed on SocketImpl(fd=6, addr=[10-0-67-106.prometheus-prometheus-node-exporter.cluster-tools.svc.cluster.local]:46786, remote=[deepep-test-ll-lws-0.deepep-test-ll-lws.raj-network-debug.svc.cluster.local]:8361): Failed to recv, got 0 bytes. Connection was likely closed. Did the remote server shutdown or crash?
+[Worker] Exception raised from recvBytes at /app/pytorch/torch/csrc/distributed/c10d/Utils.hpp:682 (most recent call first):
+[Worker] frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x9c (0x7f3dd61063bc in /usr/local/lib/python3.12/dist-packages/torch/lib/libc10.so)
+[Worker] frame #1: <unknown function> + 0x629a142 (0x7f3e1ed59142 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #2: <unknown function> + 0x629b495 (0x7f3e1ed5a495 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #3: <unknown function> + 0x629c071 (0x7f3e1ed5b071 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #4: c10d::TCPStore::check(std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > const&) + 0x2c9 (0x7f3e1ed55c69 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #5: c10d::ProcessGroupNCCL::HeartbeatMonitor::runLoop() + 0x3c3 (0x7f3e13fb8203 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_hip.so)
+[Worker] frame #6: <unknown function> + 0xdc253 (0x7f3dd4589253 in /lib/x86_64-linux-gnu/libstdc++.so.6)
+[Worker] frame #7: <unknown function> + 0x94ac3 (0x7f3e285feac3 in /lib/x86_64-linux-gnu/libc.so.6)
+[Worker] frame #8: <unknown function> + 0x1268c0 (0x7f3e286908c0 in /lib/x86_64-linux-gnu/libc.so.6)
+[Worker] 
+[Worker] [rank13]:[W126 21:25:28.119290850 ProcessGroupNCCL.cpp:1771] [PG ID 0 PG GUID 0 Rank 13] Failed to check the "should dump" flag on TCPStore, (maybe TCPStore server has shut down too early), with error: Failed to recv, got 0 bytes. Connection was likely closed. Did the remote server shutdown or crash?
+[Worker] [rank12]:[W126 21:25:28.229281121 TCPStore.cpp:138] [c10d] recvValueWithTimeout failed on SocketImpl(fd=6, addr=[deepep-test-ll-lws-0-1.deepep-test-ll-lws.raj-network-debug.svc.cluster.local]:46810, remote=[10-0-73-241.prometheus-prometheus-node-exporter.cluster-tools.svc.cluster.local]:8361): Failed to recv, got 0 bytes. Connection was likely closed. Did the remote server shutdown or crash?
+[Worker] Exception raised from recvBytes at /app/pytorch/torch/csrc/distributed/c10d/Utils.hpp:682 (most recent call first):
+[Worker] frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x9c (0x7f133f7a13bc in /usr/local/lib/python3.12/dist-packages/torch/lib/libc10.so)
+[Worker] frame #1: <unknown function> + 0x629a142 (0x7f13883f4142 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #2: <unknown function> + 0x629b695 (0x7f13883f5695 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #3: <unknown function> + 0x629bf01 (0x7f13883f5f01 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #4: c10d::TCPStore::doWait(c10::ArrayRef<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::chrono::duration<long, std::ratio<1l, 1000l> >) + 0x223 (0x7f13883f18b3 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #5: c10d::TCPStore::doGet(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x47 (0x7f13883f1cb7 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #6: c10d::TCPStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0xb5 (0x7f13883f2ed5 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #7: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x43 (0x7f1388396f53 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #8: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x43 (0x7f1388396f53 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #9: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x43 (0x7f1388396f53 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #10: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x43 (0x7f1388396f53 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #11: c10d::ProcessGroupNCCL::broadcastUniqueNCCLID(ncclUniqueId*, bool, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, int) + 0x5ff (0x7f137d65db4f in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_hip.so)
+[Worker] frame #12: c10d::ProcessGroupNCCL::initNCCLComm(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, c10::Device&, c10d::OpType, int, bool) + 0x191c (0x7f137d66032c in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_hip.so)
+[Worker] frame #13: c10d::ProcessGroupNCCL::allgather(std::vector<std::vector<at::Tensor, std::allocator<at::Tensor> >, std::allocator<std::vector<at::Tensor, std::allocator<at::Tensor> > > >&, std::vector<at::Tensor, std::allocator<at::Tensor> >&, c10d::AllgatherOptions const&) + 0x19bc (0x7f137d66d15c in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_hip.so)
+[Worker] frame #14: <unknown function> + 0x622a087 (0x7f1388384087 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #15: <unknown function> + 0x623b73a (0x7f138839573a in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #16: <unknown function> + 0x56d8446 (0x7f1387832446 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #17: <unknown function> + 0x624be7d (0x7f13883a5e7d in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #18: <unknown function> + 0x6258f68 (0x7f13883b2f68 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #19: <unknown function> + 0xf872c0 (0x7f1390e472c0 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_python.so)
+[Worker] frame #20: <unknown function> + 0x40b8bd (0x7f13902cb8bd in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_python.so)
+[Worker] frame #21: /usr/bin/python() [0x56d11d]
+[Worker] frame #22: _PyObject_MakeTpCall + 0x2fb (0x53f5db in /usr/bin/python)
+[Worker] frame #23: _PyEval_EvalFrameDefault + 0x701 (0x54a2e1 in /usr/bin/python)
+[Worker] frame #24: _PyObject_FastCallDictTstate + 0x256 (0x541f36 in /usr/bin/python)
+[Worker] frame #25: /usr/bin/python() [0x57e4aa]
+[Worker] frame #26: _PyObject_MakeTpCall + 0x2bb (0x53f59b in /usr/bin/python)
+[Worker] frame #27: _PyEval_EvalFrameDefault + 0x701 (0x54a2e1 in /usr/bin/python)
+[Worker] frame #28: PyEval_EvalCode + 0x99 (0x620799 in /usr/bin/python)
+[Worker] frame #29: /usr/bin/python() [0x65c44b]
+[Worker] frame #30: /usr/bin/python() [0x6574d6]
+[Worker] frame #31: PyRun_StringFlags + 0x63 (0x653403 in /usr/bin/python)
+[Worker] frame #32: PyRun_SimpleStringFlags + 0x3e (0x65310e in /usr/bin/python)
+[Worker] frame #33: Py_RunMain + 0x4b2 (0x650742 in /usr/bin/python)
+[Worker] frame #34: Py_BytesMain + 0x2d (0x60962d in /usr/bin/python)
+[Worker] frame #35: <unknown function> + 0x29d90 (0x7f1391c2ed90 in /lib/x86_64-linux-gnu/libc.so.6)
+[Worker] frame #36: __libc_start_main + 0x80 (0x7f1391c2ee40 in /lib/x86_64-linux-gnu/libc.so.6)
+[Worker] frame #37: _start + 0x25 (0x6094a5 in /usr/bin/python)
+[Worker] 
+[Worker] [rank14]:[W126 21:25:28.229281249 TCPStore.cpp:138] [c10d] recvValueWithTimeout failed on SocketImpl(fd=6, addr=[10-0-67-106.prometheus-prometheus-node-exporter.cluster-tools.svc.cluster.local]:46802, remote=[10-0-73-241.prometheus-prometheus-node-exporter.cluster-tools.svc.cluster.local]:8361): Failed to recv, got 0 bytes. Connection was likely closed. Did the remote server shutdown or crash?
+[Worker] Exception raised from recvBytes at /app/pytorch/torch/csrc/distributed/c10d/Utils.hpp:682 (most recent call first):
+[Worker] frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x9c (0x7f243910a3bc in /usr/local/lib/python3.12/dist-packages/torch/lib/libc10.so)
+[Worker] frame #1: <unknown function> + 0x629a142 (0x7f2481d5d142 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #2: <unknown function> + 0x629b695 (0x7f2481d5e695 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #3: <unknown function> + 0x629bf01 (0x7f2481d5ef01 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #4: c10d::TCPStore::doWait(c10::ArrayRef<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::chrono::duration<long, std::ratio<1l, 1000l> >) + 0x223 (0x7f2481d5a8b3 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #5: c10d::TCPStore::doGet(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x47 (0x7f2481d5acb7 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #6: c10d::TCPStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0xb5 (0x7f2481d5bed5 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #7: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x43 (0x7f2481cfff53 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #8: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x43 (0x7f2481cfff53 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #9: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x43 (0x7f2481cfff53 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #10: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x43 (0x7f2481cfff53 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #11: c10d::ProcessGroupNCCL::broadcastUniqueNCCLID(ncclUniqueId*, bool, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, int) + 0x5ff (0x7f2476fc6b4f in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_hip.so)
+[Worker] frame #12: c10d::ProcessGroupNCCL::initNCCLComm(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, c10::Device&, c10d::OpType, int, bool) + 0x191c (0x7f2476fc932c in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_hip.so)
+[Worker] frame #13: c10d::ProcessGroupNCCL::allgather(std::vector<std::vector<at::Tensor, std::allocator<at::Tensor> >, std::allocator<std::vector<at::Tensor, std::allocator<at::Tensor> > > >&, std::vector<at::Tensor, std::allocator<at::Tensor> >&, c10d::AllgatherOptions const&) + 0x19bc (0x7f2476fd615c in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_hip.so)
+[Worker] frame #14: <unknown function> + 0x622a087 (0x7f2481ced087 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #15: <unknown function> + 0x623b73a (0x7f2481cfe73a in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #16: <unknown function> + 0x56d8446 (0x7f248119b446 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #17: <unknown function> + 0x624be7d (0x7f2481d0ee7d in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #18: <unknown function> + 0x6258f68 (0x7f2481d1bf68 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #19: <unknown function> + 0xf872c0 (0x7f248a7b02c0 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_python.so)
+[Worker] frame #20: <unknown function> + 0x40b8bd (0x7f2489c348bd in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_python.so)
+[Worker] frame #21: /usr/bin/python() [0x56d11d]
+[Worker] frame #22: _PyObject_MakeTpCall + 0x2fb (0x53f5db in /usr/bin/python)
+[Worker] frame #23: _PyEval_EvalFrameDefault + 0x701 (0x54a2e1 in /usr/bin/python)
+[Worker] frame #24: _PyObject_FastCallDictTstate + 0x256 (0x541f36 in /usr/bin/python)
+[Worker] frame #25: /usr/bin/python() [0x57e4aa]
+[Worker] frame #26: _PyObject_MakeTpCall + 0x2bb (0x53f59b in /usr/bin/python)
+[Worker] frame #27: _PyEval_EvalFrameDefault + 0x701 (0x54a2e1 in /usr/bin/python)
+[Worker] frame #28: PyEval_EvalCode + 0x99 (0x620799 in /usr/bin/python)
+[Worker] frame #29: /usr/bin/python() [0x65c44b]
+[Worker] frame #30: /usr/bin/python() [0x6574d6]
+[Worker] frame #31: PyRun_StringFlags + 0x63 (0x653403 in /usr/bin/python)
+[Worker] frame #32: PyRun_SimpleStringFlags + 0x3e (0x65310e in /usr/bin/python)
+[Worker] frame #33: Py_RunMain + 0x4b2 (0x650742 in /usr/bin/python)
+[Worker] frame #34: Py_BytesMain + 0x2d (0x60962d in /usr/bin/python)
+[Worker] frame #35: <unknown function> + 0x29d90 (0x7f248b597d90 in /lib/x86_64-linux-gnu/libc.so.6)
+[Worker] frame #36: __libc_start_main + 0x80 (0x7f248b597e40 in /lib/x86_64-linux-gnu/libc.so.6)
+[Worker] frame #37: _start + 0x25 (0x6094a5 in /usr/bin/python)
+[Worker] 
+[Worker] [inst-7y5cx-instancepool-nrqg7-mi300x-rdma-pool:923  :0:923] Caught signal 11 (Segmentation fault: address not mapped to object at address 0x30)
+[Worker] [inst-7y5cx-instancepool-nrqg7-mi300x-rdma-pool:925  :0:925] Caught signal 11 (Segmentation fault: address not mapped to object at address 0x30)
+[Worker] ==== backtrace (tid:    923) ====
+[Worker]  0  /app/vllm/amd_wideep/workspace/rocSHMEM/build/install/ucx/lib/libucs.so.0(ucs_handle_error+0x2e4) [0x7f11f99385c4]
+[Worker] ==== backtrace (tid:    925) ====
+[Worker]  1  /app/vllm/amd_wideep/workspace/rocSHMEM/build/install/ucx/lib/libucs.so.0(+0x357bf) [0x7f11f99387bf]
+[Worker]  2  /app/vllm/amd_wideep/workspace/rocSHMEM/build/install/ucx/lib/libucs.so.0(+0x35aa6) [0x7f11f9938aa6]
+[Worker]  3  /lib/x86_64-linux-gnu/libc.so.6(+0x42520) [0x7f1391c47520]
+[Worker]  0  /app/vllm/amd_wideep/workspace/rocSHMEM/build/install/ucx/lib/libucs.so.0(ucs_handle_error+0x2e4) [0x7f22f33385c4]
+[Worker]  4  /app/vllm/amd_wideep/workspace/ROCm-DeepEP/deep_ep_cpp.cpython-312-x86_64-linux-gnu.so(_ZN8rocshmem14GDAHostContext11barrier_allEv+0) [0x7f11fa3d9f30]
+[Worker]  1  /app/vllm/amd_wideep/workspace/rocSHMEM/build/install/ucx/lib/libucs.so.0(+0x357bf) [0x7f22f33387bf]
+[Worker]  5  /app/vllm/amd_wideep/workspace/ROCm-DeepEP/deep_ep_cpp.cpython-312-x86_64-linux-gnu.so(_ZN7deep_ep6BufferD1Ev+0x125) [0x7f11fa34f225]
+[Worker]  2  /app/vllm/amd_wideep/workspace/rocSHMEM/build/install/ucx/lib/libucs.so.0(+0x35aa6) [0x7f22f3338aa6]
+[Worker]  6  /app/vllm/amd_wideep/workspace/ROCm-DeepEP/deep_ep_cpp.cpython-312-x86_64-linux-gnu.so(+0x5a3e9c) [0x7f11fa392e9c]
+[Worker]  3  /lib/x86_64-linux-gnu/libc.so.6(+0x42520) [0x7f248b5b0520]
+[Worker]  7  /app/vllm/amd_wideep/workspace/ROCm-DeepEP/deep_ep_cpp.cpython-312-x86_64-linux-gnu.so(+0x5a3c80) [0x7f11fa392c80]
+[Worker]  4  /app/vllm/amd_wideep/workspace/ROCm-DeepEP/deep_ep_cpp.cpython-312-x86_64-linux-gnu.so(_ZN8rocshmem14GDAHostContext11barrier_allEv+0) [0x7f22f3dd9f30]
+[Worker]  8  /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_python.so(+0x409db1) [0x7f13902c9db1]
+[Worker]  5  /app/vllm/amd_wideep/workspace/ROCm-DeepEP/deep_ep_cpp.cpython-312-x86_64-linux-gnu.so(_ZN7deep_ep6BufferD1Ev+0x125) [0x7f22f3d4f225]
+[Worker]  9  /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_python.so(+0x40a485) [0x7f13902ca485]
+[Worker]  6  /app/vllm/amd_wideep/workspace/ROCm-DeepEP/deep_ep_cpp.cpython-312-x86_64-linux-gnu.so(+0x5a3e9c) [0x7f22f3d92e9c]
+[Worker] 10  /usr/bin/python() [0x59e650]
+[Worker]  7  /app/vllm/amd_wideep/workspace/ROCm-DeepEP/deep_ep_cpp.cpython-312-x86_64-linux-gnu.so(+0x5a3c80) [0x7f22f3d92c80]
+[Worker] 11  /usr/bin/python() [0x57f242]
+[Worker] 12  /usr/bin/python() [0x57e276]
+[Worker]  8  /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_python.so(+0x409db1) [0x7f2489c32db1]
+[Worker] 13  /usr/bin/python() [0x57e26f]
+[Worker]  9  /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_python.so(+0x40a485) [0x7f2489c33485]
+[Worker] 14  /usr/bin/python() [0x57e26f]
+[Worker] 15  /usr/bin/python() [0x597457]
+[Worker] 10  /usr/bin/python() [0x59e650]
+[Worker] 16  /usr/bin/python() [0x59e4a6]
+[Worker] 11  /usr/bin/python() [0x57f242]
+[Worker] 17  /usr/bin/python() [0x535eba]
+[Worker] 12  /usr/bin/python() [0x57e276]
+[Worker] 18  /usr/bin/python() [0x65c727]
+[Worker] 19  /usr/bin/python(_PyEval_EvalFrameDefault+0x9bc) [0x54a59c]
+[Worker] 13  /usr/bin/python() [0x57e26f]
+[Worker] 20  /usr/bin/python(PyEval_EvalCode+0x99) [0x620799]
+[Worker] 14  /usr/bin/python() [0x57e26f]
+[Worker] 21  /usr/bin/python() [0x65c44b]
+[Worker] 15  /usr/bin/python() [0x597457]
+[Worker] 22  /usr/bin/python() [0x6574d6]
+[Worker] 16  /usr/bin/python() [0x59e4a6]
+[Worker] 17  /usr/bin/python() [0x535eba]
+[Worker] 23  /usr/bin/python(PyRun_StringFlags+0x63) [0x653403]
+[Worker] 18  /usr/bin/python() [0x65c727]
+[Worker] 24  /usr/bin/python(PyRun_SimpleStringFlags+0x3e) [0x65310e]
+[Worker] 19  /usr/bin/python(_PyEval_EvalFrameDefault+0x9bc) [0x54a59c]
+[Worker] 25  /usr/bin/python(Py_RunMain+0x4b2) [0x650742]
+[Worker] 20  /usr/bin/python(PyEval_EvalCode+0x99) [0x620799]
+[Worker] 26  /usr/bin/python(Py_BytesMain+0x2d) [0x60962d]
+[Worker] 21  /usr/bin/python() [0x65c44b]
+[Worker] 22  /usr/bin/python() [0x6574d6]
+[Worker] 27  /lib/x86_64-linux-gnu/libc.so.6(+0x29d90) [0x7f1391c2ed90]
+[Worker] 23  /usr/bin/python(PyRun_StringFlags+0x63) [0x653403]
+[Worker] 28  /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0x80) [0x7f1391c2ee40]
+[Worker] 24  /usr/bin/python(PyRun_SimpleStringFlags+0x3e) [0x65310e]
+[Worker] 29  /usr/bin/python(_start+0x25) [0x6094a5]
+[Worker] 25  /usr/bin/python(Py_RunMain+0x4b2) [0x650742]
+[Worker] 26  /usr/bin/python(Py_BytesMain+0x2d) [0x60962d]
+[Worker] =================================
+[Worker] 27  /lib/x86_64-linux-gnu/libc.so.6(+0x29d90) [0x7f248b597d90]
+[Worker] 28  /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0x80) [0x7f248b597e40]
+[Worker] 29  /usr/bin/python(_start+0x25) [0x6094a5]
+[Worker] =================================
+[Worker] [rank15]:[W126 21:25:28.289053253 TCPStore.cpp:138] [c10d] recvValueWithTimeout failed on SocketImpl(fd=6, addr=[10-0-67-106.prometheus-prometheus-node-exporter.cluster-tools.svc.cluster.local]:46804, remote=[10-0-73-241.prometheus-prometheus-node-exporter.cluster-tools.svc.cluster.local]:8361): Failed to recv, got 0 bytes. Connection was likely closed. Did the remote server shutdown or crash?
+[Worker] Exception raised from recvBytes at /app/pytorch/torch/csrc/distributed/c10d/Utils.hpp:682 (most recent call first):
+[Worker] frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x9c (0x7f7dd23273bc in /usr/local/lib/python3.12/dist-packages/torch/lib/libc10.so)
+[Worker] frame #1: <unknown function> + 0x629a142 (0x7f7e1af7a142 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #2: <unknown function> + 0x629b695 (0x7f7e1af7b695 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #3: <unknown function> + 0x629bf01 (0x7f7e1af7bf01 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #4: c10d::TCPStore::doWait(c10::ArrayRef<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::chrono::duration<long, std::ratio<1l, 1000l> >) + 0x223 (0x7f7e1af778b3 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #5: c10d::TCPStore::doGet(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x47 (0x7f7e1af77cb7 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #6: c10d::TCPStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0xb5 (0x7f7e1af78ed5 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #7: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x43 (0x7f7e1af1cf53 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #8: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x43 (0x7f7e1af1cf53 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #9: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x43 (0x7f7e1af1cf53 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #10: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x43 (0x7f7e1af1cf53 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #11: c10d::ProcessGroupNCCL::broadcastUniqueNCCLID(ncclUniqueId*, bool, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, int) + 0x5ff (0x7f7e101e3b4f in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_hip.so)
+[Worker] frame #12: c10d::ProcessGroupNCCL::initNCCLComm(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, c10::Device&, c10d::OpType, int, bool) + 0x191c (0x7f7e101e632c in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_hip.so)
+[Worker] frame #13: c10d::ProcessGroupNCCL::allgather(std::vector<std::vector<at::Tensor, std::allocator<at::Tensor> >, std::allocator<std::vector<at::Tensor, std::allocator<at::Tensor> > > >&, std::vector<at::Tensor, std::allocator<at::Tensor> >&, c10d::AllgatherOptions const&) + 0x19bc (0x7f7e101f315c in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_hip.so)
+[Worker] frame #14: <unknown function> + 0x622a087 (0x7f7e1af0a087 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #15: <unknown function> + 0x623b73a (0x7f7e1af1b73a in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #16: <unknown function> + 0x56d8446 (0x7f7e1a3b8446 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #17: <unknown function> + 0x624be7d (0x7f7e1af2be7d in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #18: <unknown function> + 0x6258f68 (0x7f7e1af38f68 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #19: <unknown function> + 0xf872c0 (0x7f7e239cd2c0 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_python.so)
+[Worker] frame #20: <unknown function> + 0x40b8bd (0x7f7e22e518bd in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_python.so)
+[Worker] frame #21: /usr/bin/python() [0x56d11d]
+[Worker] frame #22: _PyObject_MakeTpCall + 0x2fb (0x53f5db in /usr/bin/python)
+[Worker] frame #23: _PyEval_EvalFrameDefault + 0x701 (0x54a2e1 in /usr/bin/python)
+[Worker] frame #24: _PyObject_FastCallDictTstate + 0x256 (0x541f36 in /usr/bin/python)
+[Worker] frame #25: /usr/bin/python() [0x57e4aa]
+[Worker] frame #26: _PyObject_MakeTpCall + 0x2bb (0x53f59b in /usr/bin/python)
+[Worker] frame #27: _PyEval_EvalFrameDefault + 0x701 (0x54a2e1 in /usr/bin/python)
+[Worker] frame #28: PyEval_EvalCode + 0x99 (0x620799 in /usr/bin/python)
+[Worker] frame #29: /usr/bin/python() [0x65c44b]
+[Worker] frame #30: /usr/bin/python() [0x6574d6]
+[Worker] frame #31: PyRun_StringFlags + 0x63 (0x653403 in /usr/bin/python)
+[Worker] frame #32: PyRun_SimpleStringFlags + 0x3e (0x65310e in /usr/bin/python)
+[Worker] frame #33: Py_RunMain + 0x4b2 (0x650742 in /usr/bin/python)
+[Worker] frame #34: Py_BytesMain + 0x2d (0x60962d in /usr/bin/python)
+[Worker] frame #35: <unknown function> + 0x29d90 (0x7f7e247b4d90 in /lib/x86_64-linux-gnu/libc.so.6)
+[Worker] frame #36: __libc_start_main + 0x80 (0x7f7e247b4e40 in /lib/x86_64-linux-gnu/libc.so.6)
+[Worker] frame #37: _start + 0x25 (0x6094a5 in /usr/bin/python)
+[Worker] 
+[Worker] [inst-7y5cx-instancepool-nrqg7-mi300x-rdma-pool:926  :0:926] Caught signal 11 (Segmentation fault: address not mapped to object at address 0x30)
+[Worker] ==== backtrace (tid:    926) ====
+[Worker]  0  /app/vllm/amd_wideep/workspace/rocSHMEM/build/install/ucx/lib/libucs.so.0(ucs_handle_error+0x2e4) [0x7f7c8c5385c4]
+[Worker]  1  /app/vllm/amd_wideep/workspace/rocSHMEM/build/install/ucx/lib/libucs.so.0(+0x357bf) [0x7f7c8c5387bf]
+[Worker]  2  /app/vllm/amd_wideep/workspace/rocSHMEM/build/install/ucx/lib/libucs.so.0(+0x35aa6) [0x7f7c8c538aa6]
+[Worker]  3  /lib/x86_64-linux-gnu/libc.so.6(+0x42520) [0x7f7e247cd520]
+[Worker]  4  /app/vllm/amd_wideep/workspace/ROCm-DeepEP/deep_ep_cpp.cpython-312-x86_64-linux-gnu.so(_ZN8rocshmem14GDAHostContext11barrier_allEv+0) [0x7f7c8cfd9f30]
+[Worker]  5  /app/vllm/amd_wideep/workspace/ROCm-DeepEP/deep_ep_cpp.cpython-312-x86_64-linux-gnu.so(_ZN7deep_ep6BufferD1Ev+0x125) [0x7f7c8cf4f225]
+[Worker]  6  /app/vllm/amd_wideep/workspace/ROCm-DeepEP/deep_ep_cpp.cpython-312-x86_64-linux-gnu.so(+0x5a3e9c) [0x7f7c8cf92e9c]
+[Worker]  7  /app/vllm/amd_wideep/workspace/ROCm-DeepEP/deep_ep_cpp.cpython-312-x86_64-linux-gnu.so(+0x5a3c80) [0x7f7c8cf92c80]
+[Worker]  8  /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_python.so(+0x409db1) [0x7f7e22e4fdb1]
+[Worker]  9  /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_python.so(+0x40a485) [0x7f7e22e50485]
+[Worker] 10  /usr/bin/python() [0x59e650]
+[Worker] 11  /usr/bin/python() [0x57f242]
+[Worker] 12  /usr/bin/python() [0x57e276]
+[Worker] 13  /usr/bin/python() [0x57e26f]
+[Worker] 14  /usr/bin/python() [0x57e26f]
+[Worker] 15  /usr/bin/python() [0x597457]
+[Worker] 16  /usr/bin/python() [0x59e4a6]
+[Worker] 17  /usr/bin/python() [0x535eba]
+[Worker] 18  /usr/bin/python() [0x65c727]
+[Worker] 19  /usr/bin/python(_PyEval_EvalFrameDefault+0x9bc) [0x54a59c]
+[Worker] 20  /usr/bin/python(PyEval_EvalCode+0x99) [0x620799]
+[Worker] 21  /usr/bin/python() [0x65c44b]
+[Worker] 22  /usr/bin/python() [0x6574d6]
+[Worker] 23  /usr/bin/python(PyRun_StringFlags+0x63) [0x653403]
+[Worker] 24  /usr/bin/python(PyRun_SimpleStringFlags+0x3e) [0x65310e]
+[Worker] 25  /usr/bin/python(Py_RunMain+0x4b2) [0x650742]
+[Worker] 26  /usr/bin/python(Py_BytesMain+0x2d) [0x60962d]
+[Worker] 27  /lib/x86_64-linux-gnu/libc.so.6(+0x29d90) [0x7f7e247b4d90]
+[Worker] 28  /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0x80) [0x7f7e247b4e40]
+[Worker] 29  /usr/bin/python(_start+0x25) [0x6094a5]
+[Worker] =================================
+[Worker] W0126 21:25:28.673000 854 torch/multiprocessing/spawn.py:174] Terminating process 919 via signal SIGTERM
+[Worker] W0126 21:25:28.674000 854 torch/multiprocessing/spawn.py:174] Terminating process 920 via signal SIGTERM
+[Worker] W0126 21:25:28.674000 854 torch/multiprocessing/spawn.py:174] Terminating process 921 via signal SIGTERM
+[Worker] W0126 21:25:28.675000 854 torch/multiprocessing/spawn.py:174] Terminating process 922 via signal SIGTERM
+[Worker] W0126 21:25:28.675000 854 torch/multiprocessing/spawn.py:174] Terminating process 924 via signal SIGTERM
+[Worker] W0126 21:25:28.677000 854 torch/multiprocessing/spawn.py:174] Terminating process 926 via signal SIGTERM
+[Worker] Traceback (most recent call last):
+[Worker]   File "/app/ROCm-DeepEP/tests/test_low_latency.py", line 177, in <module>
+[Worker]     torch.multiprocessing.spawn(test_loop, args=(num_processes,), nprocs=num_processes)
+[Worker]   File "/usr/local/lib/python3.12/dist-packages/torch/multiprocessing/spawn.py", line 364, in spawn
+[Worker]     return start_processes(fn, args, nprocs, join, daemon, start_method="spawn")
+[Worker]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[Worker]   File "/usr/local/lib/python3.12/dist-packages/torch/multiprocessing/spawn.py", line 320, in start_processes
+[Worker]     while not context.join():
+[Worker]               ^^^^^^^^^^^^^^
+[Worker]   File "/usr/local/lib/python3.12/dist-packages/torch/multiprocessing/spawn.py", line 220, in join
+[Worker]     raise ProcessRaisedException(msg, error_index, failed_process.pid)
+[Worker] torch.multiprocessing.spawn.ProcessRaisedException: 
+[Worker] 
+[Worker] -- Process 4 terminated with the following error:
+[Worker] Traceback (most recent call last):
+[Worker]   File "/usr/local/lib/python3.12/dist-packages/torch/multiprocessing/spawn.py", line 95, in _wrap
+[Worker]     fn(i, *args)
+[Worker]   File "/app/ROCm-DeepEP/tests/test_low_latency.py", line 161, in test_loop
+[Worker]     buffer = deep_ep.Buffer(group, num_rdma_bytes=num_rdma_bytes, low_latency_mode=True,
+[Worker]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[Worker]   File "/app/vllm/amd_wideep/workspace/ROCm-DeepEP/deep_ep/buffer.py", line 59, in __init__
+[Worker]     dist.all_gather_object(device_ids, local_device_id, group)
+[Worker]   File "/usr/local/lib/python3.12/dist-packages/torch/distributed/c10d_logger.py", line 81, in wrapper
+[Worker]     return func(*args, **kwargs)
+[Worker]            ^^^^^^^^^^^^^^^^^^^^^
+[Worker]   File "/usr/local/lib/python3.12/dist-packages/torch/distributed/distributed_c10d.py", line 3179, in all_gather_object
+[Worker]     all_gather(object_size_list, local_size, group=group)
+[Worker]   File "/usr/local/lib/python3.12/dist-packages/torch/distributed/c10d_logger.py", line 81, in wrapper
+[Worker]     return func(*args, **kwargs)
+[Worker]            ^^^^^^^^^^^^^^^^^^^^^
+[Worker]   File "/usr/local/lib/python3.12/dist-packages/torch/distributed/distributed_c10d.py", line 3918, in all_gather
+[Worker]     return handle_torch_function(
+[Worker]            ^^^^^^^^^^^^^^^^^^^^^^
+[Worker]   File "/usr/local/lib/python3.12/dist-packages/torch/overrides.py", line 1728, in handle_torch_function
+[Worker]     result = mode.__torch_function__(public_api, types, args, kwargs)
+[Worker]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[Worker]   File "/usr/local/lib/python3.12/dist-packages/torch/utils/_device.py", line 103, in __torch_function__
+[Worker]     return func(*args, **kwargs)
+[Worker]            ^^^^^^^^^^^^^^^^^^^^^
+[Worker]   File "/usr/local/lib/python3.12/dist-packages/torch/distributed/c10d_logger.py", line 81, in wrapper
+[Worker]     return func(*args, **kwargs)
+[Worker]            ^^^^^^^^^^^^^^^^^^^^^
+[Worker]   File "/usr/local/lib/python3.12/dist-packages/torch/distributed/distributed_c10d.py", line 3942, in all_gather
+[Worker]     work = group.allgather([tensor_list], [tensor], opts)
+[Worker]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[Worker] torch.distributed.DistBackendError: [12] is setting up NCCL communicator and retrieving ncclUniqueId from [0] via c10d key-value store by key '0', but store->get('0') got error: Failed to recv, got 0 bytes. Connection was likely closed. Did the remote server shutdown or crash?
+[Worker] Exception raised from recvBytes at /app/pytorch/torch/csrc/distributed/c10d/Utils.hpp:682 (most recent call first):
+[Worker] frame #0: c10::Error::Error(c10::SourceLocation, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) + 0x9c (0x7f133f7a13bc in /usr/local/lib/python3.12/dist-packages/torch/lib/libc10.so)
+[Worker] frame #1: <unknown function> + 0x629a142 (0x7f13883f4142 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #2: <unknown function> + 0x629b695 (0x7f13883f5695 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #3: <unknown function> + 0x629bf01 (0x7f13883f5f01 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #4: c10d::TCPStore::doWait(c10::ArrayRef<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::chrono::duration<long, std::ratio<1l, 1000l> >) + 0x223 (0x7f13883f18b3 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #5: c10d::TCPStore::doGet(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x47 (0x7f13883f1cb7 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #6: c10d::TCPStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0xb5 (0x7f13883f2ed5 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #7: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x43 (0x7f1388396f53 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #8: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x43 (0x7f1388396f53 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #9: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x43 (0x7f1388396f53 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #10: c10d::PrefixStore::get(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) + 0x43 (0x7f1388396f53 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #11: c10d::ProcessGroupNCCL::broadcastUniqueNCCLID(ncclUniqueId*, bool, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, int) + 0x5ff (0x7f137d65db4f in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_hip.so)
+[Worker] frame #12: c10d::ProcessGroupNCCL::initNCCLComm(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, c10::Device&, c10d::OpType, int, bool) + 0x191c (0x7f137d66032c in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_hip.so)
+[Worker] frame #13: c10d::ProcessGroupNCCL::allgather(std::vector<std::vector<at::Tensor, std::allocator<at::Tensor> >, std::allocator<std::vector<at::Tensor, std::allocator<at::Tensor> > > >&, std::vector<at::Tensor, std::allocator<at::Tensor> >&, c10d::AllgatherOptions const&) + 0x19bc (0x7f137d66d15c in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_hip.so)
+[Worker] frame #14: <unknown function> + 0x622a087 (0x7f1388384087 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #15: <unknown function> + 0x623b73a (0x7f138839573a in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #16: <unknown function> + 0x56d8446 (0x7f1387832446 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #17: <unknown function> + 0x624be7d (0x7f13883a5e7d in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #18: <unknown function> + 0x6258f68 (0x7f13883b2f68 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_cpu.so)
+[Worker] frame #19: <unknown function> + 0xf872c0 (0x7f1390e472c0 in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_python.so)
+[Worker] frame #20: <unknown function> + 0x40b8bd (0x7f13902cb8bd in /usr/local/lib/python3.12/dist-packages/torch/lib/libtorch_python.so)
+[Worker] frame #21: /usr/bin/python() [0x56d11d]
+[Worker] frame #22: _PyObject_MakeTpCall + 0x2fb (0x53f5db in /usr/bin/python)
+[Worker] frame #23: _PyEval_EvalFrameDefault + 0x701 (0x54a2e1 in /usr/bin/python)
+[Worker] frame #24: _PyObject_FastCallDictTstate + 0x256 (0x541f36 in /usr/bin/python)
+[Worker] frame #25: /usr/bin/python() [0x57e4aa]
+[Worker] frame #26: _PyObject_MakeTpCall + 0x2bb (0x53f59b in /usr/bin/python)
+[Worker] frame #27: _PyEval_EvalFrameDefault + 0x701 (0x54a2e1 in /usr/bin/python)
+[Worker] frame #28: PyEval_EvalCode + 0x99 (0x620799 in /usr/bin/python)
+[Worker] frame #29: /usr/bin/python() [0x65c44b]
+[Worker] frame #30: /usr/bin/python() [0x6574d6]
+[Worker] frame #31: PyRun_StringFlags + 0x63 (0x653403 in /usr/bin/python)
+[Worker] frame #32: PyRun_SimpleStringFlags + 0x3e (0x65310e in /usr/bin/python)
+[Worker] frame #33: Py_RunMain + 0x4b2 (0x650742 in /usr/bin/python)
+[Worker] frame #34: Py_BytesMain + 0x2d (0x60962d in /usr/bin/python)
+[Worker] frame #35: <unknown function> + 0x29d90 (0x7f1391c2ed90 in /lib/x86_64-linux-gnu/libc.so.6)
+[Worker] frame #36: __libc_start_main + 0x80 (0x7f1391c2ee40 in /lib/x86_64-linux-gnu/libc.so.6)
+[Worker] frame #37: _start + 0x25 (0x6094a5 in /usr/bin/python)
+[Worker] . This may indicate a possible application crash on rank 0 or a network set up issue.
+[Worker] 
+[Worker] command terminated with exit code 1
+
+Waiting for leader to complete...
+
+==============================================
+DeepEP Low Latency Test Completed
+==============================================
+
+==============================================
+Collecting NIC Counters AFTER Test
+==============================================
+  Collecting from networking-debug-pod-10.0.73.241...
+
+==================================================================================================================================
+NIC Counters (AFTER) for: deepep-test-ll-lws-0 (Node: 10.0.73.241)
+==================================================================================================================================
+NIC      p0_pkts      p0_disc      p1_pkts      p1_disc      p5_pkts      p5_disc      phy_pkts       rdma_uni      
+-------- ------------ ------------ ------------ ------------ ------------ ------------ -------------- --------------
+rdma0    227068600    0            18397181     206870       59940206     0            310270201      315613785     
+rdma1    227210228    0            18724664     221987       29843723     0            275880822      280831390     
+rdma2    227096214    0            18723519     218260       16654259     0            262553487      267497509     
+rdma3    227256718    0            18715782     241996       16577527     0            262641900      267578104     
+rdma4    227084338    0            19089625     259095       55846793     0            306963443      311864819     
+rdma5    226868404    0            18725113     227713       29287188     0            274973702      279879103     
+rdma6    227022377    0            18945095     223274       16327191     0            262370732      267296294     
+rdma7    227205926    0            18783956     237881       16195649     0            262256949      267187952     
+
+PFC Pause Counters (AFTER) - Priorities 0 and 5:
+NIC      tx_p0_paus   rx_p0_paus   tx_p5_paus   rx_p5_paus   tx_p0_dur      rx_p0_dur      tx_p5_dur      rx_p5_dur     
+-------- ------------ ------------ ------------ ------------ -------------- -------------- -------------- --------------
+rdma0    85904        0            85904        0            3232345        0              3232345        0             
+rdma1    2295         0            2295         0            59642          0              59642          0             
+rdma2    1607         0            1607         0            38961          0              38961          0             
+rdma3    2854         0            2854         0            74164          0              74164          0             
+rdma4    77873        0            77873        0            2888066        0              2888066        0             
+rdma5    1805         0            1805         0            45519          0              45519          0             
+rdma6    1108         0            1108         0            26565          0              26565          0             
+rdma7    1079         0            1079         0            26294          0              26294          0             
+  Collecting from networking-debug-pod-10.0.67.106...
+
+==================================================================================================================================
+NIC Counters (AFTER) for: deepep-test-ll-lws-0-1 (Node: 10.0.67.106)
+==================================================================================================================================
+NIC      p0_pkts      p0_disc      p1_pkts      p1_disc      p5_pkts      p5_disc      phy_pkts       rdma_uni      
+-------- ------------ ------------ ------------ ------------ ------------ ------------ -------------- --------------
+rdma0    244736359    0            196198054    10937038     89547609     0            531386842      535494008     
+rdma1    244911404    0            36306980     0            49911594     0            331171784      338271970     
+rdma2    244811405    0            36036908     0            33266368     0            314151362      321237779     
+rdma3    245322287    0            36434543     210          32961466     0            314759870      321909594     
+rdma4    245634233    0            36065976     0            85196626     0            367405417      374599386     
+rdma5    244770980    0            36190491     0            49820004     0            330821224      337914990     
+rdma6    246469805    0            35903368     0            33059358     0            315467295      322770272     
+rdma7    245602555    0            36055314     0            33117163     0            314804130      322009659     
+
+PFC Pause Counters (AFTER) - Priorities 0 and 5:
+NIC      tx_p0_paus   rx_p0_paus   tx_p5_paus   rx_p5_paus   tx_p0_dur      rx_p0_dur      tx_p5_dur      rx_p5_dur     
+-------- ------------ ------------ ------------ ------------ -------------- -------------- -------------- --------------
+rdma0    366543       0            366543       0            14468850       0              14468850       0             
+rdma1    7702         0            7702         0            172829         0              172829         0             
+rdma2    5444         0            5444         0            139430         0              139430         0             
+rdma3    7158         0            7158         0            179998         0              179998         0             
+rdma4    365033       0            365033       0            14423771       0              14423771       0             
+rdma5    6054         0            6054         0            155087         0              155087         0             
+rdma6    5364         0            5364         0            138452         0              138452         0             
+rdma7    3965         0            3965         0            99152          0              99152          0             
+
+==============================================
+ECN Hardware Counters AFTER Test
+==============================================
+POD                       ecn_marked         cnp_sent           cnp_handled       
+------------------------- ------------------ ------------------ ------------------
+deepep-test-ll-lws-0      14369995           3525301            52554165          
+deepep-test-ll-lws-0-1    64279406           9578828            57526722          
+
+==============================================
+NIC Counter DIFFERENCES (After - Before)
+==============================================
+
+==================================================================================================================================
+NIC Counter DIFFERENCE for: deepep-test-ll-lws-0 (Node: 10.0.73.241)
+==================================================================================================================================
+NIC      p0_pkts      p0_disc      p1_pkts      p1_disc      p5_pkts      p5_disc      phy_pkts       rdma_uni      
+-------- ------------ ------------ ------------ ------------ ------------ ------------ -------------- --------------
+rdma0    214          0            0            0            0            0            214            202           
+rdma1    189          0            0            0            0            0            189            177           
+rdma2    12           0            0            0            0            0            12             0             
+rdma3    12           0            0            0            0            0            12             0             
+rdma4    12           0            0            0            0            0            12             0             
+rdma5    12           0            0            0            0            0            12             0             
+rdma6    12           0            0            0            0            0            12             0             
+rdma7    12           0            0            0            0            0            12             0             
+
+PFC Pause Counter DIFFERENCE - Priorities 0 and 5:
+NIC      tx_p0_paus   rx_p0_paus   tx_p5_paus   rx_p5_paus   tx_p0_dur      rx_p0_dur      tx_p5_dur      rx_p5_dur     
+-------- ------------ ------------ ------------ ------------ -------------- -------------- -------------- --------------
+rdma0    0            0            0            0            0              0              0              0             
+rdma1    0            0            0            0            0              0              0              0             
+rdma2    0            0            0            0            0              0              0              0             
+rdma3    0            0            0            0            0              0              0              0             
+rdma4    0            0            0            0            0              0              0              0             
+rdma5    0            0            0            0            0              0              0              0             
+rdma6    0            0            0            0            0              0              0              0             
+rdma7    0            0            0            0            0              0              0              0             
+
+==================================================================================================================================
+NIC Counter DIFFERENCE for: deepep-test-ll-lws-0-1 (Node: 10.0.67.106)
+==================================================================================================================================
+NIC      p0_pkts      p0_disc      p1_pkts      p1_disc      p5_pkts      p5_disc      phy_pkts       rdma_uni      
+-------- ------------ ------------ ------------ ------------ ------------ ------------ -------------- --------------
+rdma0    32           0            0            0            0            0            32             20            
+rdma1    12           0            0            0            0            0            12             0             
+rdma2    12           0            0            0            0            0            12             0             
+rdma3    12           0            0            0            0            0            12             0             
+rdma4    12           0            0            0            0            0            12             0             
+rdma5    12           0            0            0            0            0            12             0             
+rdma6    12           0            0            0            0            0            12             0             
+rdma7    12           0            0            0            0            0            12             0             
+
+PFC Pause Counter DIFFERENCE - Priorities 0 and 5:
+NIC      tx_p0_paus   rx_p0_paus   tx_p5_paus   rx_p5_paus   tx_p0_dur      rx_p0_dur      tx_p5_dur      rx_p5_dur     
+-------- ------------ ------------ ------------ ------------ -------------- -------------- -------------- --------------
+rdma0    0            0            0            0            0              0              0              0             
+rdma1    0            0            0            0            0              0              0              0             
+rdma2    0            0            0            0            0              0              0              0             
+rdma3    0            0            0            0            0              0              0              0             
+rdma4    0            0            0            0            0              0              0              0             
+rdma5    0            0            0            0            0              0              0              0             
+rdma6    0            0            0            0            0              0              0              0             
+rdma7    0            0            0            0            0              0              0              0             
+
+==================================================================================================================================
+SUMMARY: Priority Packet Counter Differences
+==================================================================================================================================
+POD                       p0_pkts     p0_disc     p1_pkts     p1_disc     p5_pkts     p5_disc     phy_pkts      rdma_uni     
+------------------------- ----------- ----------- ----------- ----------- ----------- ----------- ------------- -------------
+deepep-test-ll-lws-0      475         0           0           0           0           0           475           379          
+deepep-test-ll-lws-0-1    116         0           0           0           0           0           116           20           
+------------------------- ----------- ----------- ----------- ----------- ----------- ----------- ------------- -------------
+TOTAL                     591         0           0           0           0           0           591           399          
+
+==================================================================================================================================
+SUMMARY: PFC Pause Counter Differences (Priorities 0 and 5)
+==================================================================================================================================
+POD                       tx_p0      rx_p0      tx_p5      rx_p5      tx_p0_dur    rx_p0_dur    tx_p5_dur    rx_p5_dur   
+------------------------- ---------- ---------- ---------- ---------- ------------ ------------ ------------ ------------
+deepep-test-ll-lws-0      0          0          0          0          0            0            0            0           
+deepep-test-ll-lws-0-1    0          0          0          0          0            0            0            0           
+------------------------- ---------- ---------- ---------- ---------- ------------ ------------ ------------ ------------
+TOTAL                     0          0          0          0          0            0            0            0           
+
+==================================================================================================================================
+SUMMARY: ECN Counter Differences
+==================================================================================================================================
+POD                       ecn_marked         cnp_sent           cnp_handled       
+------------------------- ------------------ ------------------ ------------------
+deepep-test-ll-lws-0      0                  2970               50288             
+deepep-test-ll-lws-0-1    0                  2230               36856             
+------------------------- ------------------ ------------------ ------------------
+TOTAL                     0                  5200               87144             
+
+==============================================
+Notes:
+==============================================
+- PFC is enabled for priorities 0 and 5
+- Traffic uses: Priority 0 (NCCL bootstrap), Priority 5 (rocSHMEM/DeepEP)
+- ECN counters: ecn_marked=packets marked by network, cnp_sent/handled=congestion notifications
+- PFC pause: tx=sent pause frames, rx=received pause frames
+- PFC pause_duration: cumulative time paused (in device-specific units, often μs)

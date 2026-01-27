@@ -1,0 +1,86 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: deepep-test-ll-script
+  namespace: llm-d-wide-ep
+data:
+  get-deepep.sh: |
+    #!/bin/bash
+    if [ -d "deepep" ]; then echo "Repo exists, skipping download."; exit 0; fi
+    git clone "https://github.com/smarterclayton/DeepEP" deepep
+    cd deepep && git checkout "nic_pe_alignment"
+  run-test-ll.sh: |
+    #!/bin/bash
+    export NVSHMEM_DEBUG="INFO"
+    export NVSHMEM_REMOTE_TRANSPORT="ibgda"
+    export NVSHMEM_IB_ENABLE_IBGDA="true"
+    export NVSHMEM_BOOTSTRAP_UID_SOCK_IFNAME="eth0"
+    export NCCL_SOCKET_IFNAME="net1"
+    export START_RANK=$(( ${LWS_WORKER_INDEX:-0} * ${DP_SIZE_LOCAL:-1} ))
+    export WORLD_SIZE=2
+    export RANK=${LWS_WORKER_INDEX}
+    export MASTER_ADDR=${LWS_LEADER_ADDRESS}
+    export MASTER_PORT=8361
+
+    cd deepep
+    python tests/test_low_latency.py --num-processes 8 --num-experts 256
+    sleep infinity
+---
+apiVersion: leaderworkerset.x-k8s.io/v1
+kind: LeaderWorkerSet
+metadata:
+  name: wide-ep-llm-d-decode
+  namespace: llm-d-wide-ep
+spec:
+  replicas: 1
+  leaderWorkerTemplate:
+    size: 2
+    workerTemplate:
+      metadata:
+        annotations:
+          k8s.v1.cni.cncf.io/networks: |
+            [
+              {"name":"dhcp-host-device-port-1", "namespace": "llm-d-wide-ep" },
+              {"name":"dhcp-host-device-port-2", "namespace": "llm-d-wide-ep" },
+              {"name":"dhcp-host-device-port-3", "namespace": "llm-d-wide-ep" },
+              {"name":"dhcp-host-device-port-4", "namespace": "llm-d-wide-ep" },
+              {"name":"dhcp-host-device-port-5", "namespace": "llm-d-wide-ep" },
+              {"name":"dhcp-host-device-port-6", "namespace": "llm-d-wide-ep" },
+              {"name":"dhcp-host-device-port-7", "namespace": "llm-d-wide-ep" },
+              {"name":"dhcp-host-device-port-8", "namespace": "llm-d-wide-ep" }
+            ]
+      spec:
+        volumes:
+          - name: dshm
+            emptyDir: { medium: Memory, sizeLimit: 2Gi }
+          - name: scripts-vol
+            configMap: { name: deepep-test-ll-script, defaultMode: 0777 }
+        containers:
+        - name: vllm-worker
+          image: ghcr.io/llm-d/llm-d-cuda:v0.4.0
+          securityContext:
+            capabilities: { add: ["IPC_LOCK", "SYS_RAWIO"] }
+            runAsGroup: 0
+            runAsUser: 0
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: dshm
+              mountPath: /dev/shm
+            - name: scripts-vol
+              mountPath: /scripts-ro
+          command: ["/bin/bash", "-c"]
+          args:
+            - |
+              cp /scripts-ro/*.sh ~/ && chmod +x ~/*.sh
+              ~/get-deepep.sh && ~/run-test-ll.sh
+          resources:
+            limits:
+              ephemeral-storage: 128Gi
+              nvidia.com/gpu: "8"
+              nvidia.com/roce: "8"
+            requests:
+              cpu: 32
+              ephemeral-storage: 128Gi
+              memory: 512Gi
+              nvidia.com/gpu: "8"
+              nvidia.com/roce: "8"

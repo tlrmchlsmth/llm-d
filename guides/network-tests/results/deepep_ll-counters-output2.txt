@@ -1,0 +1,307 @@
+
+==============================================
+Discovering DeepEP LWS Pods in namespace: raj-network-debug
+==============================================
+
+Discovered DeepEP Pods:
+deepep-test-ll-lws-0 10.0.67.106
+deepep-test-ll-lws-0-1 10.0.73.241
+
+Found 2 DeepEP pods (using first 2 for leader/worker test)
+
+DEEPEP POD                NODE NAME          NETWORKING DEBUG POD                    
+------------------------- ------------------ ----------------------------------------
+deepep-test-ll-lws-0      10.0.67.106        networking-debug-pod-10.0.67.106        
+deepep-test-ll-lws-0-1    10.0.73.241        networking-debug-pod-10.0.73.241        
+
+==============================================
+Collecting NIC Counters BEFORE Test
+==============================================
+  Collecting from networking-debug-pod-10.0.67.106...
+
+==================================================================================================================================
+NIC Counters (BEFORE) for: deepep-test-ll-lws-0 (Node: 10.0.67.106)
+==================================================================================================================================
+NIC      p0_pkts      p0_disc      p1_pkts      p1_disc      p5_pkts      p5_disc      phy_pkts       rdma_uni      
+-------- ------------ ------------ ------------ ------------ ------------ ------------ -------------- --------------
+rdma0    244724884    0            196197679    10937038     89547609     0            531374992      535492355     
+rdma1    244900868    0            36306604     0            49911594     0            331160872      338271255     
+rdma2    244801588    0            36036532     0            33266368     0            314141169      321237779     
+rdma3    245312465    0            36434168     210          32961466     0            314749673      321909594     
+rdma4    245624412    0            36065600     0            85196626     0            367395220      374599386     
+rdma5    244761163    0            36190115     0            49820004     0            330811031      337914990     
+rdma6    246459219    0            35902993     0            33059358     0            315456334      322769503     
+rdma7    245591117    0            36054938     0            33117163     0            314792316      322008043     
+
+PFC Pause Counters (BEFORE) - Priorities 0 and 5:
+NIC      tx_p0_paus   rx_p0_paus   tx_p5_paus   rx_p5_paus   tx_p0_dur      rx_p0_dur      tx_p5_dur      rx_p5_dur     
+-------- ------------ ------------ ------------ ------------ -------------- -------------- -------------- --------------
+rdma0    366543       0            366543       0            14468850       0              14468850       0             
+rdma1    7702         0            7702         0            172829         0              172829         0             
+rdma2    5444         0            5444         0            139430         0              139430         0             
+rdma3    7158         0            7158         0            179998         0              179998         0             
+rdma4    365033       0            365033       0            14423771       0              14423771       0             
+rdma5    6054         0            6054         0            155087         0              155087         0             
+rdma6    5364         0            5364         0            138452         0              138452         0             
+rdma7    3965         0            3965         0            99152          0              99152          0             
+  Collecting from networking-debug-pod-10.0.73.241...
+
+==================================================================================================================================
+NIC Counters (BEFORE) for: deepep-test-ll-lws-0-1 (Node: 10.0.73.241)
+==================================================================================================================================
+NIC      p0_pkts      p0_disc      p1_pkts      p1_disc      p5_pkts      p5_disc      phy_pkts       rdma_uni      
+-------- ------------ ------------ ------------ ------------ ------------ ------------ -------------- --------------
+rdma0    227057060    0            18396805     206870       59940206     0            310258285      315612060     
+rdma1    227199642    0            18724288     221987       29843723     0            275869860      280830620     
+rdma2    227086401    0            18723143     218260       16654259     0            262543298      267497509     
+rdma3    227246903    0            18715406     241996       16577527     0            262631709      267578104     
+rdma4    227074523    0            19089249     259095       55846793     0            306953252      311864819     
+rdma5    226858593    0            18724737     227713       29287188     0            274963515      279879103     
+rdma6    227011847    0            18944720     223274       16327191     0            262359827      267295576     
+rdma7    227194542    0            18783581     237881       16195649     0            262245190      267186383     
+
+PFC Pause Counters (BEFORE) - Priorities 0 and 5:
+NIC      tx_p0_paus   rx_p0_paus   tx_p5_paus   rx_p5_paus   tx_p0_dur      rx_p0_dur      tx_p5_dur      rx_p5_dur     
+-------- ------------ ------------ ------------ ------------ -------------- -------------- -------------- --------------
+rdma0    85904        0            85904        0            3232345        0              3232345        0             
+rdma1    2295         0            2295         0            59642          0              59642          0             
+rdma2    1607         0            1607         0            38961          0              38961          0             
+rdma3    2854         0            2854         0            74164          0              74164          0             
+rdma4    77873        0            77873        0            2888066        0              2888066        0             
+rdma5    1805         0            1805         0            45519          0              45519          0             
+rdma6    1108         0            1108         0            26565          0              26565          0             
+rdma7    1079         0            1079         0            26294          0              26294          0             
+
+==============================================
+ECN Hardware Counters BEFORE Test
+==============================================
+POD                       ecn_marked         cnp_sent           cnp_handled       
+------------------------- ------------------ ------------------ ------------------
+deepep-test-ll-lws-0      64279406           9558676            57179688          
+deepep-test-ll-lws-0-1    14369995           3506437            52218017          
+
+==============================================
+Running DeepEP Low Latency Test
+==============================================
+
+[Leader] Starting on deepep-test-ll-lws-0...
+[Worker] Starting on deepep-test-ll-lws-0-1...
+[Worker] Allocating buffer size: 2116.293248 MB ...
+[Worker] [rank 10] Dispatch + combine bandwidth: 1.42 GB/s, avg_t=15524.81 us, min_t=12741.39 us, max_t=21828.42 us
+[Worker] [rank 13] Dispatch + combine bandwidth: 1.42 GB/s, avg_t=15528.20 us, min_t=12854.22 us, max_t=21852.47 us
+[Worker] [rank 15] Dispatch + combine bandwidth: 1.42 GB/s, avg_t=15521.88 us, min_t=13097.54 us, max_t=22099.36 us
+[Worker] [rank 12] Dispatch + combine bandwidth: 1.42 GB/s, avg_t=15524.05 us, min_t=13096.90 us, max_t=22324.59 us
+[Worker] [rank 8] Dispatch + combine bandwidth: 1.42 GB/s, avg_t=15523.27 us, min_t=12666.32 us, max_t=21122.28 us
+[Worker] [rank 11] Dispatch + combine bandwidth: 1.42 GB/s, avg_t=15527.41 us, min_t=12660.55 us, max_t=21063.50 us
+[Worker] [rank 14] Dispatch + combine bandwidth: 1.42 GB/s, avg_t=15523.68 us, min_t=13197.78 us, max_t=21995.50 us
+[Worker] [rank 9] Dispatch + combine bandwidth: 1.42 GB/s, avg_t=15520.75 us, min_t=13335.40 us, max_t=21739.56 us
+[Worker] [rank 13] Dispatch bandwidth: 1.45 GB/s, avg_t=5192.00 us | Combine bandwidth: 1.31 GB/s, avg_t=11078.00 us
+[Worker] [rank 13] Dispatch send/recv time: 2018.00 us | Combine send/recv time: 10680.00 us
+[Worker] [rank 8] Dispatch bandwidth: 1.54 GB/s, avg_t=4863.00 us | Combine bandwidth: 1.27 GB/s, avg_t=11405.00 us
+[Worker] [rank 8] Dispatch send/recv time: 885.19 us | Combine send/recv time: 12170.00 us
+[Worker] [rank 10] Dispatch bandwidth: 1.45 GB/s, avg_t=5172.00 us | Combine bandwidth: 1.31 GB/s, avg_t=11095.00 us
+[Worker] [rank 10] Dispatch send/recv time: 1056.53 us | Combine send/recv time: 12070.00 us
+[Worker] [rank 9] Dispatch bandwidth: 1.54 GB/s, avg_t=4890.00 us | Combine bandwidth: 1.28 GB/s, avg_t=11380.00 us
+[Worker] [rank 9] Dispatch send/recv time: 757.29 us | Combine send/recv time: 12310.00 us
+[Worker] [rank 14] Dispatch bandwidth: 1.52 GB/s, avg_t=4927.00 us | Combine bandwidth: 1.28 GB/s, avg_t=11345.00 us
+[Worker] [rank 14] Dispatch send/recv time: 690.25 us | Combine send/recv time: 11862.00 us
+[Worker] [rank 11] Dispatch bandwidth: 1.58 GB/s, avg_t=4760.00 us | Combine bandwidth: 1.26 GB/s, avg_t=11511.00 us
+[Worker] [rank 11] Dispatch send/recv time: 741.00 us | Combine send/recv time: 12068.00 us
+[Worker] [rank 12] Dispatch bandwidth: 1.43 GB/s, avg_t=5250.00 us | Combine bandwidth: 1.32 GB/s, avg_t=11016.00 us
+[Worker] [rank 12] Dispatch send/recv time: 670.53 us | Combine send/recv time: 12290.00 us
+[Worker] [rank 15] Dispatch bandwidth: 1.51 GB/s, avg_t=4978.00 us | Combine bandwidth: 1.29 GB/s, avg_t=11292.00 us
+[Worker] [rank 15] Dispatch send/recv time: 1183.24 us | Combine send/recv time: 11944.00 us
+[Worker] [rank8]:[W126 16:01:33.984329871 ProcessGroupNCCL.cpp:1524] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+
+Waiting for leader to complete...
+[Leader] Allocating buffer size: 2116.293248 MB ...
+[Leader] [rank 2] Dispatch + combine bandwidth: 1.42 GB/s, avg_t=15527.64 us, min_t=12674.04 us, max_t=21479.10 us
+[Leader] [rank 4] Dispatch + combine bandwidth: 1.42 GB/s, avg_t=15526.12 us, min_t=12575.01 us, max_t=22660.64 us
+[Leader] [rank 1] Dispatch + combine bandwidth: 1.42 GB/s, avg_t=15536.58 us, min_t=12432.89 us, max_t=22874.01 us
+[Leader] [rank 0] Dispatch + combine bandwidth: 1.42 GB/s, avg_t=15539.53 us, min_t=12578.50 us, max_t=21657.87 us
+[Leader] [rank 7] Dispatch + combine bandwidth: 1.42 GB/s, avg_t=15532.58 us, min_t=12853.69 us, max_t=21255.15 us
+[Leader] [rank 6] Dispatch + combine bandwidth: 1.42 GB/s, avg_t=15524.87 us, min_t=13113.00 us, max_t=21185.87 us
+[Leader] [rank 5] Dispatch + combine bandwidth: 1.42 GB/s, avg_t=15529.66 us, min_t=13089.55 us, max_t=22225.53 us
+[Leader] [rank 3] Dispatch + combine bandwidth: 1.42 GB/s, avg_t=15524.76 us, min_t=13347.02 us, max_t=21512.58 us
+[Leader] [rank 1] Dispatch bandwidth: 1.31 GB/s, avg_t=5752.00 us | Combine bandwidth: 1.36 GB/s, avg_t=10702.00 us
+[Leader] [rank 1] Dispatch send/recv time: 1266.35 us | Combine send/recv time: 11740.00 us
+[Leader] [rank 5] Dispatch bandwidth: 1.36 GB/s, avg_t=5504.00 us | Combine bandwidth: 1.33 GB/s, avg_t=10932.00 us
+[Leader] [rank 5] Dispatch send/recv time: 649.38 us | Combine send/recv time: 11962.00 us
+[Leader] [rank 0] Dispatch bandwidth: 1.29 GB/s, avg_t=5827.00 us | Combine bandwidth: 1.37 GB/s, avg_t=10627.00 us
+[Leader] [rank 0] Dispatch send/recv time: 1166.22 us | Combine send/recv time: 11908.00 us
+[Leader] [rank 4] Dispatch bandwidth: 1.36 GB/s, avg_t=5513.00 us | Combine bandwidth: 1.33 GB/s, avg_t=10921.00 us
+[Leader] [rank 4] Dispatch send/recv time: 881.83 us | Combine send/recv time: 11824.00 us
+[Leader] [rank 3] Dispatch bandwidth: 1.48 GB/s, avg_t=5066.00 us | Combine bandwidth: 1.28 GB/s, avg_t=11392.00 us
+[Leader] [rank 3] Dispatch send/recv time: 1508.42 us | Combine send/recv time: 11426.00 us
+[Leader] [rank 7] Dispatch bandwidth: 1.37 GB/s, avg_t=5486.00 us | Combine bandwidth: 1.33 GB/s, avg_t=10966.00 us
+[Leader] [rank 7] Dispatch send/recv time: 889.04 us | Combine send/recv time: 12104.00 us
+[Leader] [rank 2] Dispatch bandwidth: 1.34 GB/s, avg_t=5625.00 us | Combine bandwidth: 1.34 GB/s, avg_t=10828.00 us
+[Leader] [rank 2] Dispatch send/recv time: 1060.02 us | Combine send/recv time: 12036.00 us
+[Leader] [rank 6] Dispatch bandwidth: 1.42 GB/s, avg_t=5280.00 us | Combine bandwidth: 1.30 GB/s, avg_t=11154.00 us
+[Leader] [rank 6] Dispatch send/recv time: 1294.37 us | Combine send/recv time: 11734.00 us
+[Leader] [rank0]:[W126 16:01:33.472348355 ProcessGroupNCCL.cpp:1524] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+
+==============================================
+DeepEP Low Latency Test Completed
+==============================================
+
+==============================================
+Collecting NIC Counters AFTER Test
+==============================================
+  Collecting from networking-debug-pod-10.0.67.106...
+
+==================================================================================================================================
+NIC Counters (AFTER) for: deepep-test-ll-lws-0 (Node: 10.0.67.106)
+==================================================================================================================================
+NIC      p0_pkts      p0_disc      p1_pkts      p1_disc      p5_pkts      p5_disc      phy_pkts       rdma_uni      
+-------- ------------ ------------ ------------ ------------ ------------ ------------ -------------- --------------
+rdma0    244725291    0            196197680    10937038     89547609     0            531375400      535492731     
+rdma1    244901075    0            36306605     0            49911594     0            331161080      338271432     
+rdma2    244801618    0            36036533     0            33266368     0            314141200      321237779     
+rdma3    245312495    0            36434169     210          32961466     0            314749704      321909594     
+rdma4    245624442    0            36065601     0            85196626     0            367395251      374599386     
+rdma5    244761194    0            36190116     0            49820004     0            330811063      337914990     
+rdma6    246459369    0            35902994     0            33059358     0            315456485      322769623     
+rdma7    245591437    0            36054939     0            33117163     0            314792637      322008333     
+
+PFC Pause Counters (AFTER) - Priorities 0 and 5:
+NIC      tx_p0_paus   rx_p0_paus   tx_p5_paus   rx_p5_paus   tx_p0_dur      rx_p0_dur      tx_p5_dur      rx_p5_dur     
+-------- ------------ ------------ ------------ ------------ -------------- -------------- -------------- --------------
+rdma0    366543       0            366543       0            14468850       0              14468850       0             
+rdma1    7702         0            7702         0            172829         0              172829         0             
+rdma2    5444         0            5444         0            139430         0              139430         0             
+rdma3    7158         0            7158         0            179998         0              179998         0             
+rdma4    365033       0            365033       0            14423771       0              14423771       0             
+rdma5    6054         0            6054         0            155087         0              155087         0             
+rdma6    5364         0            5364         0            138452         0              138452         0             
+rdma7    3965         0            3965         0            99152          0              99152          0             
+  Collecting from networking-debug-pod-10.0.73.241...
+
+==================================================================================================================================
+NIC Counters (AFTER) for: deepep-test-ll-lws-0-1 (Node: 10.0.73.241)
+==================================================================================================================================
+NIC      p0_pkts      p0_disc      p1_pkts      p1_disc      p5_pkts      p5_disc      phy_pkts       rdma_uni      
+-------- ------------ ------------ ------------ ------------ ------------ ------------ -------------- --------------
+rdma0    227057389    0            18396806     206870       59940206     0            310258615      315612359     
+rdma1    227199793    0            18724289     221987       29843723     0            275870012      280830740     
+rdma2    227086432    0            18723144     218260       16654259     0            262543330      267497509     
+rdma3    227246933    0            18715407     241996       16577527     0            262631740      267578104     
+rdma4    227074553    0            19089250     259095       55846793     0            306953283      311864819     
+rdma5    226858623    0            18724738     227713       29287188     0            274963546      279879103     
+rdma6    227012055    0            18944721     223274       16327191     0            262360036      267295754     
+rdma7    227194922    0            18783582     237881       16195649     0            262245571      267186733     
+
+PFC Pause Counters (AFTER) - Priorities 0 and 5:
+NIC      tx_p0_paus   rx_p0_paus   tx_p5_paus   rx_p5_paus   tx_p0_dur      rx_p0_dur      tx_p5_dur      rx_p5_dur     
+-------- ------------ ------------ ------------ ------------ -------------- -------------- -------------- --------------
+rdma0    85904        0            85904        0            3232345        0              3232345        0             
+rdma1    2295         0            2295         0            59642          0              59642          0             
+rdma2    1607         0            1607         0            38961          0              38961          0             
+rdma3    2854         0            2854         0            74164          0              74164          0             
+rdma4    77873        0            77873        0            2888066        0              2888066        0             
+rdma5    1805         0            1805         0            45519          0              45519          0             
+rdma6    1108         0            1108         0            26565          0              26565          0             
+rdma7    1079         0            1079         0            26294          0              26294          0             
+
+==============================================
+ECN Hardware Counters AFTER Test
+==============================================
+POD                       ecn_marked         cnp_sent           cnp_handled       
+------------------------- ------------------ ------------------ ------------------
+deepep-test-ll-lws-0      64279406           9564120            57258394          
+deepep-test-ll-lws-0-1    14369995           3511783            52301435          
+
+==============================================
+NIC Counter DIFFERENCES (After - Before)
+==============================================
+
+==================================================================================================================================
+NIC Counter DIFFERENCE for: deepep-test-ll-lws-0 (Node: 10.0.67.106)
+==================================================================================================================================
+NIC      p0_pkts      p0_disc      p1_pkts      p1_disc      p5_pkts      p5_disc      phy_pkts       rdma_uni      
+-------- ------------ ------------ ------------ ------------ ------------ ------------ -------------- --------------
+rdma0    407          0            1            0            0            0            408            376           
+rdma1    207          0            1            0            0            0            208            177           
+rdma2    30           0            1            0            0            0            31             0             
+rdma3    30           0            1            0            0            0            31             0             
+rdma4    30           0            1            0            0            0            31             0             
+rdma5    31           0            1            0            0            0            32             0             
+rdma6    150          0            1            0            0            0            151            120           
+rdma7    320          0            1            0            0            0            321            290           
+
+PFC Pause Counter DIFFERENCE - Priorities 0 and 5:
+NIC      tx_p0_paus   rx_p0_paus   tx_p5_paus   rx_p5_paus   tx_p0_dur      rx_p0_dur      tx_p5_dur      rx_p5_dur     
+-------- ------------ ------------ ------------ ------------ -------------- -------------- -------------- --------------
+rdma0    0            0            0            0            0              0              0              0             
+rdma1    0            0            0            0            0              0              0              0             
+rdma2    0            0            0            0            0              0              0              0             
+rdma3    0            0            0            0            0              0              0              0             
+rdma4    0            0            0            0            0              0              0              0             
+rdma5    0            0            0            0            0              0              0              0             
+rdma6    0            0            0            0            0              0              0              0             
+rdma7    0            0            0            0            0              0              0              0             
+
+==================================================================================================================================
+NIC Counter DIFFERENCE for: deepep-test-ll-lws-0-1 (Node: 10.0.73.241)
+==================================================================================================================================
+NIC      p0_pkts      p0_disc      p1_pkts      p1_disc      p5_pkts      p5_disc      phy_pkts       rdma_uni      
+-------- ------------ ------------ ------------ ------------ ------------ ------------ -------------- --------------
+rdma0    329          0            1            0            0            0            330            299           
+rdma1    151          0            1            0            0            0            152            120           
+rdma2    31           0            1            0            0            0            32             0             
+rdma3    30           0            1            0            0            0            31             0             
+rdma4    30           0            1            0            0            0            31             0             
+rdma5    30           0            1            0            0            0            31             0             
+rdma6    208          0            1            0            0            0            209            178           
+rdma7    380          0            1            0            0            0            381            350           
+
+PFC Pause Counter DIFFERENCE - Priorities 0 and 5:
+NIC      tx_p0_paus   rx_p0_paus   tx_p5_paus   rx_p5_paus   tx_p0_dur      rx_p0_dur      tx_p5_dur      rx_p5_dur     
+-------- ------------ ------------ ------------ ------------ -------------- -------------- -------------- --------------
+rdma0    0            0            0            0            0              0              0              0             
+rdma1    0            0            0            0            0              0              0              0             
+rdma2    0            0            0            0            0              0              0              0             
+rdma3    0            0            0            0            0              0              0              0             
+rdma4    0            0            0            0            0              0              0              0             
+rdma5    0            0            0            0            0              0              0              0             
+rdma6    0            0            0            0            0              0              0              0             
+rdma7    0            0            0            0            0              0              0              0             
+
+==================================================================================================================================
+SUMMARY: Priority Packet Counter Differences
+==================================================================================================================================
+POD                       p0_pkts     p0_disc     p1_pkts     p1_disc     p5_pkts     p5_disc     phy_pkts      rdma_uni     
+------------------------- ----------- ----------- ----------- ----------- ----------- ----------- ------------- -------------
+deepep-test-ll-lws-0      1205        0           8           0           0           0           1213          963          
+deepep-test-ll-lws-0-1    1189        0           8           0           0           0           1197          947          
+------------------------- ----------- ----------- ----------- ----------- ----------- ----------- ------------- -------------
+TOTAL                     2394        0           16          0           0           0           2410          1910         
+
+==================================================================================================================================
+SUMMARY: PFC Pause Counter Differences (Priorities 0 and 5)
+==================================================================================================================================
+POD                       tx_p0      rx_p0      tx_p5      rx_p5      tx_p0_dur    rx_p0_dur    tx_p5_dur    rx_p5_dur   
+------------------------- ---------- ---------- ---------- ---------- ------------ ------------ ------------ ------------
+deepep-test-ll-lws-0      0          0          0          0          0            0            0            0           
+deepep-test-ll-lws-0-1    0          0          0          0          0            0            0            0           
+------------------------- ---------- ---------- ---------- ---------- ------------ ------------ ------------ ------------
+TOTAL                     0          0          0          0          0            0            0            0           
+
+==================================================================================================================================
+SUMMARY: ECN Counter Differences
+==================================================================================================================================
+POD                       ecn_marked         cnp_sent           cnp_handled       
+------------------------- ------------------ ------------------ ------------------
+deepep-test-ll-lws-0      0                  5444               78706             
+deepep-test-ll-lws-0-1    0                  5346               83418             
+------------------------- ------------------ ------------------ ------------------
+TOTAL                     0                  10790              162124            
+
+==============================================
+Notes:
+==============================================
+- PFC is enabled for priorities 0 and 5
+- Traffic uses: Priority 0 (NCCL bootstrap), Priority 5 (rocSHMEM/DeepEP)
+- ECN counters: ecn_marked=packets marked by network, cnp_sent/handled=congestion notifications
+- PFC pause: tx=sent pause frames, rx=received pause frames
+- PFC pause_duration: cumulative time paused (in device-specific units, often μs)
