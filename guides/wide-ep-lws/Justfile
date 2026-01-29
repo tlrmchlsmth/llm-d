@@ -5,7 +5,6 @@
 NAMESPACE := env("NAMESPACE")
 HF_TOKEN := env("HF_TOKEN")
 
-#MODEL := "deepseek-ai/DeepSeek-R1-0528"
 MODEL := "Qwen/Qwen3-30B-A3B-FP8"
 
 KN := "kubectl -n " + NAMESPACE
@@ -48,7 +47,7 @@ start-poker:
     {{KN}} apply -f poker.yaml
 
 stop-poker:
-    {{KN}} delete pod poker
+    {{KN}} delete pod poker --ignore-not-found=true
 
 restart-poker:
     just stop-poker && just start-poker
@@ -120,6 +119,17 @@ stop:
 
 restart:
   just stop && just start
+
+apply_bench_settings:
+  cd {{EXAMPLE_DIR}} \
+  && helm upgrade qwen \
+  oci://us-central1-docker.pkg.dev/k8s-staging-images/gateway-api-inference-extension/charts/inferencepool \
+  --version v1.2.0-rc.1 \
+  -n varun-llm-d-wide-ep \
+  --reuse-values \
+  -f ../prereq/gateway-provider/common-configurations/benchmarking.yaml \
+  && {{KN}} rollout restart deployment llm-d-inference-gateway-istio
+
 
 # Copy PyTorch traces from all decode pods to local ./traces/N directory
 copy-traces:
