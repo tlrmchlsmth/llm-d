@@ -52,6 +52,14 @@ spec:
           - name: devinf
             hostPath:
               path: /dev/infiniband
+          - name: model-storage
+            hostPath:
+              path: /mnt/nvme/models
+              type: Directory
+          - name: aiter-cache
+            hostPath:
+              path: /mnt/nvme/cache
+              type: Directory
         containers:
         - name: vllm
           image: quay.io/rh-ee-vsundarr/amd-vllm:latest
@@ -246,3 +254,8 @@ spec:
               mountPath: /var/cache/vllm
             - name: devinf
               mountPath: /dev/infiniband
+            - name: model-storage
+              mountPath: /mnt/models
+              readOnly: true
+            - name: aiter-cache
+              mountPath: /mnt/aiter-cache
