@@ -73,8 +73,14 @@ spec:
               # --enable-eplb:  Expert-parallel load balancing reduces EP load imbalance by replicating heavily-used experts Performance-memory tradeoff: on DeepSeekV3 eplb uses an extra 2GB per redundant expert per GPU Divisibility constraint: num_routed_experts (256 for DSv3) + num_redundant_experts must be divisible by the number of GPUs.
 
               # TODO (varun) : Investigate DBO enablement
+              # TODO (varun) : Use Mistral's default max-model-len
+              # TODO (varun) : Enable EPLB
               exec vllm serve \
-                Qwen/Qwen3-30B-A3B-FP8 \
+                /mnt/models/mistralai/Mistral-Large-3-675B-Instruct-2512 \
+                --config_format mistral \
+                --load_format mistral \
+                --served-model-name  mistralai/Mistral-Large-3-675B-Instruct-2512 \
+                --all2all-backend deepep_high_throughput \
                 --port 8000 \
                 --trust-remote-code \
                 --disable-uvicorn-access-log \
@@ -90,11 +96,8 @@ spec:
                                         "kv_role":"kv_both",
                                         "kv_load_failure_policy":"fail"}' \
                 --async-scheduling \
-                --enable-eplb \
-                --eplb-config '{"window_size":"1000",
-                                "step_interval":"3000",
-                                "num_redundant_experts":"32",
-                                "log_balancedness":"False"}' --gpu-memory-utilization 0.75
+                --max-model-len 8192 \
+                --gpu-memory-utilization 0.75 
 
           env:
           - name: VLLM_HTTP_TIMEOUT_KEEP_ALIVE
@@ -160,7 +163,7 @@ spec:
           - name: VLLM_ROCM_USE_AITER
             value: "1"
           - name: VLLM_ROCM_USE_AITER_MOE
-            value: "0"
+            value: "1"
           - name: ROCSHMEM_DEBUG_LEVEL
             value: INFO
 
@@ -177,6 +180,8 @@ spec:
           # HuggingFace is likely to be quite a bit larger, give it its own cache
           - name: HF_HUB_CACHE
             value: /var/cache/huggingface
+          - name: TORCHINDUCTOR_MAX_AUTOTUNE
+            value: "1"
 
           ports:
           - containerPort: 8000
