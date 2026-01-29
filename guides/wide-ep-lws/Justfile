@@ -5,7 +5,8 @@
 NAMESPACE := env("NAMESPACE")
 HF_TOKEN := env("HF_TOKEN")
 
-MODEL := "Qwen/Qwen3-30B-A3B-FP8"
+MODEL := "mistralai/Mistral-Large-3-675B-Instruct-2512"
+
 
 KN := "kubectl -n " + NAMESPACE
 
