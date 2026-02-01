@@ -101,4 +101,12 @@ profile_all_decode:
   done
   wait
 
+  sleep 1
+
+  for IP in $DECODE_IPS; do
+    echo "  Starting profile on $IP..."
+    curl -s -X POST http://$IP:8200/stop_profile &
+  done
+  wait
+
   echo "Profiling complete on all decode pods!"
