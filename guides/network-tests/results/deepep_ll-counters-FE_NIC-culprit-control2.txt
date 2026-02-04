@@ -1,0 +1,425 @@
+
+==============================================
+Discovering DeepEP LWS Pods in namespace: raj-network-debug
+==============================================
+
+Found 2 DeepEP pods:
+  - deepep-test-ll-lws-0
+  - deepep-test-ll-lws-0-1
+
+==============================================
+Initializing NIC Counter Utils
+==============================================
+Pods namespace: raj-network-debug
+Networking debug pods namespace: raj-network-debug
+
+Discovering nodes for pods...
+  deepep-test-ll-lws-0 -> 10.0.69.254 -> networking-debug-pod-10.0.69.254
+  deepep-test-ll-lws-0-1 -> 10.0.73.3 -> networking-debug-pod-10.0.73.3
+
+Verifying networking-debug-pods in namespace raj-network-debug...
+  Found: networking-debug-pod-10.0.69.254
+  Found: networking-debug-pod-10.0.73.3
+
+Pod name column width: 24
+Initialization complete.
+
+==============================================
+Collecting NIC Counters BEFORE Test
+==============================================
+  Collecting from networking-debug-pod-10.0.69.254 (for deepep-test-ll-lws-0)...
+  Collecting from networking-debug-pod-10.0.73.3 (for deepep-test-ll-lws-0-1)...
+
+==============================================
+Collecting NIC Counters AFTER Test
+==============================================
+  Collecting from networking-debug-pod-10.0.69.254 (for deepep-test-ll-lws-0)...
+  Collecting from networking-debug-pod-10.0.73.3 (for deepep-test-ll-lws-0-1)...
+
+==============================================
+NIC Counter DIFFERENCES (After - Before)
+==============================================
+
+==============================================================================
+Packet Counters DIFF for: deepep-test-ll-lws-0 (Node: 10.0.69.254)
+==============================================================================
+
+RX Packets:
+NIC      rx_prio0_packets     rx_prio1_packets     rx_prio5_packets     rx_packets_phy    
+-------- -------------------- -------------------- -------------------- ------------------
+rdma0    8                    0                    0                    8                 
+rdma1    8                    0                    0                    8                 
+rdma2    7                    0                    0                    7                 
+rdma3    7                    0                    0                    7                 
+rdma4    8                    0                    0                    8                 
+rdma5    8                    0                    0                    8                 
+rdma6    7                    0                    0                    7                 
+rdma7    7                    0                    0                    7                 
+eth0     1172                 0                    0                    1172              
+
+TX Packets:
+NIC      tx_prio0_packets     tx_prio1_packets     tx_prio5_packets     tx_packets_phy    
+-------- -------------------- -------------------- -------------------- ------------------
+rdma0    0                    0                    0                    0                 
+rdma1    0                    0                    0                    0                 
+rdma2    0                    0                    0                    0                 
+rdma3    0                    0                    0                    0                 
+rdma4    0                    0                    0                    0                 
+rdma5    0                    0                    0                    0                 
+rdma6    0                    0                    0                    0                 
+rdma7    0                    0                    0                    0                 
+eth0     1923                 0                    0                    1923              
+
+RX Discards:
+NIC      rx_prio0_buf_discard     rx_prio1_buf_discard     rx_prio5_buf_discard    
+-------- ------------------------ ------------------------ ------------------------
+rdma0    0                        0                        0                       
+rdma1    0                        0                        0                       
+rdma2    0                        0                        0                       
+rdma3    0                        0                        0                       
+rdma4    0                        0                        0                       
+rdma5    0                        0                        0                       
+rdma6    0                        0                        0                       
+rdma7    0                        0                        0                       
+eth0     0                        0                        0                       
+
+RX Bytes:
+NIC      rx_prio0_bytes     rx_prio1_bytes     rx_prio5_bytes    
+-------- ------------------ ------------------ ------------------
+rdma0    984 B              0 B                0 B               
+rdma1    984 B              0 B                0 B               
+rdma2    861 B              0 B                0 B               
+rdma3    861 B              0 B                0 B               
+rdma4    984 B              0 B                0 B               
+rdma5    984 B              0 B                0 B               
+rdma6    861 B              0 B                0 B               
+rdma7    861 B              0 B                0 B               
+eth0     387.54 KB          0 B                0 B               
+
+TX Bytes:
+NIC      tx_prio0_bytes     tx_prio1_bytes     tx_prio5_bytes    
+-------- ------------------ ------------------ ------------------
+rdma0    0 B                0 B                0 B               
+rdma1    0 B                0 B                0 B               
+rdma2    0 B                0 B                0 B               
+rdma3    0 B                0 B                0 B               
+rdma4    0 B                0 B                0 B               
+rdma5    0 B                0 B                0 B               
+rdma6    0 B                0 B                0 B               
+rdma7    0 B                0 B                0 B               
+eth0     7.40 MB            0 B                0 B               
+
+==============================================================================
+Packet Counters DIFF for: deepep-test-ll-lws-0-1 (Node: 10.0.73.3)
+==============================================================================
+
+RX Packets:
+NIC      rx_prio0_packets     rx_prio1_packets     rx_prio5_packets     rx_packets_phy    
+-------- -------------------- -------------------- -------------------- ------------------
+rdma0    7                    0                    0                    7                 
+rdma1    8                    0                    0                    8                 
+rdma2    8                    0                    0                    8                 
+rdma3    7                    0                    0                    7                 
+rdma4    8                    0                    0                    8                 
+rdma5    7                    0                    0                    7                 
+rdma6    8                    0                    0                    8                 
+rdma7    7                    0                    0                    7                 
+eth0     770                  0                    0                    770               
+
+TX Packets:
+NIC      tx_prio0_packets     tx_prio1_packets     tx_prio5_packets     tx_packets_phy    
+-------- -------------------- -------------------- -------------------- ------------------
+rdma0    0                    0                    0                    0                 
+rdma1    0                    0                    0                    0                 
+rdma2    0                    0                    0                    0                 
+rdma3    0                    0                    0                    0                 
+rdma4    0                    0                    0                    0                 
+rdma5    0                    0                    0                    0                 
+rdma6    0                    0                    0                    0                 
+rdma7    0                    0                    0                    0                 
+eth0     1459                 0                    0                    1459              
+
+RX Discards:
+NIC      rx_prio0_buf_discard     rx_prio1_buf_discard     rx_prio5_buf_discard    
+-------- ------------------------ ------------------------ ------------------------
+rdma0    0                        0                        0                       
+rdma1    0                        0                        0                       
+rdma2    0                        0                        0                       
+rdma3    0                        0                        0                       
+rdma4    0                        0                        0                       
+rdma5    0                        0                        0                       
+rdma6    0                        0                        0                       
+rdma7    0                        0                        0                       
+eth0     0                        0                        0                       
+
+RX Bytes:
+NIC      rx_prio0_bytes     rx_prio1_bytes     rx_prio5_bytes    
+-------- ------------------ ------------------ ------------------
+rdma0    861 B              0 B                0 B               
+rdma1    984 B              0 B                0 B               
+rdma2    984 B              0 B                0 B               
+rdma3    861 B              0 B                0 B               
+rdma4    984 B              0 B                0 B               
+rdma5    861 B              0 B                0 B               
+rdma6    984 B              0 B                0 B               
+rdma7    861 B              0 B                0 B               
+eth0     276.65 KB          0 B                0 B               
+
+TX Bytes:
+NIC      tx_prio0_bytes     tx_prio1_bytes     tx_prio5_bytes    
+-------- ------------------ ------------------ ------------------
+rdma0    0 B                0 B                0 B               
+rdma1    0 B                0 B                0 B               
+rdma2    0 B                0 B                0 B               
+rdma3    0 B                0 B                0 B               
+rdma4    0 B                0 B                0 B               
+rdma5    0 B                0 B                0 B               
+rdma6    0 B                0 B                0 B               
+rdma7    0 B                0 B                0 B               
+eth0     6.06 MB            0 B                0 B               
+
+==============================================================================
+PFC Counters DIFF for: deepep-test-ll-lws-0 (Node: 10.0.69.254) - Priorities 0 and 5
+==============================================================================
+
+Pause Counts:
+NIC      tx_prio0_pause     rx_prio0_pause     tx_prio5_pause     rx_prio5_pause    
+-------- ------------------ ------------------ ------------------ ------------------
+rdma0    0                  0                  0                  0                 
+rdma1    0                  0                  0                  0                 
+rdma2    0                  0                  0                  0                 
+rdma3    0                  0                  0                  0                 
+rdma4    0                  0                  0                  0                 
+rdma5    0                  0                  0                  0                 
+rdma6    0                  0                  0                  0                 
+rdma7    0                  0                  0                  0                 
+eth0     0                  0                  0                  0                 
+
+Pause Durations:
+NIC      tx_prio0_pause_duration    rx_prio0_pause_duration    tx_prio5_pause_duration    rx_prio5_pause_duration   
+-------- -------------------------- -------------------------- -------------------------- --------------------------
+rdma0    0                          0                          0                          0                         
+rdma1    0                          0                          0                          0                         
+rdma2    0                          0                          0                          0                         
+rdma3    0                          0                          0                          0                         
+rdma4    0                          0                          0                          0                         
+rdma5    0                          0                          0                          0                         
+rdma6    0                          0                          0                          0                         
+rdma7    0                          0                          0                          0                         
+eth0     0                          0                          0                          0                         
+
+==============================================================================
+PFC Counters DIFF for: deepep-test-ll-lws-0-1 (Node: 10.0.73.3) - Priorities 0 and 5
+==============================================================================
+
+Pause Counts:
+NIC      tx_prio0_pause     rx_prio0_pause     tx_prio5_pause     rx_prio5_pause    
+-------- ------------------ ------------------ ------------------ ------------------
+rdma0    0                  0                  0                  0                 
+rdma1    0                  0                  0                  0                 
+rdma2    0                  0                  0                  0                 
+rdma3    0                  0                  0                  0                 
+rdma4    0                  0                  0                  0                 
+rdma5    0                  0                  0                  0                 
+rdma6    0                  0                  0                  0                 
+rdma7    0                  0                  0                  0                 
+eth0     0                  0                  0                  0                 
+
+Pause Durations:
+NIC      tx_prio0_pause_duration    rx_prio0_pause_duration    tx_prio5_pause_duration    rx_prio5_pause_duration   
+-------- -------------------------- -------------------------- -------------------------- --------------------------
+rdma0    0                          0                          0                          0                         
+rdma1    0                          0                          0                          0                         
+rdma2    0                          0                          0                          0                         
+rdma3    0                          0                          0                          0                         
+rdma4    0                          0                          0                          0                         
+rdma5    0                          0                          0                          0                         
+rdma6    0                          0                          0                          0                         
+rdma7    0                          0                          0                          0                         
+eth0     0                          0                          0                          0                         
+
+==============================================================================
+ECN Counters DIFF for: deepep-test-ll-lws-0 (Node: 10.0.69.254)
+==============================================================================
+NIC      np_ecn_marked_roce_packets   np_cnp_sent        rp_cnp_handled    
+-------- ---------------------------- ------------------ ------------------
+rdma0    0                            0                  0                 
+rdma1    0                            0                  0                 
+rdma2    0                            0                  0                 
+rdma3    0                            0                  0                 
+rdma4    0                            0                  0                 
+rdma5    0                            0                  0                 
+rdma6    0                            0                  0                 
+rdma7    0                            0                  0                 
+eth0     0                            0                  0                 
+
+==============================================================================
+ECN Counters DIFF for: deepep-test-ll-lws-0-1 (Node: 10.0.73.3)
+==============================================================================
+NIC      np_ecn_marked_roce_packets   np_cnp_sent        rp_cnp_handled    
+-------- ---------------------------- ------------------ ------------------
+rdma0    0                            0                  0                 
+rdma1    0                            0                  0                 
+rdma2    0                            0                  0                 
+rdma3    0                            0                  0                 
+rdma4    0                            0                  0                 
+rdma5    0                            0                  0                 
+rdma6    0                            0                  0                 
+rdma7    0                            0                  0                 
+eth0     0                            0                  0                 
+
+==============================================================================
+SUMMARY: Packet Counters - BACKEND NICs (rdma0-rdma7)
+==============================================================================
+
+RX Packets:
+POD                      rx_prio0_packets     rx_prio1_packets     rx_prio5_packets     rx_packets_phy    
+------------------------ -------------------- -------------------- -------------------- ------------------
+deepep-test-ll-lws-0     60                   0                    0                    60                
+deepep-test-ll-lws-0-1   60                   0                    0                    60                
+------------------------ -------------------- -------------------- -------------------- ------------------
+TOTAL                    120                  0                    0                    120               
+
+TX Packets:
+POD                      tx_prio0_packets     tx_prio1_packets     tx_prio5_packets     tx_packets_phy    
+------------------------ -------------------- -------------------- -------------------- ------------------
+deepep-test-ll-lws-0     0                    0                    0                    0                 
+deepep-test-ll-lws-0-1   0                    0                    0                    0                 
+------------------------ -------------------- -------------------- -------------------- ------------------
+TOTAL                    0                    0                    0                    0                 
+
+RX Discards:
+POD                      rx_prio0_buf_discard     rx_prio1_buf_discard     rx_prio5_buf_discard    
+------------------------ ------------------------ ------------------------ ------------------------
+deepep-test-ll-lws-0     0                        0                        0                       
+deepep-test-ll-lws-0-1   0                        0                        0                       
+------------------------ ------------------------ ------------------------ ------------------------
+TOTAL                    0                        0                        0                       
+
+==============================================================================
+SUMMARY: Packet Counters - FRONTEND NIC (eth0)
+==============================================================================
+
+RX Packets:
+POD                      rx_prio0_packets     rx_prio1_packets     rx_prio5_packets     rx_packets_phy    
+------------------------ -------------------- -------------------- -------------------- ------------------
+deepep-test-ll-lws-0     1172                 0                    0                    1172              
+deepep-test-ll-lws-0-1   770                  0                    0                    770               
+------------------------ -------------------- -------------------- -------------------- ------------------
+TOTAL                    1942                 0                    0                    1942              
+
+TX Packets:
+POD                      tx_prio0_packets     tx_prio1_packets     tx_prio5_packets     tx_packets_phy    
+------------------------ -------------------- -------------------- -------------------- ------------------
+deepep-test-ll-lws-0     1923                 0                    0                    1923              
+deepep-test-ll-lws-0-1   1459                 0                    0                    1459              
+------------------------ -------------------- -------------------- -------------------- ------------------
+TOTAL                    3382                 0                    0                    3382              
+
+RX Discards:
+POD                      rx_prio0_buf_discard     rx_prio1_buf_discard     rx_prio5_buf_discard    
+------------------------ ------------------------ ------------------------ ------------------------
+deepep-test-ll-lws-0     0                        0                        0                       
+deepep-test-ll-lws-0-1   0                        0                        0                       
+------------------------ ------------------------ ------------------------ ------------------------
+TOTAL                    0                        0                        0                       
+
+==============================================================================
+SUMMARY: Byte Counters - BACKEND NICs (rdma0-rdma7)
+==============================================================================
+
+RX Bytes:
+POD                      rx_prio0_bytes     rx_prio1_bytes     rx_prio5_bytes    
+------------------------ ------------------ ------------------ ------------------
+deepep-test-ll-lws-0     7.38 KB            0 B                0 B               
+deepep-test-ll-lws-0-1   7.38 KB            0 B                0 B               
+------------------------ ------------------ ------------------ ------------------
+TOTAL                    14.76 KB           0 B                0 B               
+
+TX Bytes:
+POD                      tx_prio0_bytes     tx_prio1_bytes     tx_prio5_bytes    
+------------------------ ------------------ ------------------ ------------------
+deepep-test-ll-lws-0     0 B                0 B                0 B               
+deepep-test-ll-lws-0-1   0 B                0 B                0 B               
+------------------------ ------------------ ------------------ ------------------
+TOTAL                    0 B                0 B                0 B               
+
+==============================================================================
+SUMMARY: Byte Counters - FRONTEND NIC (eth0)
+==============================================================================
+
+RX Bytes:
+POD                      rx_prio0_bytes     rx_prio1_bytes     rx_prio5_bytes    
+------------------------ ------------------ ------------------ ------------------
+deepep-test-ll-lws-0     387.54 KB          0 B                0 B               
+deepep-test-ll-lws-0-1   276.65 KB          0 B                0 B               
+------------------------ ------------------ ------------------ ------------------
+TOTAL                    664.20 KB          0 B                0 B               
+
+TX Bytes:
+POD                      tx_prio0_bytes     tx_prio1_bytes     tx_prio5_bytes    
+------------------------ ------------------ ------------------ ------------------
+deepep-test-ll-lws-0     7.40 MB            0 B                0 B               
+deepep-test-ll-lws-0-1   6.06 MB            0 B                0 B               
+------------------------ ------------------ ------------------ ------------------
+TOTAL                    13.46 MB           0 B                0 B               
+
+==============================================================================
+SUMMARY: PFC Counters - BACKEND NICs (rdma0-rdma7) - Priorities 0 and 5
+==============================================================================
+
+Pause Counts:
+POD                      tx_prio0_pause     rx_prio0_pause     tx_prio5_pause     rx_prio5_pause    
+------------------------ ------------------ ------------------ ------------------ ------------------
+deepep-test-ll-lws-0     0                  0                  0                  0                 
+deepep-test-ll-lws-0-1   0                  0                  0                  0                 
+------------------------ ------------------ ------------------ ------------------ ------------------
+TOTAL                    0                  0                  0                  0                 
+
+Pause Durations:
+POD                      tx_prio0_pause_duration    rx_prio0_pause_duration    tx_prio5_pause_duration    rx_prio5_pause_duration   
+------------------------ -------------------------- -------------------------- -------------------------- --------------------------
+deepep-test-ll-lws-0     0                          0                          0                          0                         
+deepep-test-ll-lws-0-1   0                          0                          0                          0                         
+------------------------ -------------------------- -------------------------- -------------------------- --------------------------
+TOTAL                    0                          0                          0                          0                         
+
+==============================================================================
+SUMMARY: PFC Counters - FRONTEND NIC (eth0) - Priorities 0 and 5
+==============================================================================
+
+Pause Counts:
+POD                      tx_prio0_pause     rx_prio0_pause     tx_prio5_pause     rx_prio5_pause    
+------------------------ ------------------ ------------------ ------------------ ------------------
+deepep-test-ll-lws-0     0                  0                  0                  0                 
+deepep-test-ll-lws-0-1   0                  0                  0                  0                 
+------------------------ ------------------ ------------------ ------------------ ------------------
+TOTAL                    0                  0                  0                  0                 
+
+Pause Durations:
+POD                      tx_prio0_pause_duration    rx_prio0_pause_duration    tx_prio5_pause_duration    rx_prio5_pause_duration   
+------------------------ -------------------------- -------------------------- -------------------------- --------------------------
+deepep-test-ll-lws-0     0                          0                          0                          0                         
+deepep-test-ll-lws-0-1   0                          0                          0                          0                         
+------------------------ -------------------------- -------------------------- -------------------------- --------------------------
+TOTAL                    0                          0                          0                          0                         
+
+==============================================================================
+SUMMARY: ECN Counters - BACKEND NICs (rdma0-rdma7)
+==============================================================================
+POD                      np_ecn_marked_roce_packets   np_cnp_sent        rp_cnp_handled    
+------------------------ ---------------------------- ------------------ ------------------
+deepep-test-ll-lws-0     0                            0                  0                 
+deepep-test-ll-lws-0-1   0                            0                  0                 
+------------------------ ---------------------------- ------------------ ------------------
+TOTAL                    0                            0                  0                 
+
+==============================================================================
+SUMMARY: ECN Counters - FRONTEND NIC (eth0)
+==============================================================================
+POD                      np_ecn_marked_roce_packets   np_cnp_sent        rp_cnp_handled    
+------------------------ ---------------------------- ------------------ ------------------
+deepep-test-ll-lws-0     0                            0                  0                 
+deepep-test-ll-lws-0-1   0                            0                  0                 
+------------------------ ---------------------------- ------------------ ------------------
+TOTAL                    0                            0                  0                 
