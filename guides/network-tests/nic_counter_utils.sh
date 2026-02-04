@@ -45,6 +45,57 @@ get_nic_name() {
 }
 
 # ============================================
+# Helper function to format bytes in human-readable form
+# Arguments: $1=bytes (can be negative for diffs)
+# Returns: Formatted string (e.g., "1.23 GB", "456.78 MB")
+# ============================================
+format_bytes() {
+    local bytes=$1
+    local sign=""
+    
+    # Handle negative values
+    if [ "$bytes" -lt 0 ] 2>/dev/null; then
+        sign="-"
+        bytes=$((-bytes))
+    fi
+    
+    # Handle zero or empty
+    if [ -z "$bytes" ] || [ "$bytes" == "0" ]; then
+        echo "0 B"
+        return
+    fi
+    
+    if [ "$bytes" -ge 1000000000000 ]; then
+        # TB
+        local tb=$((bytes / 1000000000000))
+        local remainder=$((bytes % 1000000000000))
+        local decimal=$((remainder * 100 / 1000000000000))
+        printf "%s%d.%02d TB" "$sign" "$tb" "$decimal"
+    elif [ "$bytes" -ge 1000000000 ]; then
+        # GB
+        local gb=$((bytes / 1000000000))
+        local remainder=$((bytes % 1000000000))
+        local decimal=$((remainder * 100 / 1000000000))
+        printf "%s%d.%02d GB" "$sign" "$gb" "$decimal"
+    elif [ "$bytes" -ge 1000000 ]; then
+        # MB
+        local mb=$((bytes / 1000000))
+        local remainder=$((bytes % 1000000))
+        local decimal=$((remainder * 100 / 1000000))
+        printf "%s%d.%02d MB" "$sign" "$mb" "$decimal"
+    elif [ "$bytes" -ge 1000 ]; then
+        # KB
+        local kb=$((bytes / 1000))
+        local remainder=$((bytes % 1000))
+        local decimal=$((remainder * 100 / 1000))
+        printf "%s%d.%02d KB" "$sign" "$kb" "$decimal"
+    else
+        # Bytes
+        printf "%s%d B" "$sign" "$bytes"
+    fi
+}
+
+# ============================================
 # Internal arrays (populated by init function)
 # ============================================
 declare -a _node_names
@@ -86,6 +137,28 @@ declare -a before_rx_prio5_buf_discard
 declare -a after_rx_prio0_buf_discard
 declare -a after_rx_prio1_buf_discard
 declare -a after_rx_prio5_buf_discard
+
+# ============================================
+# Arrays for RX priority byte counters
+# ============================================
+declare -a before_rx_prio0_bytes
+declare -a before_rx_prio1_bytes
+declare -a before_rx_prio5_bytes
+
+declare -a after_rx_prio0_bytes
+declare -a after_rx_prio1_bytes
+declare -a after_rx_prio5_bytes
+
+# ============================================
+# Arrays for TX priority byte counters
+# ============================================
+declare -a before_tx_prio0_bytes
+declare -a before_tx_prio1_bytes
+declare -a before_tx_prio5_bytes
+
+declare -a after_tx_prio0_bytes
+declare -a after_tx_prio1_bytes
+declare -a after_tx_prio5_bytes
 
 # ============================================
 # Arrays for PFC pause counters (prio0 and prio5)
@@ -261,6 +334,14 @@ _collect_nic_counters_for_pod() {
                 before_rx_prio0_buf_discard[$array_idx]=-1
                 before_rx_prio1_buf_discard[$array_idx]=-1
                 before_rx_prio5_buf_discard[$array_idx]=-1
+                # RX bytes
+                before_rx_prio0_bytes[$array_idx]=-1
+                before_rx_prio1_bytes[$array_idx]=-1
+                before_rx_prio5_bytes[$array_idx]=-1
+                # TX bytes
+                before_tx_prio0_bytes[$array_idx]=-1
+                before_tx_prio1_bytes[$array_idx]=-1
+                before_tx_prio5_bytes[$array_idx]=-1
                 # PFC pause
                 before_tx_prio0_pause[$array_idx]=-1
                 before_rx_prio0_pause[$array_idx]=-1
@@ -285,6 +366,14 @@ _collect_nic_counters_for_pod() {
                 after_rx_prio0_buf_discard[$array_idx]=-1
                 after_rx_prio1_buf_discard[$array_idx]=-1
                 after_rx_prio5_buf_discard[$array_idx]=-1
+                # RX bytes
+                after_rx_prio0_bytes[$array_idx]=-1
+                after_rx_prio1_bytes[$array_idx]=-1
+                after_rx_prio5_bytes[$array_idx]=-1
+                # TX bytes
+                after_tx_prio0_bytes[$array_idx]=-1
+                after_tx_prio1_bytes[$array_idx]=-1
+                after_tx_prio5_bytes[$array_idx]=-1
                 # PFC pause
                 after_tx_prio0_pause[$array_idx]=-1
                 after_rx_prio0_pause[$array_idx]=-1
@@ -315,6 +404,16 @@ _collect_nic_counters_for_pod() {
         local rx_prio1_buf_discard=$(echo "$stats" | grep -E "^\s*rx_prio1_buf_discard:" | awk '{print $2}')
         local rx_prio5_buf_discard=$(echo "$stats" | grep -E "^\s*rx_prio5_buf_discard:" | awk '{print $2}')
         
+        # Parse RX priority byte counters
+        local rx_prio0_bytes=$(echo "$stats" | grep -E "^\s*rx_prio0_bytes:" | awk '{print $2}')
+        local rx_prio1_bytes=$(echo "$stats" | grep -E "^\s*rx_prio1_bytes:" | awk '{print $2}')
+        local rx_prio5_bytes=$(echo "$stats" | grep -E "^\s*rx_prio5_bytes:" | awk '{print $2}')
+        
+        # Parse TX priority byte counters
+        local tx_prio0_bytes=$(echo "$stats" | grep -E "^\s*tx_prio0_bytes:" | awk '{print $2}')
+        local tx_prio1_bytes=$(echo "$stats" | grep -E "^\s*tx_prio1_bytes:" | awk '{print $2}')
+        local tx_prio5_bytes=$(echo "$stats" | grep -E "^\s*tx_prio5_bytes:" | awk '{print $2}')
+        
         # Parse PFC pause counters
         local tx_prio0_pause=$(echo "$stats" | grep -E "^\s*tx_prio0_pause:" | awk '{print $2}')
         local rx_prio0_pause=$(echo "$stats" | grep -E "^\s*rx_prio0_pause:" | awk '{print $2}')
@@ -342,6 +441,14 @@ _collect_nic_counters_for_pod() {
             before_rx_prio0_buf_discard[$array_idx]=${rx_prio0_buf_discard:-0}
             before_rx_prio1_buf_discard[$array_idx]=${rx_prio1_buf_discard:-0}
             before_rx_prio5_buf_discard[$array_idx]=${rx_prio5_buf_discard:-0}
+            # RX bytes
+            before_rx_prio0_bytes[$array_idx]=${rx_prio0_bytes:-0}
+            before_rx_prio1_bytes[$array_idx]=${rx_prio1_bytes:-0}
+            before_rx_prio5_bytes[$array_idx]=${rx_prio5_bytes:-0}
+            # TX bytes
+            before_tx_prio0_bytes[$array_idx]=${tx_prio0_bytes:-0}
+            before_tx_prio1_bytes[$array_idx]=${tx_prio1_bytes:-0}
+            before_tx_prio5_bytes[$array_idx]=${tx_prio5_bytes:-0}
             # PFC pause
             before_tx_prio0_pause[$array_idx]=${tx_prio0_pause:-0}
             before_rx_prio0_pause[$array_idx]=${rx_prio0_pause:-0}
@@ -366,6 +473,14 @@ _collect_nic_counters_for_pod() {
             after_rx_prio0_buf_discard[$array_idx]=${rx_prio0_buf_discard:-0}
             after_rx_prio1_buf_discard[$array_idx]=${rx_prio1_buf_discard:-0}
             after_rx_prio5_buf_discard[$array_idx]=${rx_prio5_buf_discard:-0}
+            # RX bytes
+            after_rx_prio0_bytes[$array_idx]=${rx_prio0_bytes:-0}
+            after_rx_prio1_bytes[$array_idx]=${rx_prio1_bytes:-0}
+            after_rx_prio5_bytes[$array_idx]=${rx_prio5_bytes:-0}
+            # TX bytes
+            after_tx_prio0_bytes[$array_idx]=${tx_prio0_bytes:-0}
+            after_tx_prio1_bytes[$array_idx]=${tx_prio1_bytes:-0}
+            after_tx_prio5_bytes[$array_idx]=${tx_prio5_bytes:-0}
             # PFC pause
             after_tx_prio0_pause[$array_idx]=${tx_prio0_pause:-0}
             after_rx_prio0_pause[$array_idx]=${rx_prio0_pause:-0}
@@ -602,6 +717,58 @@ print_nic_counters() {
                        "$(format_counter "${after_rx_prio5_buf_discard[$array_idx]}")"
             fi
         done
+        
+        # Sub-heading: RX Bytes
+        echo ""
+        echo "RX Bytes:"
+        printf "%-8s %-20s %-20s %-20s\n" \
+               "NIC" "rx_prio0_bytes" "rx_prio1_bytes" "rx_prio5_bytes"
+        printf "%-8s %-20s %-20s %-20s\n" \
+               "--------" "--------------------" "--------------------" "--------------------"
+        
+        for nic_idx in $(seq 0 $((NICS_PER_POD - 1))); do
+            local array_idx=$((i * NICS_PER_POD + nic_idx))
+            local nic_name=$(get_nic_name $nic_idx)
+            if [ "$prefix" == "before" ]; then
+                printf "%-8s %-20s %-20s %-20s\n" \
+                       "$nic_name" \
+                       "$(format_counter "${before_rx_prio0_bytes[$array_idx]}")" \
+                       "$(format_counter "${before_rx_prio1_bytes[$array_idx]}")" \
+                       "$(format_counter "${before_rx_prio5_bytes[$array_idx]}")"
+            else
+                printf "%-8s %-20s %-20s %-20s\n" \
+                       "$nic_name" \
+                       "$(format_counter "${after_rx_prio0_bytes[$array_idx]}")" \
+                       "$(format_counter "${after_rx_prio1_bytes[$array_idx]}")" \
+                       "$(format_counter "${after_rx_prio5_bytes[$array_idx]}")"
+            fi
+        done
+        
+        # Sub-heading: TX Bytes
+        echo ""
+        echo "TX Bytes:"
+        printf "%-8s %-20s %-20s %-20s\n" \
+               "NIC" "tx_prio0_bytes" "tx_prio1_bytes" "tx_prio5_bytes"
+        printf "%-8s %-20s %-20s %-20s\n" \
+               "--------" "--------------------" "--------------------" "--------------------"
+        
+        for nic_idx in $(seq 0 $((NICS_PER_POD - 1))); do
+            local array_idx=$((i * NICS_PER_POD + nic_idx))
+            local nic_name=$(get_nic_name $nic_idx)
+            if [ "$prefix" == "before" ]; then
+                printf "%-8s %-20s %-20s %-20s\n" \
+                       "$nic_name" \
+                       "$(format_counter "${before_tx_prio0_bytes[$array_idx]}")" \
+                       "$(format_counter "${before_tx_prio1_bytes[$array_idx]}")" \
+                       "$(format_counter "${before_tx_prio5_bytes[$array_idx]}")"
+            else
+                printf "%-8s %-20s %-20s %-20s\n" \
+                       "$nic_name" \
+                       "$(format_counter "${after_tx_prio0_bytes[$array_idx]}")" \
+                       "$(format_counter "${after_tx_prio1_bytes[$array_idx]}")" \
+                       "$(format_counter "${after_tx_prio5_bytes[$array_idx]}")"
+            fi
+        done
     done
 }
 
@@ -774,6 +941,56 @@ print_nic_counter_diff() {
             local disc_p5_diff=$((${after_rx_prio5_buf_discard[$array_idx]:-0} - ${before_rx_prio5_buf_discard[$array_idx]:-0}))
             printf "%-8s %-24s %-24s %-24s\n" \
                    "$nic_name" "$disc_p0_diff" "$disc_p1_diff" "$disc_p5_diff"
+        done
+        
+        # Sub-heading: RX Bytes
+        echo ""
+        echo "RX Bytes:"
+        printf "%-8s %-18s %-18s %-18s\n" \
+               "NIC" "rx_prio0_bytes" "rx_prio1_bytes" "rx_prio5_bytes"
+        printf "%-8s %-18s %-18s %-18s\n" \
+               "--------" "------------------" "------------------" "------------------"
+        
+        for nic_idx in $(seq 0 $((NICS_PER_POD - 1))); do
+            local array_idx=$((i * NICS_PER_POD + nic_idx))
+            local nic_name=$(get_nic_name $nic_idx)
+            
+            if [ "${before_rx_prio0_bytes[$array_idx]}" == "-1" ] || [ "${after_rx_prio0_bytes[$array_idx]}" == "-1" ]; then
+                printf "%-8s %-18s %-18s %-18s\n" \
+                       "$nic_name" "SKIPPED" "SKIPPED" "SKIPPED"
+                continue
+            fi
+            
+            local rx_b0_diff=$((${after_rx_prio0_bytes[$array_idx]:-0} - ${before_rx_prio0_bytes[$array_idx]:-0}))
+            local rx_b1_diff=$((${after_rx_prio1_bytes[$array_idx]:-0} - ${before_rx_prio1_bytes[$array_idx]:-0}))
+            local rx_b5_diff=$((${after_rx_prio5_bytes[$array_idx]:-0} - ${before_rx_prio5_bytes[$array_idx]:-0}))
+            printf "%-8s %-18s %-18s %-18s\n" \
+                   "$nic_name" "$(format_bytes $rx_b0_diff)" "$(format_bytes $rx_b1_diff)" "$(format_bytes $rx_b5_diff)"
+        done
+        
+        # Sub-heading: TX Bytes
+        echo ""
+        echo "TX Bytes:"
+        printf "%-8s %-18s %-18s %-18s\n" \
+               "NIC" "tx_prio0_bytes" "tx_prio1_bytes" "tx_prio5_bytes"
+        printf "%-8s %-18s %-18s %-18s\n" \
+               "--------" "------------------" "------------------" "------------------"
+        
+        for nic_idx in $(seq 0 $((NICS_PER_POD - 1))); do
+            local array_idx=$((i * NICS_PER_POD + nic_idx))
+            local nic_name=$(get_nic_name $nic_idx)
+            
+            if [ "${before_tx_prio0_bytes[$array_idx]}" == "-1" ] || [ "${after_tx_prio0_bytes[$array_idx]}" == "-1" ]; then
+                printf "%-8s %-18s %-18s %-18s\n" \
+                       "$nic_name" "SKIPPED" "SKIPPED" "SKIPPED"
+                continue
+            fi
+            
+            local tx_b0_diff=$((${after_tx_prio0_bytes[$array_idx]:-0} - ${before_tx_prio0_bytes[$array_idx]:-0}))
+            local tx_b1_diff=$((${after_tx_prio1_bytes[$array_idx]:-0} - ${before_tx_prio1_bytes[$array_idx]:-0}))
+            local tx_b5_diff=$((${after_tx_prio5_bytes[$array_idx]:-0} - ${before_tx_prio5_bytes[$array_idx]:-0}))
+            printf "%-8s %-18s %-18s %-18s\n" \
+                   "$nic_name" "$(format_bytes $tx_b0_diff)" "$(format_bytes $tx_b1_diff)" "$(format_bytes $tx_b5_diff)"
         done
     done
 }
@@ -1218,6 +1435,176 @@ print_priority_packet_summary() {
 }
 
 # ============================================
+# Function to print byte counter summary
+# Arguments: $1=pod_names_array_ref
+# Separates Backend (rdma0-7) and Frontend (eth0) NICs
+# ============================================
+print_byte_summary() {
+    local -n pods_ref=$1
+    
+    # Backend totals (rdma0-7)
+    local be_total_rx_b0=0 be_total_rx_b1=0 be_total_rx_b5=0
+    local be_total_tx_b0=0 be_total_tx_b1=0 be_total_tx_b5=0
+    
+    # Frontend totals (eth0)
+    local fe_total_rx_b0=0 fe_total_rx_b1=0 fe_total_rx_b5=0
+    local fe_total_tx_b0=0 fe_total_tx_b1=0 fe_total_tx_b5=0
+    
+    # Arrays to hold per-pod totals for backend
+    declare -a be_pod_rx_b0 be_pod_rx_b1 be_pod_rx_b5
+    declare -a be_pod_tx_b0 be_pod_tx_b1 be_pod_tx_b5
+    
+    # Arrays to hold per-pod totals for frontend
+    declare -a fe_pod_rx_b0 fe_pod_rx_b1 fe_pod_rx_b5
+    declare -a fe_pod_tx_b0 fe_pod_tx_b1 fe_pod_tx_b5
+    
+    for i in "${!pods_ref[@]}"; do
+        # Initialize backend arrays
+        be_pod_rx_b0[$i]=0; be_pod_rx_b1[$i]=0; be_pod_rx_b5[$i]=0
+        be_pod_tx_b0[$i]=0; be_pod_tx_b1[$i]=0; be_pod_tx_b5[$i]=0
+        
+        # Initialize frontend arrays
+        fe_pod_rx_b0[$i]=0; fe_pod_rx_b1[$i]=0; fe_pod_rx_b5[$i]=0
+        fe_pod_tx_b0[$i]=0; fe_pod_tx_b1[$i]=0; fe_pod_tx_b5[$i]=0
+        
+        for nic_idx in $(seq 0 $((NICS_PER_POD - 1))); do
+            local array_idx=$((i * NICS_PER_POD + nic_idx))
+            local is_backend=$( [ $nic_idx -lt 8 ] && echo 1 || echo 0 )
+            
+            if [ "${before_rx_prio0_bytes[$array_idx]}" == "-1" ] || [ "${after_rx_prio0_bytes[$array_idx]}" == "-1" ]; then
+                continue
+            fi
+            
+            # Calculate diffs
+            local rx_b0=$((${after_rx_prio0_bytes[$array_idx]:-0} - ${before_rx_prio0_bytes[$array_idx]:-0}))
+            local rx_b1=$((${after_rx_prio1_bytes[$array_idx]:-0} - ${before_rx_prio1_bytes[$array_idx]:-0}))
+            local rx_b5=$((${after_rx_prio5_bytes[$array_idx]:-0} - ${before_rx_prio5_bytes[$array_idx]:-0}))
+            local tx_b0=$((${after_tx_prio0_bytes[$array_idx]:-0} - ${before_tx_prio0_bytes[$array_idx]:-0}))
+            local tx_b1=$((${after_tx_prio1_bytes[$array_idx]:-0} - ${before_tx_prio1_bytes[$array_idx]:-0}))
+            local tx_b5=$((${after_tx_prio5_bytes[$array_idx]:-0} - ${before_tx_prio5_bytes[$array_idx]:-0}))
+            
+            if [ $is_backend -eq 1 ]; then
+                # Backend NICs (rdma0-7)
+                be_pod_rx_b0[$i]=$((${be_pod_rx_b0[$i]} + rx_b0))
+                be_pod_rx_b1[$i]=$((${be_pod_rx_b1[$i]} + rx_b1))
+                be_pod_rx_b5[$i]=$((${be_pod_rx_b5[$i]} + rx_b5))
+                be_pod_tx_b0[$i]=$((${be_pod_tx_b0[$i]} + tx_b0))
+                be_pod_tx_b1[$i]=$((${be_pod_tx_b1[$i]} + tx_b1))
+                be_pod_tx_b5[$i]=$((${be_pod_tx_b5[$i]} + tx_b5))
+            else
+                # Frontend NIC (eth0)
+                fe_pod_rx_b0[$i]=$((${fe_pod_rx_b0[$i]} + rx_b0))
+                fe_pod_rx_b1[$i]=$((${fe_pod_rx_b1[$i]} + rx_b1))
+                fe_pod_rx_b5[$i]=$((${fe_pod_rx_b5[$i]} + rx_b5))
+                fe_pod_tx_b0[$i]=$((${fe_pod_tx_b0[$i]} + tx_b0))
+                fe_pod_tx_b1[$i]=$((${fe_pod_tx_b1[$i]} + tx_b1))
+                fe_pod_tx_b5[$i]=$((${fe_pod_tx_b5[$i]} + tx_b5))
+            fi
+        done
+        
+        # Accumulate backend totals
+        be_total_rx_b0=$((be_total_rx_b0 + ${be_pod_rx_b0[$i]}))
+        be_total_rx_b1=$((be_total_rx_b1 + ${be_pod_rx_b1[$i]}))
+        be_total_rx_b5=$((be_total_rx_b5 + ${be_pod_rx_b5[$i]}))
+        be_total_tx_b0=$((be_total_tx_b0 + ${be_pod_tx_b0[$i]}))
+        be_total_tx_b1=$((be_total_tx_b1 + ${be_pod_tx_b1[$i]}))
+        be_total_tx_b5=$((be_total_tx_b5 + ${be_pod_tx_b5[$i]}))
+        
+        # Accumulate frontend totals
+        fe_total_rx_b0=$((fe_total_rx_b0 + ${fe_pod_rx_b0[$i]}))
+        fe_total_rx_b1=$((fe_total_rx_b1 + ${fe_pod_rx_b1[$i]}))
+        fe_total_rx_b5=$((fe_total_rx_b5 + ${fe_pod_rx_b5[$i]}))
+        fe_total_tx_b0=$((fe_total_tx_b0 + ${fe_pod_tx_b0[$i]}))
+        fe_total_tx_b1=$((fe_total_tx_b1 + ${fe_pod_tx_b1[$i]}))
+        fe_total_tx_b5=$((fe_total_tx_b5 + ${fe_pod_tx_b5[$i]}))
+    done
+    
+    # ==========================================
+    # BACKEND NICs Summary (rdma0-rdma7)
+    # ==========================================
+    echo ""
+    echo "=============================================================================="
+    echo "SUMMARY: Byte Counters - BACKEND NICs (rdma0-rdma7)"
+    echo "=============================================================================="
+    
+    # Sub-heading: RX Bytes
+    echo ""
+    echo "RX Bytes:"
+    printf "%-${POD_NAME_WIDTH}s %-18s %-18s %-18s\n" \
+           "POD" "rx_prio0_bytes" "rx_prio1_bytes" "rx_prio5_bytes"
+    printf "%-${POD_NAME_WIDTH}s %-18s %-18s %-18s\n" \
+           "$(printf '%0.s-' $(seq 1 $POD_NAME_WIDTH))" "------------------" "------------------" "------------------"
+    
+    for i in "${!pods_ref[@]}"; do
+        printf "%-${POD_NAME_WIDTH}s %-18s %-18s %-18s\n" \
+               "${pods_ref[$i]}" "$(format_bytes ${be_pod_rx_b0[$i]})" "$(format_bytes ${be_pod_rx_b1[$i]})" "$(format_bytes ${be_pod_rx_b5[$i]})"
+    done
+    printf "%-${POD_NAME_WIDTH}s %-18s %-18s %-18s\n" \
+           "$(printf '%0.s-' $(seq 1 $POD_NAME_WIDTH))" "------------------" "------------------" "------------------"
+    printf "%-${POD_NAME_WIDTH}s %-18s %-18s %-18s\n" \
+           "TOTAL" "$(format_bytes $be_total_rx_b0)" "$(format_bytes $be_total_rx_b1)" "$(format_bytes $be_total_rx_b5)"
+    
+    # Sub-heading: TX Bytes
+    echo ""
+    echo "TX Bytes:"
+    printf "%-${POD_NAME_WIDTH}s %-18s %-18s %-18s\n" \
+           "POD" "tx_prio0_bytes" "tx_prio1_bytes" "tx_prio5_bytes"
+    printf "%-${POD_NAME_WIDTH}s %-18s %-18s %-18s\n" \
+           "$(printf '%0.s-' $(seq 1 $POD_NAME_WIDTH))" "------------------" "------------------" "------------------"
+    
+    for i in "${!pods_ref[@]}"; do
+        printf "%-${POD_NAME_WIDTH}s %-18s %-18s %-18s\n" \
+               "${pods_ref[$i]}" "$(format_bytes ${be_pod_tx_b0[$i]})" "$(format_bytes ${be_pod_tx_b1[$i]})" "$(format_bytes ${be_pod_tx_b5[$i]})"
+    done
+    printf "%-${POD_NAME_WIDTH}s %-18s %-18s %-18s\n" \
+           "$(printf '%0.s-' $(seq 1 $POD_NAME_WIDTH))" "------------------" "------------------" "------------------"
+    printf "%-${POD_NAME_WIDTH}s %-18s %-18s %-18s\n" \
+           "TOTAL" "$(format_bytes $be_total_tx_b0)" "$(format_bytes $be_total_tx_b1)" "$(format_bytes $be_total_tx_b5)"
+    
+    # ==========================================
+    # FRONTEND NIC Summary (eth0)
+    # ==========================================
+    echo ""
+    echo "=============================================================================="
+    echo "SUMMARY: Byte Counters - FRONTEND NIC (eth0)"
+    echo "=============================================================================="
+    
+    # Sub-heading: RX Bytes
+    echo ""
+    echo "RX Bytes:"
+    printf "%-${POD_NAME_WIDTH}s %-18s %-18s %-18s\n" \
+           "POD" "rx_prio0_bytes" "rx_prio1_bytes" "rx_prio5_bytes"
+    printf "%-${POD_NAME_WIDTH}s %-18s %-18s %-18s\n" \
+           "$(printf '%0.s-' $(seq 1 $POD_NAME_WIDTH))" "------------------" "------------------" "------------------"
+    
+    for i in "${!pods_ref[@]}"; do
+        printf "%-${POD_NAME_WIDTH}s %-18s %-18s %-18s\n" \
+               "${pods_ref[$i]}" "$(format_bytes ${fe_pod_rx_b0[$i]})" "$(format_bytes ${fe_pod_rx_b1[$i]})" "$(format_bytes ${fe_pod_rx_b5[$i]})"
+    done
+    printf "%-${POD_NAME_WIDTH}s %-18s %-18s %-18s\n" \
+           "$(printf '%0.s-' $(seq 1 $POD_NAME_WIDTH))" "------------------" "------------------" "------------------"
+    printf "%-${POD_NAME_WIDTH}s %-18s %-18s %-18s\n" \
+           "TOTAL" "$(format_bytes $fe_total_rx_b0)" "$(format_bytes $fe_total_rx_b1)" "$(format_bytes $fe_total_rx_b5)"
+    
+    # Sub-heading: TX Bytes
+    echo ""
+    echo "TX Bytes:"
+    printf "%-${POD_NAME_WIDTH}s %-18s %-18s %-18s\n" \
+           "POD" "tx_prio0_bytes" "tx_prio1_bytes" "tx_prio5_bytes"
+    printf "%-${POD_NAME_WIDTH}s %-18s %-18s %-18s\n" \
+           "$(printf '%0.s-' $(seq 1 $POD_NAME_WIDTH))" "------------------" "------------------" "------------------"
+    
+    for i in "${!pods_ref[@]}"; do
+        printf "%-${POD_NAME_WIDTH}s %-18s %-18s %-18s\n" \
+               "${pods_ref[$i]}" "$(format_bytes ${fe_pod_tx_b0[$i]})" "$(format_bytes ${fe_pod_tx_b1[$i]})" "$(format_bytes ${fe_pod_tx_b5[$i]})"
+    done
+    printf "%-${POD_NAME_WIDTH}s %-18s %-18s %-18s\n" \
+           "$(printf '%0.s-' $(seq 1 $POD_NAME_WIDTH))" "------------------" "------------------" "------------------"
+    printf "%-${POD_NAME_WIDTH}s %-18s %-18s %-18s\n" \
+           "TOTAL" "$(format_bytes $fe_total_tx_b0)" "$(format_bytes $fe_total_tx_b1)" "$(format_bytes $fe_total_tx_b5)"
+}
+
+# ============================================
 # Function to print PFC pause counter summary (split by counts and durations)
 # Arguments: $1=pod_names_array_ref
 # Separates Backend (rdma0-7) and Frontend (eth0) NICs
@@ -1490,6 +1877,7 @@ print_ecn_summary() {
 # ============================================
 print_all_summaries() {
     print_priority_packet_summary "$1"
+    print_byte_summary "$1"
     print_pfc_pause_summary "$1"
     print_ecn_summary "$1"
 }
