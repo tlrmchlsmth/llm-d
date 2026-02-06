@@ -9,8 +9,7 @@ default:
 
 eval:
     .lm_eval/bin/lm_eval --model local-completions --tasks gsm8k \
-    --model_args model={{MODEL}},base_url={{BASE_URL}}/v1/completions,num_concurrent=2000,max_retries=3,tokenized_requests=False \
-    --num_fewshot 10 \
+    --model_args model={{MODEL}},base_url={{BASE_URL}}/v1/completions,num_concurrent=256,max_retries=5,tokenized_requests=False \
 
 benchmark MC NUM_REQUESTS INPUT_LEN OUTPUT_LEN:
     vllm bench serve \

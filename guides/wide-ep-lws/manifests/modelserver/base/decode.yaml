@@ -100,7 +100,7 @@ spec:
                 --load_format mistral \
                 --tokenizer_mode hf \
                 --served-model-name  mistralai/Mistral-Large-3-675B-Instruct-2512 \
-                --all2all-backend deepep_low_latency \
+                --all2all-backend mori \
                 --port 8200 \
                 --trust-remote-code \
                 --disable-uvicorn-access-log \
@@ -198,7 +198,7 @@ spec:
           - name: VLLM_ROCM_USE_AITER
             value: "1"
           - name: VLLM_ROCM_USE_AITER_MOE
-            value: "0"
+            value: "1"
           - name: VLLM_NIXL_SIDE_CHANNEL_HOST
             valueFrom:
               fieldRef:
