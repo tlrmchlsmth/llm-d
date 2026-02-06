@@ -98,6 +98,7 @@ spec:
                 /mnt/models/mistralai/Mistral-Large-3-675B-Instruct-2512 \
                 --config_format mistral \
                 --load_format mistral \
+                --tokenizer_mode hf \
                 --served-model-name  mistralai/Mistral-Large-3-675B-Instruct-2512 \
                 --all2all-backend deepep_low_latency \
                 --port 8200 \
@@ -122,6 +123,8 @@ spec:
                                 "num_redundant_experts":"32",
                                 "log_balancedness":"False"}' \
                 --compilation_config '{"cudagraph_mode": "FULL_DECODE_ONLY"}' \
+                --block-size 1 \
+                --limit-mm-per-prompt '{"image":0}' \
                 --kv-cache-memory-bytes=${KV_CACHE_MEMORY_BYTES-}
           env:
           # VLLM_MOE_DP_CHUNK_SIZE is a tunable parameter.
