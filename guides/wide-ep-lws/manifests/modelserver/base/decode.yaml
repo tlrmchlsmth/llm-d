@@ -94,7 +94,6 @@ spec:
 
               # TODO (varun) : Investigate DBO enablement
               # TODO (varun) : Use Mistral's default max-model-len
-
               exec vllm serve \
                 /mnt/models/mistralai/Mistral-Large-3-675B-Instruct-2512 \
                 --config_format mistral \
