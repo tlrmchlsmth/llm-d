@@ -42,7 +42,7 @@ spec:
               type: Directory
         containers:
         - name: vllm
-          image: quay.io/rh-ee-vsundarr/amd-vllm:latest
+          image: quay.io/rh-ee-vsundarr/amd-vllm:mori-debug
           securityContext:
             privileged: true # FIXME (varun)
             capabilities:
@@ -139,8 +139,20 @@ spec:
             value: eth0
           - name: VLLM_LOGGING_LEVEL
             value: INFO
-          - name: ROCSHMEM_USE_IB_HCA
+          # Deepep HT
+          - name: ROCSHMEM_HCA_LIST
             value: "mlx5_0,mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_7,mlx5_8,mlx5_9"
+          - name: ROCSHMEM_BACKEND
+            value: "gda"
+          - name: ROCSHMEM_GDA_TRAFFIC_CLASS
+            value: "41"
+          # Nixl
+          - name: UCX_NET_DEVICES 
+            value: "mlx5_0:1,mlx5_2:1,mlx5_3:1,mlx5_4:1,mlx5_5:1,mlx5_7:1,mlx5_8:1,mlx5_9:1"
+          - name: UCX_IB_GID_INDEX
+            value: "3"
+          - name: UCX_IB_TRAFFIC_CLASS
+            value: "41"
           - name: NCCL_CUMEM_ENABLE
             value: "0"
           - name: NCCL_IB_TIMEOUT
