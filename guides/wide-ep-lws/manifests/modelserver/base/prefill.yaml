@@ -42,7 +42,7 @@ spec:
               type: Directory
         containers:
         - name: vllm
-          image: quay.io/rh-ee-vsundarr/amd-vllm:mori-debug
+          image: quay.io/rh-ee-vsundarr/amd-vllm:latest
           securityContext:
             privileged: true # FIXME (varun)
             capabilities:
