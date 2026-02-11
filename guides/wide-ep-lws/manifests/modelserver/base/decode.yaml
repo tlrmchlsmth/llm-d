@@ -109,9 +109,17 @@ spec:
                 --data-parallel-address ${LWS_LEADER_ADDRESS} \
                 --data-parallel-rpc-port 5555 \
                 --data-parallel-start-rank $START_RANK \
-                --kv_transfer_config '{"kv_connector":"NixlConnector",
-                                        "kv_role":"kv_both",
-                                        "kv_load_failure_policy":"fail"}' \
+                #--kv_transfer_config '{"kv_connector":"NixlConnector",
+                #                        "kv_role":"kv_both",
+                #                        "kv_load_failure_policy":"fail"}' \
+                --kv-transfer-config '{
+                    "kv_connector": "DecodeBenchConnector",
+                    "kv_role": "kv_both",
+                    "kv_connector_extra_config": {
+                        "fill_mean": 0.015,
+                        "fill_std": 0.0
+                    }
+                }' \
                 --async-scheduling \
                 --enable-eplb \
                 --eplb-config '{"window_size":"1000",
