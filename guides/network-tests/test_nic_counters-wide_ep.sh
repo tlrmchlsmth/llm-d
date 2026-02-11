@@ -61,27 +61,36 @@ init_nic_counter_utils pod_names "$NAMESPACE" || exit 1
 
 # Collect and print BEFORE counters
 collect_all_counters pod_names "before"
-# print_all_counters pod_names "before"
+print_all_counters pod_names "before"
 
-# Run the benchmark test via the poker pod
+# Run the benchmark test via the poker pod (foreground, max 10 minutes)
+BENCHMARK_TIMEOUT_SEC=900  # 15 minutes
 echo ""
 echo "=============================================="
-echo "Running Benchmark Test via Poker Pod"
+echo "Running Benchmark Test via Poker Pod (timeout: ${BENCHMARK_TIMEOUT_SEC}s)"
 echo "=============================================="
 echo ""
 echo "Running: just benchmark 4096 4096 256 128"
 echo ""
 
-kubectl exec -n "$NAMESPACE" poker -- /bin/zsh -c "cd /app && just benchmark 4096 4096 256 128" 2>&1
+timeout "$BENCHMARK_TIMEOUT_SEC" kubectl exec -n "$NAMESPACE" poker -- /bin/zsh -c "cd /app && just benchmark 4096 4096 256 128" 2>&1
+BENCH_EXIT=$?
 
 echo ""
-echo "=============================================="
-echo "Benchmark Test Completed"
-echo "=============================================="
+if [ "$BENCH_EXIT" -eq 124 ]; then
+    echo "=============================================="
+    echo "Benchmark did not finish within ${BENCHMARK_TIMEOUT_SEC}s; killed. Proceeding with counter collection."
+    echo "=============================================="
+else
+    echo "=============================================="
+    echo "Benchmark Test Completed (exit $BENCH_EXIT)"
+    echo "=============================================="
+fi
+echo ""
 
 # Collect and print AFTER counters
 collect_all_counters pod_names "after"
-# print_all_counters pod_names "after"
+print_all_counters pod_names "after"
 
 # Print counter differences
 print_all_counter_diff pod_names
