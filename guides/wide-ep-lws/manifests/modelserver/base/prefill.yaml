@@ -75,11 +75,8 @@ spec:
               # TODO (varun) : Investigate DBO enablement
               # TODO (varun) : Use Mistral's default max-model-len
               exec vllm serve \
-                /mnt/models/mistralai/Mistral-Large-3-675B-Instruct-2512 \
-                --config_format mistral \
-                --load_format mistral \
-                --tokenizer_mode hf \
-                --served-model-name  mistralai/Mistral-Large-3-675B-Instruct-2512 \
+                /mnt/models/deepseek-ai/DeepSeek-R1-0528 \
+                --served-model-name deepseek-ai/DeepSeek-R1-0528 \
                 --all2all-backend deepep_high_throughput \
                 --port 8000 \
                 --trust-remote-code \
@@ -101,9 +98,6 @@ spec:
                                 "num_redundant_experts":"32",
                                 "log_balancedness":"False"}' \
                 --async-scheduling \
-                --max-model-len 8192 \
-                --block-size 1 \
-                --limit-mm-per-prompt '{"image":0}' \
                 --gpu-memory-utilization 0.90
 
           env:
