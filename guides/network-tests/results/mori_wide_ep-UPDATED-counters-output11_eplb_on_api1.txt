@@ -1,0 +1,15 @@
+
+==============================================
+Discovering Wide-EP Pods in namespace: raj-network-debug
+==============================================
+
+Discovered Decode Pods:
+  - wide-ep-llm-d-decode-0
+  - wide-ep-llm-d-decode-0-1
+
+Discovered Prefill Pods:
+  - wide-ep-llm-d-prefill-0
+  - wide-ep-llm-d-prefill-0-1
+ERROR: NET_DEBUG_NS environment variable is not set.
+Please set it to the namespace where networking-debug-pods are deployed.
+Example: export NET_DEBUG_NS=kube-system

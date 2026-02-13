@@ -1,0 +1,391 @@
+Defaulted container "vllm" out of: vllm, routing-proxy (init)
+=== pip install pystack ===
+
+=== ps aux (EngineCore processes) ===
+root         440  109  0.1 303783464 3996140 ?   Rl   18:05   2:06 VLLM::EngineCore_DP8
+root         441  117  0.1 303779752 4025092 ?   Rl   18:05   2:16 VLLM::EngineCore_DP9
+root         442  110  0.1 303822840 4015328 ?   Rl   18:05   2:08 VLLM::EngineCore_DP10
+root         443  109  0.1 303793836 4018080 ?   Rl   18:05   2:07 VLLM::EngineCore_DP11
+root         444  109  0.1 303827104 4016448 ?   Rl   18:05   2:07 VLLM::EngineCore_DP12
+root         445  109  0.1 303780128 3986492 ?   Rl   18:05   2:06 VLLM::EngineCore_DP13
+root         446  110  0.1 303835272 4019656 ?   Rl   18:05   2:07 VLLM::EngineCore_DP14
+root         447  118  0.1 303774976 4044628 ?   Rl   18:05   2:17 VLLM::EngineCore_DP15
+root        2544  1.0  0.0   4368  3328 ?        Ss   18:07   0:00 bash -c          set -e         echo "=== pip install pystack ==="         pip install pystack -q 2>/dev/null || pip install pystack         echo ""         echo "=== ps aux (EngineCore processes) ==="         ps aux | grep -E "EngineCore_DP" || true         echo ""         pids=$(ps aux | grep -E "EngineCore_DP[0-9]" | grep -v grep | awk "{print \$2}")         if [ -z "$pids" ]; then             echo "No EngineCore PIDs found."             exit 0         fi         for pid in $pids; do             echo "=== pystack remote $pid ==="             pystack remote "$pid" 2>&1 || true             echo ""         done     
+root        2555  0.0  0.0   3476  1596 ?        S    18:07   0:00 grep -E EngineCore_DP
+
+=== pystack remote 440 ===
+Traceback for thread 440 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "<string>", line 1, in <module>
+    (Python) File "/usr/lib/python3.12/multiprocessing/spawn.py", line 122, in spawn_main
+        exitcode = _main(fd, parent_sentinel)
+    (Python) File "/usr/lib/python3.12/multiprocessing/spawn.py", line 135, in _main
+        return self._bootstrap(parent_sentinel)
+    (Python) File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+        self.run()
+    (Python) File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 918, in run_engine_core
+        engine_core = DPEngineCoreProc(*args, **kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 1268, in __init__
+        super().__init__(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 691, in __init__
+        super().__init__(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 105, in __init__
+        self.model_executor = executor_class(vllm_config)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/executor/abstract.py", line 101, in __init__
+        self._init_executor()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/executor/uniproc_executor.py", line 47, in _init_executor
+        self.driver_worker.init_device()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/worker_base.py", line 326, in init_device
+        self.worker.init_device()  # type: ignore
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_worker.py", line 218, in init_device
+        init_worker_distributed_environment(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_worker.py", line 956, in init_worker_distributed_environment
+        ensure_model_parallel_initialized(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/parallel_state.py", line 1472, in ensure_model_parallel_initialized
+        initialize_model_parallel(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/parallel_state.py", line 1421, in initialize_model_parallel
+        _DP = init_model_parallel_group(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/parallel_state.py", line 1089, in init_model_parallel_group
+        return GroupCoordinator(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/parallel_state.py", line 362, in __init__
+        self.device_communicator = device_comm_cls(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/device_communicators/cuda_communicator.py", line 58, in __init__
+        self.pynccl_comm = PyNcclCommunicator(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/device_communicators/pynccl.py", line 146, in __init__
+        self.all_reduce(data)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/device_communicators/pynccl.py", line 172, in all_reduce
+        self.nccl.ncclAllReduce(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/device_communicators/pynccl_wrapper.py", line 430, in ncclAllReduce
+        self._funcs["ncclAllReduce"](
+
+
+=== pystack remote 441 ===
+Traceback for thread 441 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "<string>", line 1, in <module>
+    (Python) File "/usr/lib/python3.12/multiprocessing/spawn.py", line 122, in spawn_main
+        exitcode = _main(fd, parent_sentinel)
+    (Python) File "/usr/lib/python3.12/multiprocessing/spawn.py", line 135, in _main
+        return self._bootstrap(parent_sentinel)
+    (Python) File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+        self.run()
+    (Python) File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 918, in run_engine_core
+        engine_core = DPEngineCoreProc(*args, **kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 1268, in __init__
+        super().__init__(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 691, in __init__
+        super().__init__(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 105, in __init__
+        self.model_executor = executor_class(vllm_config)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/executor/abstract.py", line 101, in __init__
+        self._init_executor()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/executor/uniproc_executor.py", line 47, in _init_executor
+        self.driver_worker.init_device()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/worker_base.py", line 326, in init_device
+        self.worker.init_device()  # type: ignore
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_worker.py", line 218, in init_device
+        init_worker_distributed_environment(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_worker.py", line 956, in init_worker_distributed_environment
+        ensure_model_parallel_initialized(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/parallel_state.py", line 1472, in ensure_model_parallel_initialized
+        initialize_model_parallel(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/parallel_state.py", line 1421, in initialize_model_parallel
+        _DP = init_model_parallel_group(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/parallel_state.py", line 1089, in init_model_parallel_group
+        return GroupCoordinator(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/parallel_state.py", line 362, in __init__
+        self.device_communicator = device_comm_cls(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/device_communicators/cuda_communicator.py", line 58, in __init__
+        self.pynccl_comm = PyNcclCommunicator(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/device_communicators/pynccl.py", line 146, in __init__
+        self.all_reduce(data)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/device_communicators/pynccl.py", line 172, in all_reduce
+        self.nccl.ncclAllReduce(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/device_communicators/pynccl_wrapper.py", line 430, in ncclAllReduce
+        self._funcs["ncclAllReduce"](
+
+
+=== pystack remote 442 ===
+Traceback for thread 442 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "<string>", line 1, in <module>
+    (Python) File "/usr/lib/python3.12/multiprocessing/spawn.py", line 122, in spawn_main
+        exitcode = _main(fd, parent_sentinel)
+    (Python) File "/usr/lib/python3.12/multiprocessing/spawn.py", line 135, in _main
+        return self._bootstrap(parent_sentinel)
+    (Python) File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+        self.run()
+    (Python) File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 918, in run_engine_core
+        engine_core = DPEngineCoreProc(*args, **kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 1268, in __init__
+        super().__init__(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 691, in __init__
+        super().__init__(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 105, in __init__
+        self.model_executor = executor_class(vllm_config)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/executor/abstract.py", line 101, in __init__
+        self._init_executor()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/executor/uniproc_executor.py", line 47, in _init_executor
+        self.driver_worker.init_device()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/worker_base.py", line 326, in init_device
+        self.worker.init_device()  # type: ignore
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_worker.py", line 218, in init_device
+        init_worker_distributed_environment(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_worker.py", line 956, in init_worker_distributed_environment
+        ensure_model_parallel_initialized(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/parallel_state.py", line 1472, in ensure_model_parallel_initialized
+        initialize_model_parallel(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/parallel_state.py", line 1421, in initialize_model_parallel
+        _DP = init_model_parallel_group(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/parallel_state.py", line 1089, in init_model_parallel_group
+        return GroupCoordinator(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/parallel_state.py", line 362, in __init__
+        self.device_communicator = device_comm_cls(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/device_communicators/cuda_communicator.py", line 58, in __init__
+        self.pynccl_comm = PyNcclCommunicator(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/device_communicators/pynccl.py", line 146, in __init__
+        self.all_reduce(data)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/device_communicators/pynccl.py", line 172, in all_reduce
+        self.nccl.ncclAllReduce(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/device_communicators/pynccl_wrapper.py", line 430, in ncclAllReduce
+        self._funcs["ncclAllReduce"](
+
+
+=== pystack remote 443 ===
+Traceback for thread 443 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "<string>", line 1, in <module>
+    (Python) File "/usr/lib/python3.12/multiprocessing/spawn.py", line 122, in spawn_main
+        exitcode = _main(fd, parent_sentinel)
+    (Python) File "/usr/lib/python3.12/multiprocessing/spawn.py", line 135, in _main
+        return self._bootstrap(parent_sentinel)
+    (Python) File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+        self.run()
+    (Python) File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 918, in run_engine_core
+        engine_core = DPEngineCoreProc(*args, **kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 1268, in __init__
+        super().__init__(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 691, in __init__
+        super().__init__(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 105, in __init__
+        self.model_executor = executor_class(vllm_config)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/executor/abstract.py", line 101, in __init__
+        self._init_executor()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/executor/uniproc_executor.py", line 47, in _init_executor
+        self.driver_worker.init_device()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/worker_base.py", line 326, in init_device
+        self.worker.init_device()  # type: ignore
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_worker.py", line 218, in init_device
+        init_worker_distributed_environment(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_worker.py", line 956, in init_worker_distributed_environment
+        ensure_model_parallel_initialized(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/parallel_state.py", line 1472, in ensure_model_parallel_initialized
+        initialize_model_parallel(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/parallel_state.py", line 1421, in initialize_model_parallel
+        _DP = init_model_parallel_group(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/parallel_state.py", line 1089, in init_model_parallel_group
+        return GroupCoordinator(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/parallel_state.py", line 362, in __init__
+        self.device_communicator = device_comm_cls(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/device_communicators/cuda_communicator.py", line 58, in __init__
+        self.pynccl_comm = PyNcclCommunicator(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/device_communicators/pynccl.py", line 146, in __init__
+        self.all_reduce(data)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/device_communicators/pynccl.py", line 172, in all_reduce
+        self.nccl.ncclAllReduce(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/device_communicators/pynccl_wrapper.py", line 430, in ncclAllReduce
+        self._funcs["ncclAllReduce"](
+
+
+=== pystack remote 444 ===
+Traceback for thread 444 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "<string>", line 1, in <module>
+    (Python) File "/usr/lib/python3.12/multiprocessing/spawn.py", line 122, in spawn_main
+        exitcode = _main(fd, parent_sentinel)
+    (Python) File "/usr/lib/python3.12/multiprocessing/spawn.py", line 135, in _main
+        return self._bootstrap(parent_sentinel)
+    (Python) File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+        self.run()
+    (Python) File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 918, in run_engine_core
+        engine_core = DPEngineCoreProc(*args, **kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 1268, in __init__
+        super().__init__(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 691, in __init__
+        super().__init__(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 105, in __init__
+        self.model_executor = executor_class(vllm_config)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/executor/abstract.py", line 101, in __init__
+        self._init_executor()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/executor/uniproc_executor.py", line 47, in _init_executor
+        self.driver_worker.init_device()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/worker_base.py", line 326, in init_device
+        self.worker.init_device()  # type: ignore
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_worker.py", line 218, in init_device
+        init_worker_distributed_environment(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_worker.py", line 956, in init_worker_distributed_environment
+        ensure_model_parallel_initialized(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/parallel_state.py", line 1472, in ensure_model_parallel_initialized
+        initialize_model_parallel(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/parallel_state.py", line 1421, in initialize_model_parallel
+        _DP = init_model_parallel_group(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/parallel_state.py", line 1089, in init_model_parallel_group
+        return GroupCoordinator(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/parallel_state.py", line 362, in __init__
+        self.device_communicator = device_comm_cls(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/device_communicators/cuda_communicator.py", line 58, in __init__
+        self.pynccl_comm = PyNcclCommunicator(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/device_communicators/pynccl.py", line 146, in __init__
+        self.all_reduce(data)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/device_communicators/pynccl.py", line 172, in all_reduce
+        self.nccl.ncclAllReduce(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/device_communicators/pynccl_wrapper.py", line 430, in ncclAllReduce
+        self._funcs["ncclAllReduce"](
+
+
+=== pystack remote 445 ===
+Traceback for thread 445 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "<string>", line 1, in <module>
+    (Python) File "/usr/lib/python3.12/multiprocessing/spawn.py", line 122, in spawn_main
+        exitcode = _main(fd, parent_sentinel)
+    (Python) File "/usr/lib/python3.12/multiprocessing/spawn.py", line 135, in _main
+        return self._bootstrap(parent_sentinel)
+    (Python) File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+        self.run()
+    (Python) File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 918, in run_engine_core
+        engine_core = DPEngineCoreProc(*args, **kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 1268, in __init__
+        super().__init__(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 691, in __init__
+        super().__init__(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 105, in __init__
+        self.model_executor = executor_class(vllm_config)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/executor/abstract.py", line 101, in __init__
+        self._init_executor()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/executor/uniproc_executor.py", line 47, in _init_executor
+        self.driver_worker.init_device()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/worker_base.py", line 326, in init_device
+        self.worker.init_device()  # type: ignore
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_worker.py", line 218, in init_device
+        init_worker_distributed_environment(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_worker.py", line 956, in init_worker_distributed_environment
+        ensure_model_parallel_initialized(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/parallel_state.py", line 1472, in ensure_model_parallel_initialized
+        initialize_model_parallel(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/parallel_state.py", line 1421, in initialize_model_parallel
+        _DP = init_model_parallel_group(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/parallel_state.py", line 1089, in init_model_parallel_group
+        return GroupCoordinator(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/parallel_state.py", line 362, in __init__
+        self.device_communicator = device_comm_cls(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/device_communicators/cuda_communicator.py", line 58, in __init__
+        self.pynccl_comm = PyNcclCommunicator(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/device_communicators/pynccl.py", line 146, in __init__
+        self.all_reduce(data)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/device_communicators/pynccl.py", line 172, in all_reduce
+        self.nccl.ncclAllReduce(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/device_communicators/pynccl_wrapper.py", line 430, in ncclAllReduce
+        self._funcs["ncclAllReduce"](
+
+
+=== pystack remote 446 ===
+Traceback for thread 446 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "<string>", line 1, in <module>
+    (Python) File "/usr/lib/python3.12/multiprocessing/spawn.py", line 122, in spawn_main
+        exitcode = _main(fd, parent_sentinel)
+    (Python) File "/usr/lib/python3.12/multiprocessing/spawn.py", line 135, in _main
+        return self._bootstrap(parent_sentinel)
+    (Python) File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+        self.run()
+    (Python) File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 918, in run_engine_core
+        engine_core = DPEngineCoreProc(*args, **kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 1268, in __init__
+        super().__init__(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 691, in __init__
+        super().__init__(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 105, in __init__
+        self.model_executor = executor_class(vllm_config)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/executor/abstract.py", line 101, in __init__
+        self._init_executor()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/executor/uniproc_executor.py", line 47, in _init_executor
+        self.driver_worker.init_device()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/worker_base.py", line 326, in init_device
+        self.worker.init_device()  # type: ignore
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_worker.py", line 218, in init_device
+        init_worker_distributed_environment(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_worker.py", line 956, in init_worker_distributed_environment
+        ensure_model_parallel_initialized(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/parallel_state.py", line 1472, in ensure_model_parallel_initialized
+        initialize_model_parallel(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/parallel_state.py", line 1421, in initialize_model_parallel
+        _DP = init_model_parallel_group(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/parallel_state.py", line 1089, in init_model_parallel_group
+        return GroupCoordinator(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/parallel_state.py", line 362, in __init__
+        self.device_communicator = device_comm_cls(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/device_communicators/cuda_communicator.py", line 58, in __init__
+        self.pynccl_comm = PyNcclCommunicator(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/device_communicators/pynccl.py", line 146, in __init__
+        self.all_reduce(data)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/device_communicators/pynccl.py", line 172, in all_reduce
+        self.nccl.ncclAllReduce(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/device_communicators/pynccl_wrapper.py", line 430, in ncclAllReduce
+        self._funcs["ncclAllReduce"](
+
+
+=== pystack remote 447 ===
+Traceback for thread 447 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "<string>", line 1, in <module>
+    (Python) File "/usr/lib/python3.12/multiprocessing/spawn.py", line 122, in spawn_main
+        exitcode = _main(fd, parent_sentinel)
+    (Python) File "/usr/lib/python3.12/multiprocessing/spawn.py", line 135, in _main
+        return self._bootstrap(parent_sentinel)
+    (Python) File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+        self.run()
+    (Python) File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 918, in run_engine_core
+        engine_core = DPEngineCoreProc(*args, **kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 1268, in __init__
+        super().__init__(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 691, in __init__
+        super().__init__(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 105, in __init__
+        self.model_executor = executor_class(vllm_config)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/executor/abstract.py", line 101, in __init__
+        self._init_executor()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/executor/uniproc_executor.py", line 47, in _init_executor
+        self.driver_worker.init_device()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/worker_base.py", line 326, in init_device
+        self.worker.init_device()  # type: ignore
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_worker.py", line 218, in init_device
+        init_worker_distributed_environment(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_worker.py", line 956, in init_worker_distributed_environment
+        ensure_model_parallel_initialized(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/parallel_state.py", line 1472, in ensure_model_parallel_initialized
+        initialize_model_parallel(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/parallel_state.py", line 1421, in initialize_model_parallel
+        _DP = init_model_parallel_group(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/parallel_state.py", line 1089, in init_model_parallel_group
+        return GroupCoordinator(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/parallel_state.py", line 362, in __init__
+        self.device_communicator = device_comm_cls(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/device_communicators/cuda_communicator.py", line 58, in __init__
+        self.pynccl_comm = PyNcclCommunicator(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/device_communicators/pynccl.py", line 146, in __init__
+        self.all_reduce(data)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/device_communicators/pynccl.py", line 172, in all_reduce
+        self.nccl.ncclAllReduce(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/device_communicators/pynccl_wrapper.py", line 430, in ncclAllReduce
+        self._funcs["ncclAllReduce"](
+
+

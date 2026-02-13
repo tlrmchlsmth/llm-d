@@ -1,0 +1,93 @@
+Defaulted container "vllm" out of: vllm, routing-proxy (init)
+=== rocm-smi (GPU utilization, memory, etc.) ===
+WARNING: AMD GPU device(s) is/are in a low-power state. Check power control/runtime_status
+
+
+
+============================================= ROCm System Management Interface =============================================
+======================================================= Concise Info =======================================================
+Device  Node  IDs              Temp        Power     Partitions          SCLK     MCLK     Fan  Perf  PwrCap  VRAM%  GPU%  
+[3m              (DID,     GUID)  (Junction)  (Socket)  (Mem, Compute, ID)                                                    [0m
+============================================================================================================================
+0       2     0x74a1,   32700  43.0°C      251.0W    NPS1, SPX, 0        2105Mhz  1300Mhz  0%   auto  750.0W  81%    100%  
+1       3     0x74a1,   3884   53.0°C      255.0W    NPS1, SPX, 0        2097Mhz  1300Mhz  0%   auto  750.0W  81%    100%  
+2       4     0x74a1,   29122  41.0°C      247.0W    NPS1, SPX, 0        2100Mhz  1300Mhz  0%   auto  750.0W  81%    100%  
+3       5     0x74a1,   35464  52.0°C      251.0W    NPS1, SPX, 0        2097Mhz  1300Mhz  0%   auto  750.0W  81%    100%  
+4       6     0x74a1,   46166  43.0°C      247.0W    NPS1, SPX, 0        2097Mhz  1300Mhz  0%   auto  750.0W  81%    100%  
+5       7     0x74a1,   64654  50.0°C      257.0W    NPS1, SPX, 0        2095Mhz  1300Mhz  0%   auto  750.0W  81%    100%  
+6       8     0x74a1,   4769   50.0°C      256.0W    NPS1, SPX, 0        2100Mhz  1300Mhz  0%   auto  750.0W  81%    100%  
+7       9     0x74a1,   6315   44.0°C      260.0W    NPS1, SPX, 0        2102Mhz  1300Mhz  0%   auto  750.0W  81%    100%  
+============================================================================================================================
+=================================================== End of ROCm SMI Log ====================================================
+
+=== rocm-smi --showuse (utilization) ===
+WARNING: AMD GPU device(s) is/are in a low-power state. Check power control/runtime_status
+
+
+
+============================ ROCm System Management Interface ============================
+=================================== % time GPU is busy ===================================
+GPU[0]		: GPU use (%): 100
+GPU[0]		: GFX Activity: 4085665644
+GPU[1]		: GPU use (%): 100
+GPU[1]		: GFX Activity: 4017598767
+GPU[2]		: GPU use (%): 100
+GPU[2]		: GFX Activity: 4076921951
+GPU[3]		: GPU use (%): 100
+GPU[3]		: GFX Activity: 4098641768
+GPU[4]		: GPU use (%): 100
+GPU[4]		: GFX Activity: 3907889201
+GPU[5]		: GPU use (%): 100
+GPU[5]		: GFX Activity: 3985156809
+GPU[6]		: GPU use (%): 100
+GPU[6]		: GFX Activity: 4014981035
+GPU[7]		: GPU use (%): 100
+GPU[7]		: GFX Activity: 3972520735
+==========================================================================================
+================================== End of ROCm SMI Log ===================================
+
+=== rocm-smi --showpids (processes using GPU) ===
+WARNING: AMD GPU device(s) is/are in a low-power state. Check power control/runtime_status
+
+
+
+============================ ROCm System Management Interface ============================
+===================================== KFD Processes ======================================
+KFD process information:
+PID    	PROCESS NAME	GPU(s)	VRAM USED   	SDMA USED	CU OCCUPANCY	
+3352710	UNKNOWN     	1     	168523038720	0        	0           	
+3352700	UNKNOWN     	0     	0           	0        	0           	
+3352709	UNKNOWN     	1     	168581758976	0        	0           	
+3352010	UNKNOWN     	0     	0           	0        	0           	
+3352707	UNKNOWN     	1     	168556593152	0        	0           	
+3352705	UNKNOWN     	1     	168590147584	0        	0           	
+3352703	UNKNOWN     	1     	168514650112	0        	0           	
+3352708	UNKNOWN     	1     	168523038720	0        	0           	
+3352706	UNKNOWN     	1     	168523038720	0        	0           	
+3352704	UNKNOWN     	1     	168439152640	0        	0           	
+==========================================================================================
+================================== End of ROCm SMI Log ===================================
+
+=== Using first EngineCore PID for attach: 441 ===
+
+=== rocprofv3 attach to PID 441 for 5s (kernel + HIP trace) ===
+[rocprofv3] Warning: Option 'attach_duration_msec' has been modified. attach_duration_msec=5000 (previously attach_duration_msec=10000)
+[rocprofv3] Warning: Option 'output_directory' has been modified. output_directory=/tmp/rocprof_attach (previously output_directory=/tmp/rocprof_attach_26089)
+Attaching to PID 441 using library /opt/rocm-7.2.0/lib/rocprofiler-sdk/librocprofv3-attach.so
+Attaching to PID 441 using library /opt/rocm-7.2.0/lib/rocprofiler-sdk/librocprofv3-attach.so :: success
+
+=== rocprofv3 output: find all files (tool may write to subdirs, e.g. hostname/pid) ===
+/tmp/aiter_configs/a8w8_blockscale_tuned_gemm.csv
+/tmp/aiter_configs/tuned_fmoe.csv
+
+=== listing $rp_dir recursively ===
+/tmp/rocprof_attach:
+total 8
+drwxr-xr-x 2 root root 4096 Feb 11 19:07 .
+drwxrwxrwt 1 root root 4096 Feb 11 19:07 ..
+
+=== rocprofv3 kernel_trace (any *kernel*.csv under $rp_dir) ===
+
+=== rocprofv3 hip_api_trace (any *hip*.csv under $rp_dir) ===
+
+=== any CSV in $rp_dir (first 50 lines each) ===

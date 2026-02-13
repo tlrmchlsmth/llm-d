@@ -1,0 +1,1664 @@
+
+==============================================
+Discovering Wide-EP Pods in namespace: raj-network-debug
+==============================================
+
+Discovered Decode Pods:
+  - wide-ep-llm-d-decode-0
+  - wide-ep-llm-d-decode-0-1
+
+Discovered Prefill Pods:
+  - wide-ep-llm-d-prefill-0
+  - wide-ep-llm-d-prefill-0-1
+
+==============================================
+Initializing NIC Counter Utils
+==============================================
+Pods namespace: raj-network-debug
+Networking debug pods namespace: raj-network-debug
+
+Discovering nodes for pods...
+  wide-ep-llm-d-decode-0 -> 10.0.78.230 -> networking-debug-pod-10.0.78.230
+  wide-ep-llm-d-decode-0-1 -> 10.0.76.69 -> networking-debug-pod-10.0.76.69
+  wide-ep-llm-d-prefill-0 -> 10.0.74.185 -> networking-debug-pod-10.0.74.185
+  wide-ep-llm-d-prefill-0-1 -> 10.0.65.77 -> networking-debug-pod-10.0.65.77
+
+Verifying networking-debug-pods in namespace raj-network-debug...
+  Found: networking-debug-pod-10.0.78.230
+  Found: networking-debug-pod-10.0.76.69
+  Found: networking-debug-pod-10.0.74.185
+  Found: networking-debug-pod-10.0.65.77
+
+Pod name column width: 27
+Initialization complete.
+
+==============================================
+Collecting NIC Counters BEFORE Test
+==============================================
+  Collecting from networking-debug-pod-10.0.78.230 (for wide-ep-llm-d-decode-0)...
+  Collecting from networking-debug-pod-10.0.76.69 (for wide-ep-llm-d-decode-0-1)...
+  Collecting from networking-debug-pod-10.0.74.185 (for wide-ep-llm-d-prefill-0)...
+  Collecting from networking-debug-pod-10.0.65.77 (for wide-ep-llm-d-prefill-0-1)...
+
+==============================================================================
+Packet Counters (BEFORE) for: wide-ep-llm-d-decode-0 (Node: 10.0.78.230)
+==============================================================================
+
+RX Packets:
+NIC      rx_prio0_packets     rx_prio1_packets     rx_prio5_packets     rx_packets_phy    
+-------- -------------------- -------------------- -------------------- ------------------
+rdma0    1314050168           4662695489           75411385             6052783498        
+rdma1    288470190            2464562957           40807561             2793925173        
+rdma2    258286977            2461531790           26931683             2746808691        
+rdma3    258567162            2463126811           27312675             2749072396        
+rdma4    273497346            2461187789           64213293             2799531820        
+rdma5    262607454            2461934064           38647584             2763265218        
+rdma6    257234096            2464420403           26476593             2748206579        
+rdma7    259204142            2462035692           26871049             2748192498        
+eth0     9629132252           0                    0                    9717668403        
+
+TX Packets:
+NIC      tx_prio0_packets     tx_prio1_packets     tx_prio5_packets     tx_packets_phy    
+-------- -------------------- -------------------- -------------------- ------------------
+rdma0    772045469            4603387353           42148641             5419073183        
+rdma1    685722513            2118535767           20410698             2824904628        
+rdma2    615025216            2115560635           12502571             2743282096        
+rdma3    619058136            2116199843           12110116             2747555266        
+rdma4    636668024            2114560836           34551095             2787219726        
+rdma5    621733844            2116512777           19697457             2758154514        
+rdma6    612340795            2118739876           12844115             2744129254        
+rdma7    612991548            2116822245           12566523             2742565656        
+eth0     7983764516           0                    0                    7984184688        
+
+RX Discards:
+NIC      rx_prio0_buf_discard     rx_prio1_buf_discard     rx_prio5_buf_discard    
+-------- ------------------------ ------------------------ ------------------------
+rdma0    0                        2499674                  0                       
+rdma1    0                        103574                   0                       
+rdma2    0                        103658                   0                       
+rdma3    0                        117955                   0                       
+rdma4    0                        93392                    0                       
+rdma5    0                        84354                    0                       
+rdma6    0                        96678                    0                       
+rdma7    0                        88886                    0                       
+eth0     0                        0                        0                       
+
+RX Bytes:
+NIC      rx_prio0_bytes       rx_prio1_bytes       rx_prio5_bytes      
+-------- -------------------- -------------------- --------------------
+rdma0    5204814564284        14975510522366       250450588556        
+rdma1    967694502741         6382730689690        141440808790        
+rdma2    953716018284         6374725414492        99331284818         
+rdma3    954517584110         6378973543810        101358511674        
+rdma4    990273328249         6375953842782        209920139248        
+rdma5    963361917483         6378817450084        134211907792        
+rdma6    950288090866         6382121912802        97468528374         
+rdma7    957698752345         6377858788128        99104667622         
+eth0     21677576040560       0                    0                   
+
+TX Bytes:
+NIC      tx_prio0_bytes       tx_prio1_bytes       tx_prio5_bytes      
+-------- -------------------- -------------------- --------------------
+rdma0    2639863796087        14932364024810       104423996974        
+rdma1    2574517743425        5043817590750        51449521512         
+rdma2    2339866448683        5038831814158        35584345878         
+rdma3    2356502218669        5040248931718        34518720764         
+rdma4    2406674705947        5039149600364        79204569290         
+rdma5    2360080166551        5039518519418        50645070454         
+rdma6    2328970779561        5040194605308        37061812250         
+rdma7    2331273020771        5040743611782        35905330010         
+eth0     20439575560064       0                    0                   
+
+==============================================================================
+Packet Counters (BEFORE) for: wide-ep-llm-d-decode-0-1 (Node: 10.0.76.69)
+==============================================================================
+
+RX Packets:
+NIC      rx_prio0_packets     rx_prio1_packets     rx_prio5_packets     rx_packets_phy    
+-------- -------------------- -------------------- -------------------- ------------------
+rdma0    335102258            622067092            28288249             986531578         
+rdma1    141095415            648738391            17820123             807709787         
+rdma2    139942936            651830139            12893865             804724608         
+rdma3    139942538            646428449            13279335             799694155         
+rdma4    143772952            644925538            27010374             816422088         
+rdma5    137881713            650758140            17422051             806115454         
+rdma6    136131655            656609765            12892135             805682660         
+rdma7    135573316            647572239            12829359             796027907         
+eth0     9540667655           0                    0                    9624517924        
+
+TX Packets:
+NIC      tx_prio0_packets     tx_prio1_packets     tx_prio5_packets     tx_packets_phy    
+-------- -------------------- -------------------- -------------------- ------------------
+rdma0    3475781332           280786945            12907331             3769921397        
+rdma1    516883605            280035951            8306864              805347465         
+rdma2    514804651            280252313            5256121              800416549         
+rdma3    512491017            280349968            5005065              797937919         
+rdma4    524350552            280062981            11352483             816215551         
+rdma5    519238534            279683851            7544622              806580416         
+rdma6    518792570            279911845            5118818              803929456         
+rdma7    510596711            280019354            4968669              795691221         
+eth0     7413722906           0                    0                    7414115841        
+
+RX Discards:
+NIC      rx_prio0_buf_discard     rx_prio1_buf_discard     rx_prio5_buf_discard    
+-------- ------------------------ ------------------------ ------------------------
+rdma0    0                        101766                   0                       
+rdma1    0                        82376                    0                       
+rdma2    0                        78409                    0                       
+rdma3    0                        128771                   0                       
+rdma4    0                        106911                   0                       
+rdma5    0                        116914                   0                       
+rdma6    0                        134507                   0                       
+rdma7    0                        75884                    0                       
+eth0     0                        0                        0                       
+
+RX Bytes:
+NIC      rx_prio0_bytes       rx_prio1_bytes       rx_prio5_bytes      
+-------- -------------------- -------------------- --------------------
+rdma0    591580368186         1992281522276        113095124846        
+rdma1    443367286069         2096875032406        72748120606         
+rdma2    443394765428         2108666521094        53091359458         
+rdma3    443405503380         2087635903800        54693694754         
+rdma4    444671215653         2083523547442        109221811424        
+rdma5    430285540834         2105941386776        71082272118         
+rdma6    427649114161         2127548876574        53092331974         
+rdma7    425500541138         2094344939970        52822422262         
+eth0     21466269310794       0                    0                   
+
+TX Bytes:
+NIC      tx_prio0_bytes       tx_prio1_bytes       tx_prio5_bytes      
+-------- -------------------- -------------------- --------------------
+rdma0    14204142070795       671494384606         48505169978         
+rdma1    1906292444133        670083790422         32713242776         
+rdma2    1899792504977        670256894150         20932519270         
+rdma3    1891543690253        670463407948         19878901746         
+rdma4    1932522459835        668899202514         43447565706         
+rdma5    1915809543559        668384544346         29522681276         
+rdma6    1915176950151        668929375102         20370469620         
+rdma7    1883556561439        668546869076         19730822834         
+eth0     18452487167029       0                    0                   
+
+==============================================================================
+Packet Counters (BEFORE) for: wide-ep-llm-d-prefill-0 (Node: 10.0.74.185)
+==============================================================================
+
+RX Packets:
+NIC      rx_prio0_packets     rx_prio1_packets     rx_prio5_packets     rx_packets_phy    
+-------- -------------------- -------------------- -------------------- ------------------
+rdma0    1128287934           2849475951           71744774             4051153348        
+rdma1    246394330            1273554807           39122560             1559273360        
+rdma2    171856972            1271022897           25647739             1468701727        
+rdma3    178241332            1258621204           25584228             1462612597        
+rdma4    196509872            1253309748           67400117             1518936857        
+rdma5    185781788            1273824829           38934425             1498724079        
+rdma6    169931259            1279149093           25976334             1475212911        
+rdma7    174964859            1268271544           24821867             1468213225        
+eth0     10732505683          0                    0                    10804534565       
+
+TX Packets:
+NIC      tx_prio0_packets     tx_prio1_packets     tx_prio5_packets     tx_packets_phy    
+-------- -------------------- -------------------- -------------------- ------------------
+rdma0    720359482            2103928012           102931168            2928179298        
+rdma1    653452129            825088519            54444428             1533271888        
+rdma2    618367213            824804940            35018994             1478395158        
+rdma3    605889682            825269810            34980194             1466346608        
+rdma4    623689377            825188401            87887180             1537677030        
+rdma5    630513458            825452993            51987439             1508174975        
+rdma6    626794898            825709338            34697444             1487389659        
+rdma7    617352425            825299098            34516733             1477358131        
+eth0     8932034445           0                    0                    8932346994        
+
+RX Discards:
+NIC      rx_prio0_buf_discard     rx_prio1_buf_discard     rx_prio5_buf_discard    
+-------- ------------------------ ------------------------ ------------------------
+rdma0    0                        1082645                  0                       
+rdma1    0                        163038                   0                       
+rdma2    0                        134789                   0                       
+rdma3    0                        160966                   0                       
+rdma4    0                        138380                   0                       
+rdma5    0                        194722                   0                       
+rdma6    0                        141905                   0                       
+rdma7    0                        154178                   0                       
+eth0     0                        0                        0                       
+
+RX Bytes:
+NIC      rx_prio0_bytes       rx_prio1_bytes       rx_prio5_bytes      
+-------- -------------------- -------------------- --------------------
+rdma0    4438971977952        10033778144554       174850584184        
+rdma1    799122452300         3722705800590        101126040140        
+rdma2    550096125573         3710385444190        78067975294         
+rdma3    576810643252         3665193044842        77319628736         
+rdma4    625192156876         3644802305324        162209121846        
+rdma5    598143554972         3723842088114        102974483374        
+rdma6    542160701517         3741224157962        78985447476         
+rdma7    562041821812         3700583635364        73542208762         
+eth0     27357393643781       0                    0                   
+
+TX Bytes:
+NIC      tx_prio0_bytes       tx_prio1_bytes       tx_prio5_bytes      
+-------- -------------------- -------------------- --------------------
+rdma0    2374738624157        6905730229344        317935981496        
+rdma1    2313613111811        1959548177178        173908943924        
+rdma2    2280501526371        1959608611108        123218948600        
+rdma3    2231170578121        1960260681188        122675851664        
+rdma4    2281368201627        1959731950990        260290861760        
+rdma5    2320652205853        1959473020910        165838635978        
+rdma6    2313337508685        1959393777184        121514194604        
+rdma7    2275926616211        1960501321708        120273174570        
+eth0     25221625725897       0                    0                   
+
+==============================================================================
+Packet Counters (BEFORE) for: wide-ep-llm-d-prefill-0-1 (Node: 10.0.65.77)
+==============================================================================
+
+RX Packets:
+NIC      rx_prio0_packets     rx_prio1_packets     rx_prio5_packets     rx_packets_phy    
+-------- -------------------- -------------------- -------------------- ------------------
+rdma0    416766397            7455930273           59455219             7932831790        
+rdma1    264706089            2437600560           29912868             2732346263        
+rdma2    256926967            2453154377           19446467             2729624239        
+rdma3    256205749            2444027325           19615013             2719946244        
+rdma4    273548088            2444933448           49374737             2768493023        
+rdma5    263755985            2444138657           29624841             2737626277        
+rdma6    256859095            2442380211           19543934             2718876578        
+rdma7    259565022            2460718280           19393446             2739769292        
+eth0     9868584314           0                    0                    9955189598        
+
+TX Packets:
+NIC      tx_prio0_packets     tx_prio1_packets     tx_prio5_packets     tx_packets_phy    
+-------- -------------------- -------------------- -------------------- ------------------
+rdma0    1596978960           3135481330           47823609             4781533594        
+rdma1    909765719            1793945745           26702035             2730556060        
+rdma2    923482886            1791424326           17236549             2732264095        
+rdma3    911508306            1792451335           17633214             2721714662        
+rdma4    933263631            1790595584           43272832             2768426709        
+rdma5    915423729            1790613826           25889843             2732049663        
+rdma6    905578679            1792946713           16839230             2715470299        
+rdma7    928291432            1791329077           17053404             2736786030        
+eth0     8043917738           0                    0                    8044342008        
+
+RX Discards:
+NIC      rx_prio0_buf_discard     rx_prio1_buf_discard     rx_prio5_buf_discard    
+-------- ------------------------ ------------------------ ------------------------
+rdma0    0                        1248182                  0                       
+rdma1    0                        115546                   0                       
+rdma2    0                        138242                   0                       
+rdma3    0                        137292                   0                       
+rdma4    0                        142149                   0                       
+rdma5    0                        157862                   0                       
+rdma6    0                        138137                   0                       
+rdma7    0                        187750                   0                       
+eth0     0                        0                        0                       
+
+RX Bytes:
+NIC      rx_prio0_bytes       rx_prio1_bytes       rx_prio5_bytes      
+-------- -------------------- -------------------- --------------------
+rdma0    1295976250535        27323690753514       188804770104        
+rdma1    847473354932         6645647130144        97069818640         
+rdma2    819658642891         6711645060722        69837631950         
+rdma3    817169662506         6675105357346        69691632042         
+rdma4    872620471924         6683236517436        150414737566        
+rdma5    843292287760         6672976210110        96154383722         
+rdma6    819549418548         6658292436020        69830996524         
+rdma7    829800725730         6736638606536        68706573588         
+eth0     22847822208958       0                    0                   
+
+TX Bytes:
+NIC      tx_prio0_bytes       tx_prio1_bytes       tx_prio5_bytes      
+-------- -------------------- -------------------- --------------------
+rdma0    6079486196800        8521789068956        133857217294        
+rdma1    3261014211556        4248034168878        79397247178         
+rdma2    3315595919882        4242115067480        57879697770         
+rdma3    3270356971956        4245737375570        58468426116         
+rdma4    3348615422812        4243314221520        118606380108        
+rdma5    3282884428580        4243476792256        76379488718         
+rdma6    3247103648976        4245025648614        55699871932         
+rdma7    3334355810230        4246011892342        55956388040         
+eth0     20483290781802       0                    0                   
+
+==============================================================================
+PFC Counters (BEFORE) for: wide-ep-llm-d-decode-0 (Node: 10.0.78.230) - Priorities 0 and 5
+==============================================================================
+
+Pause Counts:
+NIC      tx_prio0_pause     rx_prio0_pause     tx_prio5_pause     rx_prio5_pause    
+-------- ------------------ ------------------ ------------------ ------------------
+rdma0    201614             159785             201614             0                 
+rdma1    34087              4121               34087              0                 
+rdma2    28982              3750               28982              0                 
+rdma3    28713              3674               28713              0                 
+rdma4    179795             154924             179795             0                 
+rdma5    30923              3250               30923              0                 
+rdma6    29898              2668               29898              0                 
+rdma7    29144              3274               29144              0                 
+eth0     0                  0                  0                  0                 
+
+Pause Durations:
+NIC      tx_prio0_pause_duration    rx_prio0_pause_duration    tx_prio5_pause_duration    rx_prio5_pause_duration   
+-------- -------------------------- -------------------------- -------------------------- --------------------------
+rdma0    8332562                    6499645                    8332562                    0                         
+rdma1    873065                     47982                      873065                     0                         
+rdma2    744063                     52704                      744063                     0                         
+rdma3    727989                     56319                      727989                     0                         
+rdma4    7411770                    6285912                    7411770                    0                         
+rdma5    801086                     38413                      801086                     0                         
+rdma6    769417                     33828                      769417                     0                         
+rdma7    748065                     39349                      748065                     0                         
+eth0     0                          0                          0                          0                         
+
+==============================================================================
+PFC Counters (BEFORE) for: wide-ep-llm-d-decode-0-1 (Node: 10.0.76.69) - Priorities 0 and 5
+==============================================================================
+
+Pause Counts:
+NIC      tx_prio0_pause     rx_prio0_pause     tx_prio5_pause     rx_prio5_pause    
+-------- ------------------ ------------------ ------------------ ------------------
+rdma0    53148              417385             53148              0                 
+rdma1    15662              1096               15662              0                 
+rdma2    14142              908                14142              0                 
+rdma3    12352              898                12352              0                 
+rdma4    52223              2248               52223              0                 
+rdma5    15364              1014               15364              0                 
+rdma6    13615              858                13615              0                 
+rdma7    14040              834                14040              0                 
+eth0     0                  0                  0                  0                 
+
+Pause Durations:
+NIC      tx_prio0_pause_duration    rx_prio0_pause_duration    tx_prio5_pause_duration    rx_prio5_pause_duration   
+-------- -------------------------- -------------------------- -------------------------- --------------------------
+rdma0    2043230                    765738                     2043230                    0                         
+rdma1    412719                     2276                       412719                     0                         
+rdma2    367488                     2867                       367488                     0                         
+rdma3    321682                     2611                       321682                     0                         
+rdma4    2010648                    69559                      2010648                    0                         
+rdma5    402773                     3053                       402773                     0                         
+rdma6    357211                     1802                       357211                     0                         
+rdma7    364199                     2113                       364199                     0                         
+eth0     0                          0                          0                          0                         
+
+==============================================================================
+PFC Counters (BEFORE) for: wide-ep-llm-d-prefill-0 (Node: 10.0.74.185) - Priorities 0 and 5
+==============================================================================
+
+Pause Counts:
+NIC      tx_prio0_pause     rx_prio0_pause     tx_prio5_pause     rx_prio5_pause    
+-------- ------------------ ------------------ ------------------ ------------------
+rdma0    225557             98                 225557             0                 
+rdma1    115069             225                115069             0                 
+rdma2    43451              410                43451              0                 
+rdma3    43555              421                43555              0                 
+rdma4    183554             22                 183554             0                 
+rdma5    47389              406                47389              0                 
+rdma6    41379              241                41379              0                 
+rdma7    40357              138                40357              0                 
+eth0     0                  0                  0                  0                 
+
+Pause Durations:
+NIC      tx_prio0_pause_duration    rx_prio0_pause_duration    tx_prio5_pause_duration    rx_prio5_pause_duration   
+-------- -------------------------- -------------------------- -------------------------- --------------------------
+rdma0    7438871                    1786                       7438871                    0                         
+rdma1    2234197                    4962                       2234197                    0                         
+rdma2    1106668                    9430                       1106668                    0                         
+rdma3    1099613                    10165                      1099613                    0                         
+rdma4    6599000                    435                        6599000                    0                         
+rdma5    1208030                    9808                       1208030                    0                         
+rdma6    1048140                    5700                       1048140                    0                         
+rdma7    1025894                    3096                       1025894                    0                         
+eth0     0                          0                          0                          0                         
+
+==============================================================================
+PFC Counters (BEFORE) for: wide-ep-llm-d-prefill-0-1 (Node: 10.0.65.77) - Priorities 0 and 5
+==============================================================================
+
+Pause Counts:
+NIC      tx_prio0_pause     rx_prio0_pause     tx_prio5_pause     rx_prio5_pause    
+-------- ------------------ ------------------ ------------------ ------------------
+rdma0    198725             30                 198725             0                 
+rdma1    33449              234                33449              0                 
+rdma2    30321              0                  30321              0                 
+rdma3    32309              0                  32309              0                 
+rdma4    200801             0                  200801             0                 
+rdma5    29192              138                29192              0                 
+rdma6    28301              0                  28301              0                 
+rdma7    29466              0                  29466              0                 
+eth0     0                  0                  0                  0                 
+
+Pause Durations:
+NIC      tx_prio0_pause_duration    rx_prio0_pause_duration    tx_prio5_pause_duration    rx_prio5_pause_duration   
+-------- -------------------------- -------------------------- -------------------------- --------------------------
+rdma0    8284855                    58                         8284855                    0                         
+rdma1    828122                     391                        828122                     0                         
+rdma2    724092                     0                          724092                     0                         
+rdma3    775084                     0                          775084                     0                         
+rdma4    8511055                    0                          8511055                    0                         
+rdma5    719466                     235                        719466                     0                         
+rdma6    674051                     0                          674051                     0                         
+rdma7    700947                     0                          700947                     0                         
+eth0     0                          0                          0                          0                         
+
+==============================================================================
+ECN Counters (BEFORE) for: wide-ep-llm-d-decode-0 (Node: 10.0.78.230)
+==============================================================================
+NIC      np_ecn_marked_roce_packets   np_cnp_sent        rp_cnp_handled    
+-------- ---------------------------- ------------------ ------------------
+rdma0    13131017                     1290106            466656            
+rdma1    4230334                      201563             80344             
+rdma2    3308442                      164692             54491             
+rdma3    3212583                      158458             62074             
+rdma4    12371631                     1259976            478299            
+rdma5    3653491                      179513             72865             
+rdma6    3550182                      174570             72819             
+rdma7    3103591                      156196             78341             
+eth0     0                            334500             5221281           
+
+==============================================================================
+ECN Counters (BEFORE) for: wide-ep-llm-d-decode-0-1 (Node: 10.0.76.69)
+==============================================================================
+NIC      np_ecn_marked_roce_packets   np_cnp_sent        rp_cnp_handled    
+-------- ---------------------------- ------------------ ------------------
+rdma0    4422742                      392641             656592            
+rdma1    2085212                      105383             54760             
+rdma2    1794659                      89322              56760             
+rdma3    1565304                      79517              42774             
+rdma4    4713346                      397312             710953            
+rdma5    1934814                      98045              51616             
+rdma6    1790505                      92608              48247             
+rdma7    1808388                      92447              52159             
+eth0     0                            339994             5673853           
+
+==============================================================================
+ECN Counters (BEFORE) for: wide-ep-llm-d-prefill-0 (Node: 10.0.74.185)
+==============================================================================
+NIC      np_ecn_marked_roce_packets   np_cnp_sent        rp_cnp_handled    
+-------- ---------------------------- ------------------ ------------------
+rdma0    8697257                      735079             1643783           
+rdma1    3436245                      171743             201438            
+rdma2    3113070                      160560             173709            
+rdma3    3204873                      163367             164326            
+rdma4    8484002                      728518             1717098           
+rdma5    3396574                      173696             182621            
+rdma6    2827937                      146600             155983            
+rdma7    2934070                      149518             153809            
+eth0     0                            492819             6050398           
+
+==============================================================================
+ECN Counters (BEFORE) for: wide-ep-llm-d-prefill-0-1 (Node: 10.0.65.77)
+==============================================================================
+NIC      np_ecn_marked_roce_packets   np_cnp_sent        rp_cnp_handled    
+-------- ---------------------------- ------------------ ------------------
+rdma0    10271403                     1050970            679870            
+rdma1    2222572                      109112             125896            
+rdma2    1837813                      90013              96428             
+rdma3    1794279                      89498              98157             
+rdma4    10529553                     1093861            636614            
+rdma5    1881283                      93073              106656            
+rdma6    1525759                      77376              93317             
+rdma7    1635310                      82651              92478             
+eth0     0                            332429             5832289           
+
+==============================================
+Running Benchmark Test via Poker Pod
+==============================================
+
+Running: just benchmark 4096 4096 256 128
+
+vllm bench serve --base-url http://llm-d-inference-gateway-istio.raj-network-debug.svc.cluster.local --model mistralai/Mistral-Large-3-675B-Instruct-2512 --dataset-name random --random-input-len 256 --random-output-len 128  --max-concurrency 4096 --request-rate 4096 --seed $(date +%M%H%M%S) --num-prompts 4096 --ignore-eos
+INFO 02-10 02:35:11 [importing.py:44] Triton is installed but 0 active driver(s) found (expected 1). Disabling Triton to prevent runtime errors.
+INFO 02-10 02:35:11 [importing.py:68] Triton not installed or not compatible; certain GPU-related functions will not be available.
+[2026-02-10 02:35:20] INFO tekken.py:195: Non special vocabulary size is 130072 with 1000 special tokens.
+Namespace(subparser='bench', bench_type='serve', dispatch_function=<function BenchmarkServingSubcommand.cmd at 0x7f6df513ad40>, seed=35023502, num_prompts=4096, dataset_name='random', no_stream=False, dataset_path=None, no_oversample=False, skip_chat_template=False, disable_shuffle=False, custom_output_len=256, spec_bench_output_len=256, spec_bench_category=None, sonnet_input_len=550, sonnet_output_len=150, sonnet_prefix_len=200, sharegpt_output_len=None, blazedit_min_distance=0.0, blazedit_max_distance=1.0, random_input_len=256, random_output_len=128, random_range_ratio=0.0, random_prefix_len=0, random_batch_size=1, no_reranker=False, random_mm_base_items_per_request=1, random_mm_num_mm_items_range_ratio=0.0, random_mm_limit_mm_per_prompt={'image': 255, 'video': 1}, random_mm_bucket_config={(256, 256, 1): 0.5, (720, 1280, 1): 0.5, (720, 1280, 16): 0.0}, hf_subset=None, hf_split=None, hf_name=None, hf_output_len=None, prefix_repetition_prefix_len=256, prefix_repetition_suffix_len=256, prefix_repetition_num_prefixes=10, prefix_repetition_output_len=128, label=None, backend='openai', base_url='http://llm-d-inference-gateway-istio.raj-network-debug.svc.cluster.local', host='127.0.0.1', port=8000, endpoint='/v1/completions', header=None, max_concurrency=4096, model='mistralai/Mistral-Large-3-675B-Instruct-2512', tokenizer=None, tokenizer_mode='auto', use_beam_search=False, logprobs=None, request_rate=4096.0, burstiness=1.0, trust_remote_code=False, disable_tqdm=False, num_warmups=0, profile=False, save_result=False, save_detailed=False, append_result=False, metadata=None, result_dir=None, result_filename=None, ignore_eos=True, percentile_metrics=None, metric_percentiles='99', goodput=None, request_id_prefix='bench-3e6d0fc2-', top_p=None, top_k=None, min_p=None, temperature=None, frequency_penalty=None, presence_penalty=None, repetition_penalty=None, common_prefix_len=None, served_model_name=None, lora_modules=None, ramp_up_strategy=None, ramp_up_start_rps=None, ramp_up_end_rps=None, ready_check_timeout_sec=600, extra_body=None)
+INFO 02-10 02:35:21 [datasets.py:612] Sampling input_len from [255, 255] and output_len from [128, 128]
+WARNING 02-10 02:35:23 [datasets.py:549] Across all generated prompts, there were 9 more tokens than expected after decoding and re-encoding. This is expected due to the imperfect nature of the sampling procedure.
+ |          | 00:00 elapsed, ? remaining |          | 00:00 elapsed, 00:12 remainingStarting initial single prompt test run...
+Waiting for endpoint to become up in 600 seconds
+Initial test run completed.
+Starting main benchmark run...
+Traffic request rate: 4096.0
+Burstiness factor: 1.0 (Poisson process)
+Maximum request concurrency: 4096
+ |          | 01:08 elapsed, 18595:07:11 remaining
+  0%|          | 0/4096 [00:00<?, ?it/s]  0%|          | 1/4096 [10:44<733:23:14, 644.74s/it]  0%|          | 11/4096 [13:00<62:16:38, 54.88s/it]   0%|          | 12/4096 [13:30<58:57:54, 51.98s/it]  0%|          | 19/4096 [14:16<30:59:35, 27.37s/it]  0%|          | 20/4096 [14:31<29:36:17, 26.15s/it]  1%|          | 26/4096 [14:46<17:16:15, 15.28s/it]  1%|          | 27/4096 [15:01<17:14:51, 15.26s/it]  1%|          | 28/4096 [16:01<23:33:01, 20.84s/it]  1%|          | 29/4096 [16:32<25:07:58, 22.25s/it]  1%|          | 30/4096 [18:02<38:45:37, 34.32s/it]  1%|          | 31/4096 [18:32<37:48:58, 33.49s/it]  1%|          | 32/4096 [25:20<132:13:22, 117.13s/it]  1%|          | 33/4096 [25:50<108:27:16, 96.10s/it]   1%|          | 35/4096 [39:26<252:07:38, 223.51s/it]  1%|          | 36/4096 [41:42<229:44:51, 203.72s/it]  1%|          | 45/4096 [42:12<61:30:22, 54.66s/it]    1%|          | 46/4096 [47:45<94:28:41, 83.98s/it]  1%|          | 47/4096 [48:45<90:58:49, 80.89s/it]  1%|          | 49/4096 [49:00<68:28:07, 60.91s/it]  1%|▏         | 54/4096 [50:16<43:01:14, 38.32s/it]  1%|▏         | 58/4096 [52:47<42:45:10, 38.12s/it]  1%|▏         | 59/4096 [53:02<39:47:57, 35.49s/it]  1%|▏         | 61/4096 [1:05:07<129:51:50, 115.86s/it]  2%|▏         | 79/4096 [1:11:09<48:08:49, 43.15s/it]    2%|▏         | 102/4096 [4:34:03<361:14:00, 325.60s/it]  3%|▎         | 103/4096 [6:00:00<547:46:43, 493.87s/it] 16%|█▌        | 643/4096 [6:00:00<16:59:51, 17.72s/it]   29%|██▉       | 1183/4096 [6:00:01<6:01:57,  7.46s/it] 42%|████▏     | 1734/4096 [6:00:01<2:39:07,  4.04s/it] 56%|█████▌    | 2283/4096 [6:00:01<1:13:56,  2.45s/it] 69%|██████▉   | 2836/4096 [6:00:01<32:46,  1.56s/it]   83%|████████▎ | 3387/4096 [6:00:01<12:10,  1.03s/it] 96%|█████████▌| 3924/4096 [6:00:02<02:00,  1.43it/s]100%|██████████| 4096/4096 [6:00:02<00:00,  5.27s/it]
+/app/.venv/lib/python3.12/site-packages/vllm/benchmarks/serve.py:737: UserWarning: All requests failed. This is likely due to a misconfiguration on the benchmark arguments.
+  metrics, actual_output_lens = calculate_metrics(
+============ Serving Benchmark Result ============
+Successful requests:                     0         
+Failed requests:                         4096      
+Maximum request concurrency:             4096      
+Request rate configured (RPS):           4096.00   
+Benchmark duration (s):                  21602.26  
+Total input tokens:                      0         
+Total generated tokens:                  0         
+Request throughput (req/s):              0.00      
+Output token throughput (tok/s):         0.00      
+Peak output token throughput (tok/s):    0.00      
+Peak concurrent requests:                0.00      
+Total token throughput (tok/s):          0.00      
+---------------Time to First Token----------------
+Mean TTFT (ms):                          0.00      
+Median TTFT (ms):                        0.00      
+P99 TTFT (ms):                           0.00      
+-----Time per Output Token (excl. 1st token)------
+Mean TPOT (ms):                          0.00      
+Median TPOT (ms):                        0.00      
+P99 TPOT (ms):                           0.00      
+---------------Inter-token Latency----------------
+Mean ITL (ms):                           0.00      
+Median ITL (ms):                         0.00      
+P99 ITL (ms):                            0.00      
+==================================================
+
+==============================================
+Benchmark Test Completed
+==============================================
+
+==============================================
+Collecting NIC Counters AFTER Test
+==============================================
+  Collecting from networking-debug-pod-10.0.78.230 (for wide-ep-llm-d-decode-0)...
+  Collecting from networking-debug-pod-10.0.76.69 (for wide-ep-llm-d-decode-0-1)...
+  Collecting from networking-debug-pod-10.0.74.185 (for wide-ep-llm-d-prefill-0)...
+  Collecting from networking-debug-pod-10.0.65.77 (for wide-ep-llm-d-prefill-0-1)...
+
+==============================================================================
+Packet Counters (AFTER) for: wide-ep-llm-d-decode-0 (Node: 10.0.78.230)
+==============================================================================
+
+RX Packets:
+NIC      rx_prio0_packets     rx_prio1_packets     rx_prio5_packets     rx_packets_phy    
+-------- -------------------- -------------------- -------------------- ------------------
+rdma0    1320250437           4662695910           75411385             6058984188        
+rdma1    293690059            2464563379           40807561             2799145464        
+rdma2    263207078            2461532211           26931683             2751729213        
+rdma3    263485519            2463127232           27312675             2753991174        
+rdma4    279229300            2461188210           64213293             2805264195        
+rdma5    267796165            2461934485           38647584             2768454350        
+rdma6    262116955            2464420824           26476593             2753089859        
+rdma7    264088879            2462036113           26871049             2753077656        
+eth0     9633748948           0                    0                    9722285099        
+
+TX Packets:
+NIC      tx_prio0_packets     tx_prio1_packets     tx_prio5_packets     tx_packets_phy    
+-------- -------------------- -------------------- -------------------- ------------------
+rdma0    776737056            4603387359           42148641             5423765036        
+rdma1    689951491            2118535772           20410698             2829135220        
+rdma2    619227220            2115560641           12502571             2747485359        
+rdma3    623268923            2116199849           12110116             2751767294        
+rdma4    640933611            2114560842           34551095             2791485749        
+rdma5    625951885            2116512783           19697457             2762374471        
+rdma6    616534810            2118739882           12844115             2748324902        
+rdma7    617193864            2116822251           12566523             2746769542        
+eth0     7999776833           0                    0                    8000197005        
+
+RX Discards:
+NIC      rx_prio0_buf_discard     rx_prio1_buf_discard     rx_prio5_buf_discard    
+-------- ------------------------ ------------------------ ------------------------
+rdma0    0                        2499674                  0                       
+rdma1    0                        103574                   0                       
+rdma2    0                        103658                   0                       
+rdma3    0                        117955                   0                       
+rdma4    0                        93392                    0                       
+rdma5    0                        84354                    0                       
+rdma6    0                        96678                    0                       
+rdma7    0                        88886                    0                       
+eth0     0                        0                        0                       
+
+RX Bytes:
+NIC      rx_prio0_bytes       rx_prio1_bytes       rx_prio5_bytes      
+-------- -------------------- -------------------- --------------------
+rdma0    5221036179058        14975510553520       250450588556        
+rdma1    981711432236         6382730720918        141440808790        
+rdma2    966584955761         6374725445646        99331284818         
+rdma3    967333336493         6378973574964        101358511674        
+rdma4    1006272957131        6375953873936        209920139248        
+rdma5    977262062773         6378817481238        134211907792        
+rdma6    963003725399         6382121943956        97468528374         
+rdma7    970429215837         6377858819282        99104667622         
+eth0     21678230363705       0                    0                   
+
+TX Bytes:
+NIC      tx_prio0_bytes       tx_prio1_bytes       tx_prio5_bytes      
+-------- -------------------- -------------------- --------------------
+rdma0    2649799805017        14932364025254       104423996974        
+rdma1    2584380225561        5043817591120        51449521512         
+rdma2    2349734207403        5038831814602        35584345878         
+rdma3    2366377105611        5040248932162        34518720764         
+rdma4    2416522426769        5039149600808        79204569290         
+rdma5    2369926382665        5039518519862        50645070454         
+rdma6    2338814970483        5040194605752        37061812250         
+rdma7    2341127785411        5040743612226        35905330010         
+eth0     20541456824715       0                    0                   
+
+==============================================================================
+Packet Counters (AFTER) for: wide-ep-llm-d-decode-0-1 (Node: 10.0.76.69)
+==============================================================================
+
+RX Packets:
+NIC      rx_prio0_packets     rx_prio1_packets     rx_prio5_packets     rx_packets_phy    
+-------- -------------------- -------------------- -------------------- ------------------
+rdma0    341684577            622067513            28288249             993114318         
+rdma1    146488628            648738812            17820123             813103421         
+rdma2    144991612            651830560            12893865             809773705         
+rdma3    145049343            646428870            13279335             804801381         
+rdma4    149349174            644925960            27010374             821998732         
+rdma5    142935637            650758561            17422051             811169799         
+rdma6    140948540            656610186            12892135             810499966         
+rdma7    140418266            647572660            12829359             800873278         
+eth0     9546230618           0                    0                    9630080887        
+
+TX Packets:
+NIC      tx_prio0_packets     tx_prio1_packets     tx_prio5_packets     tx_packets_phy    
+-------- -------------------- -------------------- -------------------- ------------------
+rdma0    3480480415           280786951            12907331             3774621908        
+rdma1    521111603            280035957            8306864              809576954         
+rdma2    519014455            280252319            5256121              804628500         
+rdma3    516697737            280349974            5005065              802146790         
+rdma4    528612336            280062986            11352483             820477656         
+rdma5    523458260            279683857            7544622              810801595         
+rdma6    522988876            279911851            5118818              808127163         
+rdma7    514795504            280019360            4968669              799890991         
+eth0     7430802686           0                    0                    7431195621        
+
+RX Discards:
+NIC      rx_prio0_buf_discard     rx_prio1_buf_discard     rx_prio5_buf_discard    
+-------- ------------------------ ------------------------ ------------------------
+rdma0    0                        101766                   0                       
+rdma1    0                        82376                    0                       
+rdma2    0                        78409                    0                       
+rdma3    0                        128771                   0                       
+rdma4    0                        106911                   0                       
+rdma5    0                        116914                   0                       
+rdma6    0                        134507                   0                       
+rdma7    0                        75884                    0                       
+eth0     0                        0                        0                       
+
+RX Bytes:
+NIC      rx_prio0_bytes       rx_prio1_bytes       rx_prio5_bytes      
+-------- -------------------- -------------------- --------------------
+rdma0    609391173042         1992281553430        113095124846        
+rdma1    458076963431         2096875063560        72748120606         
+rdma2    456762564253         2108666552248        53091359458         
+rdma3    457032848438         2087635934954        54693694754         
+rdma4    459988465169         2083523578670        109221811424        
+rdma5    443613284393         2105941417930        71082272118         
+rdma6    440080772227         2127548907728        53092331974         
+rdma7    438023709186         2094344971124        52822422262         
+eth0     21467001036233       0                    0                   
+
+TX Bytes:
+NIC      tx_prio0_bytes       tx_prio1_bytes       tx_prio5_bytes      
+-------- -------------------- -------------------- --------------------
+rdma0    14214080942456       671494385050         48505169978         
+rdma1    1916168637120        670083790866         32713242776         
+rdma2    1909674685164        670256894594         20932519270         
+rdma3    1901425149252        670463408392         19878901746         
+rdma4    1942388707006        668899202884         43447565706         
+rdma5    1925676793738        668384544790         29522681276         
+rdma6    1925039085786        668929375546         20370469620         
+rdma7    1893433059368        668546869520         19730822834         
+eth0     18555990819652       0                    0                   
+
+==============================================================================
+Packet Counters (AFTER) for: wide-ep-llm-d-prefill-0 (Node: 10.0.74.185)
+==============================================================================
+
+RX Packets:
+NIC      rx_prio0_packets     rx_prio1_packets     rx_prio5_packets     rx_packets_phy    
+-------- -------------------- -------------------- -------------------- ------------------
+rdma0    1155554190           2849476372           71744774             4078420025        
+rdma1    273095239            1273555228           39122560             1585974690        
+rdma2    198587211            1271023318           25647739             1495432387        
+rdma3    205073717            1258621625           25584228             1489445403        
+rdma4    223578014            1253310169           67400117             1546005420        
+rdma5    212481831            1273825250           38934425             1525424543        
+rdma6    196822387            1279149514           25976334             1502104460        
+rdma7    201795741            1268271965           24821867             1495044529        
+eth0     10735567822          0                    0                    10807596704       
+
+TX Packets:
+NIC      tx_prio0_packets     tx_prio1_packets     tx_prio5_packets     tx_packets_phy    
+-------- -------------------- -------------------- -------------------- ------------------
+rdma0    749340360            2103928018           102931168            2957160998        
+rdma1    681195141            825088525            54444428             1561015638        
+rdma2    645858736            824804946            35018994             1505887287        
+rdma3    633456239            825269816            34980194             1493913756        
+rdma4    652163393            825188407            87887180             1566151686        
+rdma5    658115650            825452999            51987439             1535778100        
+rdma6    654456954            825709344            34697444             1515052382        
+rdma7    644860828            825299104            34516733             1504867003        
+eth0     8945919091           0                    0                    8946231640        
+
+RX Discards:
+NIC      rx_prio0_buf_discard     rx_prio1_buf_discard     rx_prio5_buf_discard    
+-------- ------------------------ ------------------------ ------------------------
+rdma0    0                        1082645                  0                       
+rdma1    0                        163038                   0                       
+rdma2    0                        134789                   0                       
+rdma3    0                        160966                   0                       
+rdma4    0                        138380                   0                       
+rdma5    0                        194722                   0                       
+rdma6    0                        141905                   0                       
+rdma7    0                        154178                   0                       
+eth0     0                        0                        0                       
+
+RX Bytes:
+NIC      rx_prio0_bytes       rx_prio1_bytes       rx_prio5_bytes      
+-------- -------------------- -------------------- --------------------
+rdma0    4542608195929        10033778175708       174850584184        
+rdma1    902307675298         3722705831744        101126040140        
+rdma2    653466041432         3710385475344        78067975294         
+rdma3    680616023259         3665193075996        77319628736         
+rdma4    729604829598         3644802336478        162209121846        
+rdma5    701321456419         3723842119268        102974483374        
+rdma6    646155983046         3741224189116        78985447476         
+rdma7    665820906492         3700583666518        73542208762         
+eth0     27357847515176       0                    0                   
+
+TX Bytes:
+NIC      tx_prio0_bytes       tx_prio1_bytes       tx_prio5_bytes      
+-------- -------------------- -------------------- --------------------
+rdma0    2485623129013        6905730229788        317935981496        
+rdma1    2421235766887        1959548177622        173908943924        
+rdma2    2387139328145        1959608611552        123218948600        
+rdma3    2338118706895        1960260681632        122675851664        
+rdma4    2391745114131        1959731951434        260290861760        
+rdma5    2427688956497        1959473021354        165838635978        
+rdma6    2420640209733        1959393777628        121514194604        
+rdma7    2382611084661        1960501322152        120273174570        
+eth0     25328174315462       0                    0                   
+
+==============================================================================
+Packet Counters (AFTER) for: wide-ep-llm-d-prefill-0-1 (Node: 10.0.65.77)
+==============================================================================
+
+RX Packets:
+NIC      rx_prio0_packets     rx_prio1_packets     rx_prio5_packets     rx_packets_phy    
+-------- -------------------- -------------------- -------------------- ------------------
+rdma0    444031658            7455930694           59455219             7960098015        
+rdma1    291404904            2437600981           29912868             2759046128        
+rdma2    283655627            2453154798           19446467             2756354249        
+rdma3    283038171            2444027746           19615013             2746780134        
+rdma4    300601659            2444933869           49374737             2795547217        
+rdma5    290453851            2444139078           29624841             2764325091        
+rdma6    283738947            2442380632           19543934             2745757439        
+rdma7    286392847            2460718701           19393446             2766597836        
+eth0     9870610367           0                    0                    9957215651        
+
+TX Packets:
+NIC      tx_prio0_packets     tx_prio1_packets     tx_prio5_packets     tx_packets_phy    
+-------- -------------------- -------------------- -------------------- ------------------
+rdma0    1625878077           3135481336           47823609             4810433440        
+rdma1    937535101            1793945751           26702035             2758326111        
+rdma2    950963791            1791424332           17236549             2759745701        
+rdma3    939170781            1792451341           17633214             2749377897        
+rdma4    961648697            1790595590           43272832             2796812547        
+rdma5    942980883            1790613832           25889843             2759607430        
+rdma6    932953594            1792946719           16839230             2742845842        
+rdma7    955726881            1791329083           17053404             2764221993        
+eth0     8057398443           0                    0                    8057822713        
+
+RX Discards:
+NIC      rx_prio0_buf_discard     rx_prio1_buf_discard     rx_prio5_buf_discard    
+-------- ------------------------ ------------------------ ------------------------
+rdma0    0                        1248182                  0                       
+rdma1    0                        115546                   0                       
+rdma2    0                        138242                   0                       
+rdma3    0                        137292                   0                       
+rdma4    0                        142149                   0                       
+rdma5    0                        157862                   0                       
+rdma6    0                        138137                   0                       
+rdma7    0                        187750                   0                       
+eth0     0                        0                        0                       
+
+RX Bytes:
+NIC      rx_prio0_bytes       rx_prio1_bytes       rx_prio5_bytes      
+-------- -------------------- -------------------- --------------------
+rdma0    1399611052527        27323690784668       188804770104        
+rdma1    950658980706         6645647161298        97069818640         
+rdma2    923029282727         6711645091876        69837631950         
+rdma3    920976988221         6675105388500        69691632042         
+rdma4    977033419230         6683236548590        150414737566        
+rdma5    946471904742         6672976241264        96154383722         
+rdma6    923544320996         6658292467174        69830996524         
+rdma7    933578835588         6736638637690        68706573588         
+eth0     22848199181177       0                    0                   
+
+TX Bytes:
+NIC      tx_prio0_bytes       tx_prio1_bytes       tx_prio5_bytes      
+-------- -------------------- -------------------- --------------------
+rdma0    6190024900722        8521789069400        133857217294        
+rdma1    3368744981892        4248034169322        79397247178         
+rdma2    3422180096512        4242115067924        57879697770         
+rdma3    3377702919290        4245737376014        58468426116         
+rdma4    3458661712924        4243314221964        118606380108        
+rdma5    3389714270068        4243476792700        76379488718         
+rdma6    3353226745038        4245025649058        55699871932         
+rdma7    3440745570796        4246011892786        55956388040         
+eth0     20589628272867       0                    0                   
+
+==============================================================================
+PFC Counters (AFTER) for: wide-ep-llm-d-decode-0 (Node: 10.0.78.230) - Priorities 0 and 5
+==============================================================================
+
+Pause Counts:
+NIC      tx_prio0_pause     rx_prio0_pause     tx_prio5_pause     rx_prio5_pause    
+-------- ------------------ ------------------ ------------------ ------------------
+rdma0    201874             159785             201874             0                 
+rdma1    35696              4121               35696              0                 
+rdma2    30235              3750               30235              0                 
+rdma3    29948              3674               29948              0                 
+rdma4    180225             154924             180225             0                 
+rdma5    32833              3250               32833              0                 
+rdma6    31525              2668               31525              0                 
+rdma7    30708              3274               30708              0                 
+eth0     0                  0                  0                  0                 
+
+Pause Durations:
+NIC      tx_prio0_pause_duration    rx_prio0_pause_duration    tx_prio5_pause_duration    rx_prio5_pause_duration   
+-------- -------------------------- -------------------------- -------------------------- --------------------------
+rdma0    8340099                    6499645                    8340099                    0                         
+rdma1    913634                     47982                      913634                     0                         
+rdma2    774889                     52704                      774889                     0                         
+rdma3    759095                     56319                      759095                     0                         
+rdma4    7419035                    6285912                    7419035                    0                         
+rdma5    849426                     38413                      849426                     0                         
+rdma6    810309                     33828                      810309                     0                         
+rdma7    787648                     39349                      787648                     0                         
+eth0     0                          0                          0                          0                         
+
+==============================================================================
+PFC Counters (AFTER) for: wide-ep-llm-d-decode-0-1 (Node: 10.0.76.69) - Priorities 0 and 5
+==============================================================================
+
+Pause Counts:
+NIC      tx_prio0_pause     rx_prio0_pause     tx_prio5_pause     rx_prio5_pause    
+-------- ------------------ ------------------ ------------------ ------------------
+rdma0    54570              417385             54570              0                 
+rdma1    17147              1096               17147              0                 
+rdma2    16283              908                16283              0                 
+rdma3    14497              898                14497              0                 
+rdma4    52539              2248               52539              0                 
+rdma5    16811              1014               16811              0                 
+rdma6    15010              858                15010              0                 
+rdma7    15011              834                15011              0                 
+eth0     0                  0                  0                  0                 
+
+Pause Durations:
+NIC      tx_prio0_pause_duration    rx_prio0_pause_duration    tx_prio5_pause_duration    rx_prio5_pause_duration   
+-------- -------------------------- -------------------------- -------------------------- --------------------------
+rdma0    2082401                    765738                     2082401                    0                         
+rdma1    447278                     2276                       447278                     0                         
+rdma2    421528                     2867                       421528                     0                         
+rdma3    370468                     2611                       370468                     0                         
+rdma4    2019213                    69559                      2019213                    0                         
+rdma5    439092                     3053                       439092                     0                         
+rdma6    392298                     1802                       392298                     0                         
+rdma7    388373                     2113                       388373                     0                         
+eth0     0                          0                          0                          0                         
+
+==============================================================================
+PFC Counters (AFTER) for: wide-ep-llm-d-prefill-0 (Node: 10.0.74.185) - Priorities 0 and 5
+==============================================================================
+
+Pause Counts:
+NIC      tx_prio0_pause     rx_prio0_pause     tx_prio5_pause     rx_prio5_pause    
+-------- ------------------ ------------------ ------------------ ------------------
+rdma0    226373             98                 226373             0                 
+rdma1    115801             225                115801             0                 
+rdma2    44050              410                44050              0                 
+rdma3    44140              421                44140              0                 
+rdma4    184188             22                 184188             0                 
+rdma5    48315              406                48315              0                 
+rdma6    42040              241                42040              0                 
+rdma7    40820              138                40820              0                 
+eth0     0                  0                  0                  0                 
+
+Pause Durations:
+NIC      tx_prio0_pause_duration    rx_prio0_pause_duration    tx_prio5_pause_duration    rx_prio5_pause_duration   
+-------- -------------------------- -------------------------- -------------------------- --------------------------
+rdma0    7464315                    1786                       7464315                    0                         
+rdma1    2256340                    4962                       2256340                    0                         
+rdma2    1124427                    9430                       1124427                    0                         
+rdma3    1117260                    10165                      1117260                    0                         
+rdma4    6618529                    435                        6618529                    0                         
+rdma5    1238582                    9808                       1238582                    0                         
+rdma6    1068418                    5700                       1068418                    0                         
+rdma7    1038022                    3096                       1038022                    0                         
+eth0     0                          0                          0                          0                         
+
+==============================================================================
+PFC Counters (AFTER) for: wide-ep-llm-d-prefill-0-1 (Node: 10.0.65.77) - Priorities 0 and 5
+==============================================================================
+
+Pause Counts:
+NIC      tx_prio0_pause     rx_prio0_pause     tx_prio5_pause     rx_prio5_pause    
+-------- ------------------ ------------------ ------------------ ------------------
+rdma0    199448             573                199448             0                 
+rdma1    34112              863                34112              0                 
+rdma2    31016              928                31016              0                 
+rdma3    33063              1047               33063              0                 
+rdma4    201567             202                201567             0                 
+rdma5    29799              664                29799              0                 
+rdma6    28923              588                28923              0                 
+rdma7    29973              298                29973              0                 
+eth0     0                  0                  0                  0                 
+
+Pause Durations:
+NIC      tx_prio0_pause_duration    rx_prio0_pause_duration    tx_prio5_pause_duration    rx_prio5_pause_duration   
+-------- -------------------------- -------------------------- -------------------------- --------------------------
+rdma0    8305060                    12851                      8305060                    0                         
+rdma1    846687                     14946                      846687                     0                         
+rdma2    744929                     22279                      744929                     0                         
+rdma3    796981                     25427                      796981                     0                         
+rdma4    8534552                    3898                       8534552                    0                         
+rdma5    737189                     12762                      737189                     0                         
+rdma6    691993                     14122                      691993                     0                         
+rdma7    717456                     6836                       717456                     0                         
+eth0     0                          0                          0                          0                         
+
+==============================================================================
+ECN Counters (AFTER) for: wide-ep-llm-d-decode-0 (Node: 10.0.78.230)
+==============================================================================
+NIC      np_ecn_marked_roce_packets   np_cnp_sent        rp_cnp_handled    
+-------- ---------------------------- ------------------ ------------------
+rdma0    13131017                     1290106            466656            
+rdma1    4230334                      201563             80344             
+rdma2    3308442                      164692             54491             
+rdma3    3212583                      158458             62074             
+rdma4    12371631                     1259976            478299            
+rdma5    3653491                      179513             72865             
+rdma6    3550182                      174570             72819             
+rdma7    3103591                      156196             78341             
+eth0     0                            334500             5221281           
+
+==============================================================================
+ECN Counters (AFTER) for: wide-ep-llm-d-decode-0-1 (Node: 10.0.76.69)
+==============================================================================
+NIC      np_ecn_marked_roce_packets   np_cnp_sent        rp_cnp_handled    
+-------- ---------------------------- ------------------ ------------------
+rdma0    4422742                      392641             656592            
+rdma1    2085212                      105383             54760             
+rdma2    1794659                      89322              56760             
+rdma3    1565304                      79517              42774             
+rdma4    4713346                      397312             710953            
+rdma5    1934814                      98045              51616             
+rdma6    1790505                      92608              48247             
+rdma7    1808388                      92447              52159             
+eth0     0                            339994             5673853           
+
+==============================================================================
+ECN Counters (AFTER) for: wide-ep-llm-d-prefill-0 (Node: 10.0.74.185)
+==============================================================================
+NIC      np_ecn_marked_roce_packets   np_cnp_sent        rp_cnp_handled    
+-------- ---------------------------- ------------------ ------------------
+rdma0    8697257                      735079             1643783           
+rdma1    3436245                      171743             201438            
+rdma2    3113070                      160561             173709            
+rdma3    3204873                      163367             164326            
+rdma4    8484002                      728518             1717098           
+rdma5    3396574                      173697             182621            
+rdma6    2827937                      146600             155983            
+rdma7    2934070                      149518             153810            
+eth0     0                            492819             6050398           
+
+==============================================================================
+ECN Counters (AFTER) for: wide-ep-llm-d-prefill-0-1 (Node: 10.0.65.77)
+==============================================================================
+NIC      np_ecn_marked_roce_packets   np_cnp_sent        rp_cnp_handled    
+-------- ---------------------------- ------------------ ------------------
+rdma0    10271403                     1050970            679870            
+rdma1    2222572                      109112             125896            
+rdma2    1837813                      90013              96429             
+rdma3    1794279                      89498              98157             
+rdma4    10529553                     1093861            636614            
+rdma5    1881283                      93073              106657            
+rdma6    1525759                      77376              93317             
+rdma7    1635310                      82652              92478             
+eth0     0                            332429             5832289           
+
+==============================================
+NIC Counter DIFFERENCES (After - Before)
+==============================================
+
+==============================================================================
+Packet Counters DIFF for: wide-ep-llm-d-decode-0 (Node: 10.0.78.230)
+==============================================================================
+
+RX Packets:
+NIC      rx_prio0_packets     rx_prio1_packets     rx_prio5_packets     rx_packets_phy    
+-------- -------------------- -------------------- -------------------- ------------------
+rdma0    6200269              421                  0                    6200690           
+rdma1    5219869              422                  0                    5220291           
+rdma2    4920101              421                  0                    4920522           
+rdma3    4918357              421                  0                    4918778           
+rdma4    5731954              421                  0                    5732375           
+rdma5    5188711              421                  0                    5189132           
+rdma6    4882859              421                  0                    4883280           
+rdma7    4884737              421                  0                    4885158           
+eth0     4616696              0                    0                    4616696           
+
+TX Packets:
+NIC      tx_prio0_packets     tx_prio1_packets     tx_prio5_packets     tx_packets_phy    
+-------- -------------------- -------------------- -------------------- ------------------
+rdma0    4691587              6                    0                    4691853           
+rdma1    4228978              5                    0                    4230592           
+rdma2    4202004              6                    0                    4203263           
+rdma3    4210787              6                    0                    4212028           
+rdma4    4265587              6                    0                    4266023           
+rdma5    4218041              6                    0                    4219957           
+rdma6    4194015              6                    0                    4195648           
+rdma7    4202316              6                    0                    4203886           
+eth0     16012317             0                    0                    16012317          
+
+RX Discards:
+NIC      rx_prio0_buf_discard     rx_prio1_buf_discard     rx_prio5_buf_discard    
+-------- ------------------------ ------------------------ ------------------------
+rdma0    0                        0                        0                       
+rdma1    0                        0                        0                       
+rdma2    0                        0                        0                       
+rdma3    0                        0                        0                       
+rdma4    0                        0                        0                       
+rdma5    0                        0                        0                       
+rdma6    0                        0                        0                       
+rdma7    0                        0                        0                       
+eth0     0                        0                        0                       
+
+RX Bytes:
+NIC      rx_prio0_bytes     rx_prio1_bytes     rx_prio5_bytes    
+-------- ------------------ ------------------ ------------------
+rdma0    16.22 GB           31.15 KB           0 B               
+rdma1    14.01 GB           31.22 KB           0 B               
+rdma2    12.86 GB           31.15 KB           0 B               
+rdma3    12.81 GB           31.15 KB           0 B               
+rdma4    15.99 GB           31.15 KB           0 B               
+rdma5    13.90 GB           31.15 KB           0 B               
+rdma6    12.71 GB           31.15 KB           0 B               
+rdma7    12.73 GB           31.15 KB           0 B               
+eth0     654.32 MB          0 B                0 B               
+
+TX Bytes:
+NIC      tx_prio0_bytes     tx_prio1_bytes     tx_prio5_bytes    
+-------- ------------------ ------------------ ------------------
+rdma0    9.93 GB            444 B              0 B               
+rdma1    9.86 GB            370 B              0 B               
+rdma2    9.86 GB            444 B              0 B               
+rdma3    9.87 GB            444 B              0 B               
+rdma4    9.84 GB            444 B              0 B               
+rdma5    9.84 GB            444 B              0 B               
+rdma6    9.84 GB            444 B              0 B               
+rdma7    9.85 GB            444 B              0 B               
+eth0     101.88 GB          0 B                0 B               
+
+==============================================================================
+Packet Counters DIFF for: wide-ep-llm-d-decode-0-1 (Node: 10.0.76.69)
+==============================================================================
+
+RX Packets:
+NIC      rx_prio0_packets     rx_prio1_packets     rx_prio5_packets     rx_packets_phy    
+-------- -------------------- -------------------- -------------------- ------------------
+rdma0    6582319              421                  0                    6582740           
+rdma1    5393213              421                  0                    5393634           
+rdma2    5048676              421                  0                    5049097           
+rdma3    5106805              421                  0                    5107226           
+rdma4    5576222              422                  0                    5576644           
+rdma5    5053924              421                  0                    5054345           
+rdma6    4816885              421                  0                    4817306           
+rdma7    4844950              421                  0                    4845371           
+eth0     5562963              0                    0                    5562963           
+
+TX Packets:
+NIC      tx_prio0_packets     tx_prio1_packets     tx_prio5_packets     tx_packets_phy    
+-------- -------------------- -------------------- -------------------- ------------------
+rdma0    4699083              6                    0                    4700511           
+rdma1    4227998              6                    0                    4229489           
+rdma2    4209804              6                    0                    4211951           
+rdma3    4206720              6                    0                    4208871           
+rdma4    4261784              5                    0                    4262105           
+rdma5    4219726              6                    0                    4221179           
+rdma6    4196306              6                    0                    4197707           
+rdma7    4198793              6                    0                    4199770           
+eth0     17079780             0                    0                    17079780          
+
+RX Discards:
+NIC      rx_prio0_buf_discard     rx_prio1_buf_discard     rx_prio5_buf_discard    
+-------- ------------------------ ------------------------ ------------------------
+rdma0    0                        0                        0                       
+rdma1    0                        0                        0                       
+rdma2    0                        0                        0                       
+rdma3    0                        0                        0                       
+rdma4    0                        0                        0                       
+rdma5    0                        0                        0                       
+rdma6    0                        0                        0                       
+rdma7    0                        0                        0                       
+eth0     0                        0                        0                       
+
+RX Bytes:
+NIC      rx_prio0_bytes     rx_prio1_bytes     rx_prio5_bytes    
+-------- ------------------ ------------------ ------------------
+rdma0    17.81 GB           31.15 KB           0 B               
+rdma1    14.70 GB           31.15 KB           0 B               
+rdma2    13.36 GB           31.15 KB           0 B               
+rdma3    13.62 GB           31.15 KB           0 B               
+rdma4    15.31 GB           31.22 KB           0 B               
+rdma5    13.32 GB           31.15 KB           0 B               
+rdma6    12.43 GB           31.15 KB           0 B               
+rdma7    12.52 GB           31.15 KB           0 B               
+eth0     731.72 MB          0 B                0 B               
+
+TX Bytes:
+NIC      tx_prio0_bytes     tx_prio1_bytes     tx_prio5_bytes    
+-------- ------------------ ------------------ ------------------
+rdma0    9.93 GB            444 B              0 B               
+rdma1    9.87 GB            444 B              0 B               
+rdma2    9.88 GB            444 B              0 B               
+rdma3    9.88 GB            444 B              0 B               
+rdma4    9.86 GB            370 B              0 B               
+rdma5    9.86 GB            444 B              0 B               
+rdma6    9.86 GB            444 B              0 B               
+rdma7    9.87 GB            444 B              0 B               
+eth0     103.50 GB          0 B                0 B               
+
+==============================================================================
+Packet Counters DIFF for: wide-ep-llm-d-prefill-0 (Node: 10.0.74.185)
+==============================================================================
+
+RX Packets:
+NIC      rx_prio0_packets     rx_prio1_packets     rx_prio5_packets     rx_packets_phy    
+-------- -------------------- -------------------- -------------------- ------------------
+rdma0    27266256             421                  0                    27266677          
+rdma1    26700909             421                  0                    26701330          
+rdma2    26730239             421                  0                    26730660          
+rdma3    26832385             421                  0                    26832806          
+rdma4    27068142             421                  0                    27068563          
+rdma5    26700043             421                  0                    26700464          
+rdma6    26891128             421                  0                    26891549          
+rdma7    26830882             421                  0                    26831304          
+eth0     3062139              0                    0                    3062139           
+
+TX Packets:
+NIC      tx_prio0_packets     tx_prio1_packets     tx_prio5_packets     tx_packets_phy    
+-------- -------------------- -------------------- -------------------- ------------------
+rdma0    28980878             6                    0                    28981700          
+rdma1    27743012             6                    0                    27743750          
+rdma2    27491523             6                    0                    27492129          
+rdma3    27566557             6                    0                    27567148          
+rdma4    28474016             6                    0                    28474656          
+rdma5    27602192             6                    0                    27603125          
+rdma6    27662056             6                    0                    27662723          
+rdma7    27508403             6                    0                    27508872          
+eth0     13884646             0                    0                    13884646          
+
+RX Discards:
+NIC      rx_prio0_buf_discard     rx_prio1_buf_discard     rx_prio5_buf_discard    
+-------- ------------------------ ------------------------ ------------------------
+rdma0    0                        0                        0                       
+rdma1    0                        0                        0                       
+rdma2    0                        0                        0                       
+rdma3    0                        0                        0                       
+rdma4    0                        0                        0                       
+rdma5    0                        0                        0                       
+rdma6    0                        0                        0                       
+rdma7    0                        0                        0                       
+eth0     0                        0                        0                       
+
+RX Bytes:
+NIC      rx_prio0_bytes     rx_prio1_bytes     rx_prio5_bytes    
+-------- ------------------ ------------------ ------------------
+rdma0    103.63 GB          31.15 KB           0 B               
+rdma1    103.18 GB          31.15 KB           0 B               
+rdma2    103.36 GB          31.15 KB           0 B               
+rdma3    103.80 GB          31.15 KB           0 B               
+rdma4    104.41 GB          31.15 KB           0 B               
+rdma5    103.17 GB          31.15 KB           0 B               
+rdma6    103.99 GB          31.15 KB           0 B               
+rdma7    103.77 GB          31.15 KB           0 B               
+eth0     453.87 MB          0 B                0 B               
+
+TX Bytes:
+NIC      tx_prio0_bytes     tx_prio1_bytes     tx_prio5_bytes    
+-------- ------------------ ------------------ ------------------
+rdma0    110.88 GB          444 B              0 B               
+rdma1    107.62 GB          444 B              0 B               
+rdma2    106.63 GB          444 B              0 B               
+rdma3    106.94 GB          444 B              0 B               
+rdma4    110.37 GB          444 B              0 B               
+rdma5    107.03 GB          444 B              0 B               
+rdma6    107.30 GB          444 B              0 B               
+rdma7    106.68 GB          444 B              0 B               
+eth0     106.54 GB          0 B                0 B               
+
+==============================================================================
+Packet Counters DIFF for: wide-ep-llm-d-prefill-0-1 (Node: 10.0.65.77)
+==============================================================================
+
+RX Packets:
+NIC      rx_prio0_packets     rx_prio1_packets     rx_prio5_packets     rx_packets_phy    
+-------- -------------------- -------------------- -------------------- ------------------
+rdma0    27265261             421                  0                    27266225          
+rdma1    26698815             421                  0                    26699865          
+rdma2    26728660             421                  0                    26730010          
+rdma3    26832422             421                  0                    26833890          
+rdma4    27053571             421                  0                    27054194          
+rdma5    26697866             421                  0                    26698814          
+rdma6    26879852             421                  0                    26880861          
+rdma7    26827825             421                  0                    26828544          
+eth0     2026053              0                    0                    2026053           
+
+TX Packets:
+NIC      tx_prio0_packets     tx_prio1_packets     tx_prio5_packets     tx_packets_phy    
+-------- -------------------- -------------------- -------------------- ------------------
+rdma0    28899117             6                    0                    28899846          
+rdma1    27769382             6                    0                    27770051          
+rdma2    27480905             6                    0                    27481606          
+rdma3    27662475             6                    0                    27663235          
+rdma4    28385066             6                    0                    28385838          
+rdma5    27557154             6                    0                    27557767          
+rdma6    27374915             6                    0                    27375543          
+rdma7    27435449             6                    0                    27435963          
+eth0     13480705             0                    0                    13480705          
+
+RX Discards:
+NIC      rx_prio0_buf_discard     rx_prio1_buf_discard     rx_prio5_buf_discard    
+-------- ------------------------ ------------------------ ------------------------
+rdma0    0                        0                        0                       
+rdma1    0                        0                        0                       
+rdma2    0                        0                        0                       
+rdma3    0                        0                        0                       
+rdma4    0                        0                        0                       
+rdma5    0                        0                        0                       
+rdma6    0                        0                        0                       
+rdma7    0                        0                        0                       
+eth0     0                        0                        0                       
+
+RX Bytes:
+NIC      rx_prio0_bytes     rx_prio1_bytes     rx_prio5_bytes    
+-------- ------------------ ------------------ ------------------
+rdma0    103.63 GB          31.15 KB           0 B               
+rdma1    103.18 GB          31.15 KB           0 B               
+rdma2    103.37 GB          31.15 KB           0 B               
+rdma3    103.80 GB          31.15 KB           0 B               
+rdma4    104.41 GB          31.15 KB           0 B               
+rdma5    103.17 GB          31.15 KB           0 B               
+rdma6    103.99 GB          31.15 KB           0 B               
+rdma7    103.77 GB          31.15 KB           0 B               
+eth0     376.97 MB          0 B                0 B               
+
+TX Bytes:
+NIC      tx_prio0_bytes     tx_prio1_bytes     tx_prio5_bytes    
+-------- ------------------ ------------------ ------------------
+rdma0    110.53 GB          444 B              0 B               
+rdma1    107.73 GB          444 B              0 B               
+rdma2    106.58 GB          444 B              0 B               
+rdma3    107.34 GB          444 B              0 B               
+rdma4    110.04 GB          444 B              0 B               
+rdma5    106.82 GB          444 B              0 B               
+rdma6    106.12 GB          444 B              0 B               
+rdma7    106.38 GB          444 B              0 B               
+eth0     106.33 GB          0 B                0 B               
+
+==============================================================================
+PFC Counters DIFF for: wide-ep-llm-d-decode-0 (Node: 10.0.78.230) - Priorities 0 and 5
+==============================================================================
+
+Pause Counts:
+NIC      tx_prio0_pause     rx_prio0_pause     tx_prio5_pause     rx_prio5_pause    
+-------- ------------------ ------------------ ------------------ ------------------
+rdma0    260                0                  260                0                 
+rdma1    1609               0                  1609               0                 
+rdma2    1253               0                  1253               0                 
+rdma3    1235               0                  1235               0                 
+rdma4    430                0                  430                0                 
+rdma5    1910               0                  1910               0                 
+rdma6    1627               0                  1627               0                 
+rdma7    1564               0                  1564               0                 
+eth0     0                  0                  0                  0                 
+
+Pause Durations:
+NIC      tx_prio0_pause_duration    rx_prio0_pause_duration    tx_prio5_pause_duration    rx_prio5_pause_duration   
+-------- -------------------------- -------------------------- -------------------------- --------------------------
+rdma0    7537                       0                          7537                       0                         
+rdma1    40569                      0                          40569                      0                         
+rdma2    30826                      0                          30826                      0                         
+rdma3    31106                      0                          31106                      0                         
+rdma4    7265                       0                          7265                       0                         
+rdma5    48340                      0                          48340                      0                         
+rdma6    40892                      0                          40892                      0                         
+rdma7    39583                      0                          39583                      0                         
+eth0     0                          0                          0                          0                         
+
+==============================================================================
+PFC Counters DIFF for: wide-ep-llm-d-decode-0-1 (Node: 10.0.76.69) - Priorities 0 and 5
+==============================================================================
+
+Pause Counts:
+NIC      tx_prio0_pause     rx_prio0_pause     tx_prio5_pause     rx_prio5_pause    
+-------- ------------------ ------------------ ------------------ ------------------
+rdma0    1422               0                  1422               0                 
+rdma1    1485               0                  1485               0                 
+rdma2    2141               0                  2141               0                 
+rdma3    2145               0                  2145               0                 
+rdma4    316                0                  316                0                 
+rdma5    1447               0                  1447               0                 
+rdma6    1395               0                  1395               0                 
+rdma7    971                0                  971                0                 
+eth0     0                  0                  0                  0                 
+
+Pause Durations:
+NIC      tx_prio0_pause_duration    rx_prio0_pause_duration    tx_prio5_pause_duration    rx_prio5_pause_duration   
+-------- -------------------------- -------------------------- -------------------------- --------------------------
+rdma0    39171                      0                          39171                      0                         
+rdma1    34559                      0                          34559                      0                         
+rdma2    54040                      0                          54040                      0                         
+rdma3    48786                      0                          48786                      0                         
+rdma4    8565                       0                          8565                       0                         
+rdma5    36319                      0                          36319                      0                         
+rdma6    35087                      0                          35087                      0                         
+rdma7    24174                      0                          24174                      0                         
+eth0     0                          0                          0                          0                         
+
+==============================================================================
+PFC Counters DIFF for: wide-ep-llm-d-prefill-0 (Node: 10.0.74.185) - Priorities 0 and 5
+==============================================================================
+
+Pause Counts:
+NIC      tx_prio0_pause     rx_prio0_pause     tx_prio5_pause     rx_prio5_pause    
+-------- ------------------ ------------------ ------------------ ------------------
+rdma0    816                0                  816                0                 
+rdma1    732                0                  732                0                 
+rdma2    599                0                  599                0                 
+rdma3    585                0                  585                0                 
+rdma4    634                0                  634                0                 
+rdma5    926                0                  926                0                 
+rdma6    661                0                  661                0                 
+rdma7    463                0                  463                0                 
+eth0     0                  0                  0                  0                 
+
+Pause Durations:
+NIC      tx_prio0_pause_duration    rx_prio0_pause_duration    tx_prio5_pause_duration    rx_prio5_pause_duration   
+-------- -------------------------- -------------------------- -------------------------- --------------------------
+rdma0    25444                      0                          25444                      0                         
+rdma1    22143                      0                          22143                      0                         
+rdma2    17759                      0                          17759                      0                         
+rdma3    17647                      0                          17647                      0                         
+rdma4    19529                      0                          19529                      0                         
+rdma5    30552                      0                          30552                      0                         
+rdma6    20278                      0                          20278                      0                         
+rdma7    12128                      0                          12128                      0                         
+eth0     0                          0                          0                          0                         
+
+==============================================================================
+PFC Counters DIFF for: wide-ep-llm-d-prefill-0-1 (Node: 10.0.65.77) - Priorities 0 and 5
+==============================================================================
+
+Pause Counts:
+NIC      tx_prio0_pause     rx_prio0_pause     tx_prio5_pause     rx_prio5_pause    
+-------- ------------------ ------------------ ------------------ ------------------
+rdma0    723                543                723                0                 
+rdma1    663                629                663                0                 
+rdma2    695                928                695                0                 
+rdma3    754                1047               754                0                 
+rdma4    766                202                766                0                 
+rdma5    607                526                607                0                 
+rdma6    622                588                622                0                 
+rdma7    507                298                507                0                 
+eth0     0                  0                  0                  0                 
+
+Pause Durations:
+NIC      tx_prio0_pause_duration    rx_prio0_pause_duration    tx_prio5_pause_duration    rx_prio5_pause_duration   
+-------- -------------------------- -------------------------- -------------------------- --------------------------
+rdma0    20205                      12793                      20205                      0                         
+rdma1    18565                      14555                      18565                      0                         
+rdma2    20837                      22279                      20837                      0                         
+rdma3    21897                      25427                      21897                      0                         
+rdma4    23497                      3898                       23497                      0                         
+rdma5    17723                      12527                      17723                      0                         
+rdma6    17942                      14122                      17942                      0                         
+rdma7    16509                      6836                       16509                      0                         
+eth0     0                          0                          0                          0                         
+
+==============================================================================
+ECN Counters DIFF for: wide-ep-llm-d-decode-0 (Node: 10.0.78.230)
+==============================================================================
+NIC      np_ecn_marked_roce_packets   np_cnp_sent        rp_cnp_handled    
+-------- ---------------------------- ------------------ ------------------
+rdma0    0                            0                  0                 
+rdma1    0                            0                  0                 
+rdma2    0                            0                  0                 
+rdma3    0                            0                  0                 
+rdma4    0                            0                  0                 
+rdma5    0                            0                  0                 
+rdma6    0                            0                  0                 
+rdma7    0                            0                  0                 
+eth0     0                            0                  0                 
+
+==============================================================================
+ECN Counters DIFF for: wide-ep-llm-d-decode-0-1 (Node: 10.0.76.69)
+==============================================================================
+NIC      np_ecn_marked_roce_packets   np_cnp_sent        rp_cnp_handled    
+-------- ---------------------------- ------------------ ------------------
+rdma0    0                            0                  0                 
+rdma1    0                            0                  0                 
+rdma2    0                            0                  0                 
+rdma3    0                            0                  0                 
+rdma4    0                            0                  0                 
+rdma5    0                            0                  0                 
+rdma6    0                            0                  0                 
+rdma7    0                            0                  0                 
+eth0     0                            0                  0                 
+
+==============================================================================
+ECN Counters DIFF for: wide-ep-llm-d-prefill-0 (Node: 10.0.74.185)
+==============================================================================
+NIC      np_ecn_marked_roce_packets   np_cnp_sent        rp_cnp_handled    
+-------- ---------------------------- ------------------ ------------------
+rdma0    0                            0                  0                 
+rdma1    0                            0                  0                 
+rdma2    0                            1                  0                 
+rdma3    0                            0                  0                 
+rdma4    0                            0                  0                 
+rdma5    0                            1                  0                 
+rdma6    0                            0                  0                 
+rdma7    0                            0                  1                 
+eth0     0                            0                  0                 
+
+==============================================================================
+ECN Counters DIFF for: wide-ep-llm-d-prefill-0-1 (Node: 10.0.65.77)
+==============================================================================
+NIC      np_ecn_marked_roce_packets   np_cnp_sent        rp_cnp_handled    
+-------- ---------------------------- ------------------ ------------------
+rdma0    0                            0                  0                 
+rdma1    0                            0                  0                 
+rdma2    0                            0                  1                 
+rdma3    0                            0                  0                 
+rdma4    0                            0                  0                 
+rdma5    0                            0                  1                 
+rdma6    0                            0                  0                 
+rdma7    0                            1                  0                 
+eth0     0                            0                  0                 
+
+==============================================================================
+SUMMARY: Packet Counters - BACKEND NICs (rdma0-rdma7)
+==============================================================================
+
+RX Packets:
+POD                         rx_prio0_packets     rx_prio1_packets     rx_prio5_packets     rx_packets_phy    
+--------------------------- -------------------- -------------------- -------------------- ------------------
+wide-ep-llm-d-decode-0      41946857             3369                 0                    41950226          
+wide-ep-llm-d-decode-0-1    42422994             3369                 0                    42426363          
+wide-ep-llm-d-prefill-0     215019984            3368                 0                    215023353         
+wide-ep-llm-d-prefill-0-1   214984272            3368                 0                    214992403         
+--------------------------- -------------------- -------------------- -------------------- ------------------
+TOTAL                       514374107            13474                0                    514392345         
+
+TX Packets:
+POD                         tx_prio0_packets     tx_prio1_packets     tx_prio5_packets     tx_packets_phy    
+--------------------------- -------------------- -------------------- -------------------- ------------------
+wide-ep-llm-d-decode-0      34213315             47                   0                    34223250          
+wide-ep-llm-d-decode-0-1    34220214             47                   0                    34231583          
+wide-ep-llm-d-prefill-0     223028637            48                   0                    223034103         
+wide-ep-llm-d-prefill-0-1   222564463            48                   0                    222569849         
+--------------------------- -------------------- -------------------- -------------------- ------------------
+TOTAL                       514026629            190                  0                    514058785         
+
+RX Discards:
+POD                         rx_prio0_buf_discard     rx_prio1_buf_discard     rx_prio5_buf_discard    
+--------------------------- ------------------------ ------------------------ ------------------------
+wide-ep-llm-d-decode-0      0                        0                        0                       
+wide-ep-llm-d-decode-0-1    0                        0                        0                       
+wide-ep-llm-d-prefill-0     0                        0                        0                       
+wide-ep-llm-d-prefill-0-1   0                        0                        0                       
+--------------------------- ------------------------ ------------------------ ------------------------
+TOTAL                       0                        0                        0                       
+
+==============================================================================
+SUMMARY: Packet Counters - FRONTEND NIC (eth0)
+==============================================================================
+
+RX Packets:
+POD                         rx_prio0_packets     rx_prio1_packets     rx_prio5_packets     rx_packets_phy    
+--------------------------- -------------------- -------------------- -------------------- ------------------
+wide-ep-llm-d-decode-0      4616696              0                    0                    4616696           
+wide-ep-llm-d-decode-0-1    5562963              0                    0                    5562963           
+wide-ep-llm-d-prefill-0     3062139              0                    0                    3062139           
+wide-ep-llm-d-prefill-0-1   2026053              0                    0                    2026053           
+--------------------------- -------------------- -------------------- -------------------- ------------------
+TOTAL                       15267851             0                    0                    15267851          
+
+TX Packets:
+POD                         tx_prio0_packets     tx_prio1_packets     tx_prio5_packets     tx_packets_phy    
+--------------------------- -------------------- -------------------- -------------------- ------------------
+wide-ep-llm-d-decode-0      16012317             0                    0                    16012317          
+wide-ep-llm-d-decode-0-1    17079780             0                    0                    17079780          
+wide-ep-llm-d-prefill-0     13884646             0                    0                    13884646          
+wide-ep-llm-d-prefill-0-1   13480705             0                    0                    13480705          
+--------------------------- -------------------- -------------------- -------------------- ------------------
+TOTAL                       60457448             0                    0                    60457448          
+
+RX Discards:
+POD                         rx_prio0_buf_discard     rx_prio1_buf_discard     rx_prio5_buf_discard    
+--------------------------- ------------------------ ------------------------ ------------------------
+wide-ep-llm-d-decode-0      0                        0                        0                       
+wide-ep-llm-d-decode-0-1    0                        0                        0                       
+wide-ep-llm-d-prefill-0     0                        0                        0                       
+wide-ep-llm-d-prefill-0-1   0                        0                        0                       
+--------------------------- ------------------------ ------------------------ ------------------------
+TOTAL                       0                        0                        0                       
+
+==============================================================================
+SUMMARY: Byte Counters - BACKEND NICs (rdma0-rdma7)
+==============================================================================
+
+RX Bytes:
+POD                         rx_prio0_bytes     rx_prio1_bytes     rx_prio5_bytes    
+--------------------------- ------------------ ------------------ ------------------
+wide-ep-llm-d-decode-0      111.26 GB          249.30 KB          0 B               
+wide-ep-llm-d-decode-0-1    113.11 GB          249.30 KB          0 B               
+wide-ep-llm-d-prefill-0     829.36 GB          249.23 KB          0 B               
+wide-ep-llm-d-prefill-0-1   829.36 GB          249.23 KB          0 B               
+--------------------------- ------------------ ------------------ ------------------
+TOTAL                       1.88 TB            997.07 KB          0 B               
+
+TX Bytes:
+POD                         tx_prio0_bytes     tx_prio1_bytes     tx_prio5_bytes    
+--------------------------- ------------------ ------------------ ------------------
+wide-ep-llm-d-decode-0      78.93 GB           3.47 KB            0 B               
+wide-ep-llm-d-decode-0-1    79.05 GB           3.47 KB            0 B               
+wide-ep-llm-d-prefill-0     863.49 GB          3.55 KB            0 B               
+wide-ep-llm-d-prefill-0-1   861.58 GB          3.55 KB            0 B               
+--------------------------- ------------------ ------------------ ------------------
+TOTAL                       1.88 TB            14.06 KB           0 B               
+
+==============================================================================
+SUMMARY: Byte Counters - FRONTEND NIC (eth0)
+==============================================================================
+
+RX Bytes:
+POD                         rx_prio0_bytes     rx_prio1_bytes     rx_prio5_bytes    
+--------------------------- ------------------ ------------------ ------------------
+wide-ep-llm-d-decode-0      654.32 MB          0 B                0 B               
+wide-ep-llm-d-decode-0-1    731.72 MB          0 B                0 B               
+wide-ep-llm-d-prefill-0     453.87 MB          0 B                0 B               
+wide-ep-llm-d-prefill-0-1   376.97 MB          0 B                0 B               
+--------------------------- ------------------ ------------------ ------------------
+TOTAL                       2.21 GB            0 B                0 B               
+
+TX Bytes:
+POD                         tx_prio0_bytes     tx_prio1_bytes     tx_prio5_bytes    
+--------------------------- ------------------ ------------------ ------------------
+wide-ep-llm-d-decode-0      101.88 GB          0 B                0 B               
+wide-ep-llm-d-decode-0-1    103.50 GB          0 B                0 B               
+wide-ep-llm-d-prefill-0     106.54 GB          0 B                0 B               
+wide-ep-llm-d-prefill-0-1   106.33 GB          0 B                0 B               
+--------------------------- ------------------ ------------------ ------------------
+TOTAL                       418.27 GB          0 B                0 B               
+
+==============================================================================
+SUMMARY: PFC Counters - BACKEND NICs (rdma0-rdma7) - Priorities 0 and 5
+==============================================================================
+
+Pause Counts:
+POD                         tx_prio0_pause     rx_prio0_pause     tx_prio5_pause     rx_prio5_pause    
+--------------------------- ------------------ ------------------ ------------------ ------------------
+wide-ep-llm-d-decode-0      9888               0                  9888               0                 
+wide-ep-llm-d-decode-0-1    11322              0                  11322              0                 
+wide-ep-llm-d-prefill-0     5416               0                  5416               0                 
+wide-ep-llm-d-prefill-0-1   5337               4761               5337               0                 
+--------------------------- ------------------ ------------------ ------------------ ------------------
+TOTAL                       31963              4761               31963              0                 
+
+Pause Durations:
+POD                         tx_prio0_pause_duration    rx_prio0_pause_duration    tx_prio5_pause_duration    rx_prio5_pause_duration   
+--------------------------- -------------------------- -------------------------- -------------------------- --------------------------
+wide-ep-llm-d-decode-0      246118                     0                          246118                     0                         
+wide-ep-llm-d-decode-0-1    280701                     0                          280701                     0                         
+wide-ep-llm-d-prefill-0     165480                     0                          165480                     0                         
+wide-ep-llm-d-prefill-0-1   157175                     112437                     157175                     0                         
+--------------------------- -------------------------- -------------------------- -------------------------- --------------------------
+TOTAL                       849474                     112437                     849474                     0                         
+
+==============================================================================
+SUMMARY: PFC Counters - FRONTEND NIC (eth0) - Priorities 0 and 5
+==============================================================================
+
+Pause Counts:
+POD                         tx_prio0_pause     rx_prio0_pause     tx_prio5_pause     rx_prio5_pause    
+--------------------------- ------------------ ------------------ ------------------ ------------------
+wide-ep-llm-d-decode-0      0                  0                  0                  0                 
+wide-ep-llm-d-decode-0-1    0                  0                  0                  0                 
+wide-ep-llm-d-prefill-0     0                  0                  0                  0                 
+wide-ep-llm-d-prefill-0-1   0                  0                  0                  0                 
+--------------------------- ------------------ ------------------ ------------------ ------------------
+TOTAL                       0                  0                  0                  0                 
+
+Pause Durations:
+POD                         tx_prio0_pause_duration    rx_prio0_pause_duration    tx_prio5_pause_duration    rx_prio5_pause_duration   
+--------------------------- -------------------------- -------------------------- -------------------------- --------------------------
+wide-ep-llm-d-decode-0      0                          0                          0                          0                         
+wide-ep-llm-d-decode-0-1    0                          0                          0                          0                         
+wide-ep-llm-d-prefill-0     0                          0                          0                          0                         
+wide-ep-llm-d-prefill-0-1   0                          0                          0                          0                         
+--------------------------- -------------------------- -------------------------- -------------------------- --------------------------
+TOTAL                       0                          0                          0                          0                         
+
+==============================================================================
+SUMMARY: ECN Counters - BACKEND NICs (rdma0-rdma7)
+==============================================================================
+POD                         np_ecn_marked_roce_packets   np_cnp_sent        rp_cnp_handled    
+--------------------------- ---------------------------- ------------------ ------------------
+wide-ep-llm-d-decode-0      0                            0                  0                 
+wide-ep-llm-d-decode-0-1    0                            0                  0                 
+wide-ep-llm-d-prefill-0     0                            2                  1                 
+wide-ep-llm-d-prefill-0-1   0                            1                  2                 
+--------------------------- ---------------------------- ------------------ ------------------
+TOTAL                       0                            3                  3                 
+
+==============================================================================
+SUMMARY: ECN Counters - FRONTEND NIC (eth0)
+==============================================================================
+POD                         np_ecn_marked_roce_packets   np_cnp_sent        rp_cnp_handled    
+--------------------------- ---------------------------- ------------------ ------------------
+wide-ep-llm-d-decode-0      0                            0                  0                 
+wide-ep-llm-d-decode-0-1    0                            0                  0                 
+wide-ep-llm-d-prefill-0     0                            0                  0                 
+wide-ep-llm-d-prefill-0-1   0                            0                  0                 
+--------------------------- ---------------------------- ------------------ ------------------
+TOTAL                       0                            0                  0                 

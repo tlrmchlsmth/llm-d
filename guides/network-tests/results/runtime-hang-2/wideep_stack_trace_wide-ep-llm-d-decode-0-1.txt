@@ -1,0 +1,1159 @@
+Defaulted container "vllm" out of: vllm, routing-proxy (init)
+=== pip install pystack ===
+
+=== ps aux (EngineCore processes) ===
+root         440  310  2.3 528345552 48696868 ?  Rl   22:34 104:20 VLLM::EngineCore_DP8
+root         441  398  2.3 527736244 48636920 ?  Rl   22:34 134:01 VLLM::EngineCore_DP9
+root         442  400  2.3 528069584 48708372 ?  Rl   22:34 134:50 VLLM::EngineCore_DP10
+root         443  398  2.3 527996384 48705648 ?  Rl   22:34 134:03 VLLM::EngineCore_DP11
+root         444  397  2.2 527927896 48600900 ?  Rl   22:34 133:35 VLLM::EngineCore_DP12
+root         445  400  2.3 527933072 48699176 ?  Rl   22:34 134:40 VLLM::EngineCore_DP13
+root         446  398  2.3 528000348 48640188 ?  Rl   22:34 134:09 VLLM::EngineCore_DP14
+root         447  400  2.3 527841388 48632880 ?  Rl   22:34 134:51 VLLM::EngineCore_DP15
+root       25871  0.0  0.0   4364  3400 ?        Ss   23:08   0:00 bash -c          set -e         echo "=== pip install pystack ==="         pip install pystack -q 2>/dev/null || pip install pystack         echo ""         echo "=== ps aux (EngineCore processes) ==="         ps aux | grep -E "EngineCore_DP" || true         echo ""         pids=$(ps aux | grep -E "EngineCore_DP[0-9]" | grep -v grep | awk "{print \$2}")         if [ -z "$pids" ]; then             echo "No EngineCore PIDs found."             exit 0         fi         for pid in $pids; do             echo "=== pystack remote $pid ==="             pystack remote "$pid" 2>&1 || true             echo ""         done     
+root       25882  0.0  0.0   3472  1624 ?        S    23:08   0:00 grep -E EngineCore_DP
+
+=== pystack remote 440 ===
+Traceback for thread 25627 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1012, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/lib/python3.12/concurrent/futures/thread.py", line 93, in _worker
+        work_item.run()
+    (Python) File "/usr/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+        result = self.fn(*self.args, **self.kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_model_runner.py", line 239, in get_output
+        self.async_copy_ready_event.synchronize()
+
+Traceback for thread 25594 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1012, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/lib/python3.12/concurrent/futures/thread.py", line 90, in _worker
+        work_item = work_queue.get(block=True)
+
+Traceback for thread 25568 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1012, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 1186, in process_output_sockets
+        output = self.output_queue.get()
+    (Python) File "/usr/lib/python3.12/queue.py", line 171, in get
+        self.not_empty.wait()
+    (Python) File "/usr/lib/python3.12/threading.py", line 355, in wait
+        waiter.acquire()
+
+Traceback for thread 25567 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1012, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 1121, in process_input_sockets
+        for input_socket, _ in poller.poll():
+    (Python) File "/usr/local/lib/python3.12/dist-packages/zmq/sugar/poll.py", line 106, in poll
+        return zmq_poll(self.sockets, timeout=timeout)
+
+Traceback for thread 25525 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1012, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/kv_transfer/kv_connector/v1/nixl_connector.py", line 617, in _nixl_handshake_listener
+        identity, _, msg = sock.recv_multipart()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/zmq/sugar/socket.py", line 799, in recv_multipart
+        parts = [self.recv(flags, copy=copy, track=track)]
+
+Traceback for thread 13317 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/tqdm/_monitor.py", line 60, in run
+        self.was_killed.wait(self.sleep_interval)
+    (Python) File "/usr/lib/python3.12/threading.py", line 655, in wait
+        signaled = self._cond.wait(timeout)
+    (Python) File "/usr/lib/python3.12/threading.py", line 359, in wait
+        gotit = waiter.acquire(True, timeout)
+
+Traceback for thread 3578 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/tqdm/_monitor.py", line 60, in run
+        self.was_killed.wait(self.sleep_interval)
+    (Python) File "/usr/lib/python3.12/threading.py", line 655, in wait
+        signaled = self._cond.wait(timeout)
+    (Python) File "/usr/lib/python3.12/threading.py", line 359, in wait
+        gotit = waiter.acquire(True, timeout)
+
+Traceback for thread 3496 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1012, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/usage/usage_lib.py", line 174, in _report_usage_worker
+        self._report_continuous_usage()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/usage/usage_lib.py", line 251, in _report_continuous_usage
+        time.sleep(600)
+
+Traceback for thread 440 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "<string>", line 1, in <module>
+    (Python) File "/usr/lib/python3.12/multiprocessing/spawn.py", line 122, in spawn_main
+        exitcode = _main(fd, parent_sentinel)
+    (Python) File "/usr/lib/python3.12/multiprocessing/spawn.py", line 135, in _main
+        return self._bootstrap(parent_sentinel)
+    (Python) File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+        self.run()
+    (Python) File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 928, in run_engine_core
+        engine_core.run_busy_loop()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 1357, in run_busy_loop
+        executed = self._process_engine_step()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 988, in _process_engine_step
+        outputs, model_executed = self.step_fn()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 438, in step_with_batch_queue
+        exec_future = self.model_executor.execute_model(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/executor/uniproc_executor.py", line 100, in execute_model
+        return self.collective_rpc(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/executor/uniproc_executor.py", line 79, in collective_rpc
+        result = run_method(self.driver_worker, method, args, kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/serial_utils.py", line 461, in run_method
+        return func(*args, **kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/worker_base.py", line 365, in execute_model
+        return self.worker.execute_model(scheduler_output)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+        return func(*args, **kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_worker.py", line 630, in execute_model
+        output = self.model_runner.execute_model(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+        return func(*args, **kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_model_runner.py", line 3435, in execute_model
+        self._build_attention_metadata(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_model_runner.py", line 1842, in _build_attention_metadata
+        _build_attn_group_metadata(kv_cache_gid, attn_gid, cm)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_model_runner.py", line 1794, in _build_attn_group_metadata
+        attn_metadata_i = builder.build(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/model_executor/layers/attention/mla_attention.py", line 1082, in build
+        decode_metadata = self._build_decode(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/attention/backends/mla/rocm_aiter_mla.py", line 126, in _build_decode
+        paged_kv_indices = block_table_tensor[mask]
+
+
+=== pystack remote 441 ===
+Traceback for thread 25633 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1012, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/lib/python3.12/concurrent/futures/thread.py", line 93, in _worker
+        work_item.run()
+    (Python) File "/usr/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+        result = self.fn(*self.args, **self.kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_model_runner.py", line 239, in get_output
+        self.async_copy_ready_event.synchronize()
+
+Traceback for thread 25593 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1012, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/lib/python3.12/concurrent/futures/thread.py", line 90, in _worker
+        work_item = work_queue.get(block=True)
+
+Traceback for thread 25574 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1012, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 1186, in process_output_sockets
+        output = self.output_queue.get()
+    (Python) File "/usr/lib/python3.12/queue.py", line 171, in get
+        self.not_empty.wait()
+    (Python) File "/usr/lib/python3.12/threading.py", line 355, in wait
+        waiter.acquire()
+
+Traceback for thread 25573 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1012, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 1121, in process_input_sockets
+        for input_socket, _ in poller.poll():
+    (Python) File "/usr/local/lib/python3.12/dist-packages/zmq/sugar/poll.py", line 106, in poll
+        return zmq_poll(self.sockets, timeout=timeout)
+
+Traceback for thread 25528 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1012, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/kv_transfer/kv_connector/v1/nixl_connector.py", line 617, in _nixl_handshake_listener
+        identity, _, msg = sock.recv_multipart()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/zmq/sugar/socket.py", line 799, in recv_multipart
+        parts = [self.recv(flags, copy=copy, track=track)]
+
+Traceback for thread 13323 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/tqdm/_monitor.py", line 60, in run
+        self.was_killed.wait(self.sleep_interval)
+    (Python) File "/usr/lib/python3.12/threading.py", line 655, in wait
+        signaled = self._cond.wait(timeout)
+    (Python) File "/usr/lib/python3.12/threading.py", line 359, in wait
+        gotit = waiter.acquire(True, timeout)
+
+Traceback for thread 3582 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/tqdm/_monitor.py", line 60, in run
+        self.was_killed.wait(self.sleep_interval)
+    (Python) File "/usr/lib/python3.12/threading.py", line 655, in wait
+        signaled = self._cond.wait(timeout)
+    (Python) File "/usr/lib/python3.12/threading.py", line 359, in wait
+        gotit = waiter.acquire(True, timeout)
+
+Traceback for thread 3501 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1012, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/usage/usage_lib.py", line 174, in _report_usage_worker
+        self._report_continuous_usage()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/usage/usage_lib.py", line 251, in _report_continuous_usage
+        time.sleep(600)
+
+Traceback for thread 441 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "<string>", line 1, in <module>
+    (Python) File "/usr/lib/python3.12/multiprocessing/spawn.py", line 122, in spawn_main
+        exitcode = _main(fd, parent_sentinel)
+    (Python) File "/usr/lib/python3.12/multiprocessing/spawn.py", line 135, in _main
+        return self._bootstrap(parent_sentinel)
+    (Python) File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+        self.run()
+    (Python) File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 928, in run_engine_core
+        engine_core.run_busy_loop()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 1357, in run_busy_loop
+        executed = self._process_engine_step()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 988, in _process_engine_step
+        outputs, model_executed = self.step_fn()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 438, in step_with_batch_queue
+        exec_future = self.model_executor.execute_model(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/executor/uniproc_executor.py", line 100, in execute_model
+        return self.collective_rpc(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/executor/uniproc_executor.py", line 79, in collective_rpc
+        result = run_method(self.driver_worker, method, args, kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/serial_utils.py", line 461, in run_method
+        return func(*args, **kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/worker_base.py", line 365, in execute_model
+        return self.worker.execute_model(scheduler_output)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+        return func(*args, **kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_worker.py", line 630, in execute_model
+        output = self.model_runner.execute_model(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+        return func(*args, **kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_model_runner.py", line 3435, in execute_model
+        self._build_attention_metadata(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_model_runner.py", line 1842, in _build_attention_metadata
+        _build_attn_group_metadata(kv_cache_gid, attn_gid, cm)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_model_runner.py", line 1794, in _build_attn_group_metadata
+        attn_metadata_i = builder.build(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/model_executor/layers/attention/mla_attention.py", line 1082, in build
+        decode_metadata = self._build_decode(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/attention/backends/mla/rocm_aiter_mla.py", line 126, in _build_decode
+        paged_kv_indices = block_table_tensor[mask]
+
+
+=== pystack remote 442 ===
+Traceback for thread 25629 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1012, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/lib/python3.12/concurrent/futures/thread.py", line 93, in _worker
+        work_item.run()
+    (Python) File "/usr/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+        result = self.fn(*self.args, **self.kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_model_runner.py", line 239, in get_output
+        self.async_copy_ready_event.synchronize()
+
+Traceback for thread 25592 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1012, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/lib/python3.12/concurrent/futures/thread.py", line 90, in _worker
+        work_item = work_queue.get(block=True)
+
+Traceback for thread 25550 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1012, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 1186, in process_output_sockets
+        output = self.output_queue.get()
+    (Python) File "/usr/lib/python3.12/queue.py", line 171, in get
+        self.not_empty.wait()
+    (Python) File "/usr/lib/python3.12/threading.py", line 355, in wait
+        waiter.acquire()
+
+Traceback for thread 25549 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1012, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 1121, in process_input_sockets
+        for input_socket, _ in poller.poll():
+    (Python) File "/usr/local/lib/python3.12/dist-packages/zmq/sugar/poll.py", line 106, in poll
+        return zmq_poll(self.sockets, timeout=timeout)
+
+Traceback for thread 25522 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1012, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/kv_transfer/kv_connector/v1/nixl_connector.py", line 617, in _nixl_handshake_listener
+        identity, _, msg = sock.recv_multipart()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/zmq/sugar/socket.py", line 799, in recv_multipart
+        parts = [self.recv(flags, copy=copy, track=track)]
+
+Traceback for thread 13321 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/tqdm/_monitor.py", line 60, in run
+        self.was_killed.wait(self.sleep_interval)
+    (Python) File "/usr/lib/python3.12/threading.py", line 655, in wait
+        signaled = self._cond.wait(timeout)
+    (Python) File "/usr/lib/python3.12/threading.py", line 359, in wait
+        gotit = waiter.acquire(True, timeout)
+
+Traceback for thread 3574 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/tqdm/_monitor.py", line 60, in run
+        self.was_killed.wait(self.sleep_interval)
+    (Python) File "/usr/lib/python3.12/threading.py", line 655, in wait
+        signaled = self._cond.wait(timeout)
+    (Python) File "/usr/lib/python3.12/threading.py", line 359, in wait
+        gotit = waiter.acquire(True, timeout)
+
+Traceback for thread 3498 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1012, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/usage/usage_lib.py", line 174, in _report_usage_worker
+        self._report_continuous_usage()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/usage/usage_lib.py", line 251, in _report_continuous_usage
+        time.sleep(600)
+
+Traceback for thread 442 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "<string>", line 1, in <module>
+    (Python) File "/usr/lib/python3.12/multiprocessing/spawn.py", line 122, in spawn_main
+        exitcode = _main(fd, parent_sentinel)
+    (Python) File "/usr/lib/python3.12/multiprocessing/spawn.py", line 135, in _main
+        return self._bootstrap(parent_sentinel)
+    (Python) File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+        self.run()
+    (Python) File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 928, in run_engine_core
+        engine_core.run_busy_loop()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 1357, in run_busy_loop
+        executed = self._process_engine_step()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 988, in _process_engine_step
+        outputs, model_executed = self.step_fn()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 438, in step_with_batch_queue
+        exec_future = self.model_executor.execute_model(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/executor/uniproc_executor.py", line 100, in execute_model
+        return self.collective_rpc(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/executor/uniproc_executor.py", line 79, in collective_rpc
+        result = run_method(self.driver_worker, method, args, kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/serial_utils.py", line 461, in run_method
+        return func(*args, **kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/worker_base.py", line 365, in execute_model
+        return self.worker.execute_model(scheduler_output)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+        return func(*args, **kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_worker.py", line 630, in execute_model
+        output = self.model_runner.execute_model(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+        return func(*args, **kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_model_runner.py", line 3435, in execute_model
+        self._build_attention_metadata(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_model_runner.py", line 1842, in _build_attention_metadata
+        _build_attn_group_metadata(kv_cache_gid, attn_gid, cm)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_model_runner.py", line 1794, in _build_attn_group_metadata
+        attn_metadata_i = builder.build(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/model_executor/layers/attention/mla_attention.py", line 1082, in build
+        decode_metadata = self._build_decode(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/attention/backends/mla/rocm_aiter_mla.py", line 126, in _build_decode
+        paged_kv_indices = block_table_tensor[mask]
+
+
+=== pystack remote 443 ===
+Traceback for thread 25634 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1012, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/lib/python3.12/concurrent/futures/thread.py", line 93, in _worker
+        work_item.run()
+    (Python) File "/usr/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+        result = self.fn(*self.args, **self.kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_model_runner.py", line 239, in get_output
+        self.async_copy_ready_event.synchronize()
+
+Traceback for thread 25589 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1012, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/lib/python3.12/concurrent/futures/thread.py", line 90, in _worker
+        work_item = work_queue.get(block=True)
+
+Traceback for thread 25538 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1012, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 1186, in process_output_sockets
+        output = self.output_queue.get()
+    (Python) File "/usr/lib/python3.12/queue.py", line 171, in get
+        self.not_empty.wait()
+    (Python) File "/usr/lib/python3.12/threading.py", line 355, in wait
+        waiter.acquire()
+
+Traceback for thread 25537 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1012, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 1121, in process_input_sockets
+        for input_socket, _ in poller.poll():
+    (Python) File "/usr/local/lib/python3.12/dist-packages/zmq/sugar/poll.py", line 106, in poll
+        return zmq_poll(self.sockets, timeout=timeout)
+
+Traceback for thread 25510 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1012, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/kv_transfer/kv_connector/v1/nixl_connector.py", line 617, in _nixl_handshake_listener
+        identity, _, msg = sock.recv_multipart()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/zmq/sugar/socket.py", line 799, in recv_multipart
+        parts = [self.recv(flags, copy=copy, track=track)]
+
+Traceback for thread 13316 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/tqdm/_monitor.py", line 60, in run
+        self.was_killed.wait(self.sleep_interval)
+    (Python) File "/usr/lib/python3.12/threading.py", line 655, in wait
+        signaled = self._cond.wait(timeout)
+    (Python) File "/usr/lib/python3.12/threading.py", line 359, in wait
+        gotit = waiter.acquire(True, timeout)
+
+Traceback for thread 3575 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/tqdm/_monitor.py", line 60, in run
+        self.was_killed.wait(self.sleep_interval)
+    (Python) File "/usr/lib/python3.12/threading.py", line 655, in wait
+        signaled = self._cond.wait(timeout)
+    (Python) File "/usr/lib/python3.12/threading.py", line 359, in wait
+        gotit = waiter.acquire(True, timeout)
+
+Traceback for thread 3499 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1012, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/usage/usage_lib.py", line 174, in _report_usage_worker
+        self._report_continuous_usage()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/usage/usage_lib.py", line 251, in _report_continuous_usage
+        time.sleep(600)
+
+Traceback for thread 443 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "<string>", line 1, in <module>
+    (Python) File "/usr/lib/python3.12/multiprocessing/spawn.py", line 122, in spawn_main
+        exitcode = _main(fd, parent_sentinel)
+    (Python) File "/usr/lib/python3.12/multiprocessing/spawn.py", line 135, in _main
+        return self._bootstrap(parent_sentinel)
+    (Python) File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+        self.run()
+    (Python) File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 928, in run_engine_core
+        engine_core.run_busy_loop()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 1357, in run_busy_loop
+        executed = self._process_engine_step()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 988, in _process_engine_step
+        outputs, model_executed = self.step_fn()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 438, in step_with_batch_queue
+        exec_future = self.model_executor.execute_model(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/executor/uniproc_executor.py", line 100, in execute_model
+        return self.collective_rpc(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/executor/uniproc_executor.py", line 79, in collective_rpc
+        result = run_method(self.driver_worker, method, args, kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/serial_utils.py", line 461, in run_method
+        return func(*args, **kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/worker_base.py", line 365, in execute_model
+        return self.worker.execute_model(scheduler_output)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+        return func(*args, **kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_worker.py", line 630, in execute_model
+        output = self.model_runner.execute_model(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+        return func(*args, **kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_model_runner.py", line 3435, in execute_model
+        self._build_attention_metadata(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_model_runner.py", line 1842, in _build_attention_metadata
+        _build_attn_group_metadata(kv_cache_gid, attn_gid, cm)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_model_runner.py", line 1794, in _build_attn_group_metadata
+        attn_metadata_i = builder.build(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/model_executor/layers/attention/mla_attention.py", line 1082, in build
+        decode_metadata = self._build_decode(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/attention/backends/mla/rocm_aiter_mla.py", line 126, in _build_decode
+        paged_kv_indices = block_table_tensor[mask]
+
+
+=== pystack remote 444 ===
+Traceback for thread 25632 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1012, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/lib/python3.12/concurrent/futures/thread.py", line 93, in _worker
+        work_item.run()
+    (Python) File "/usr/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+        result = self.fn(*self.args, **self.kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_model_runner.py", line 239, in get_output
+        self.async_copy_ready_event.synchronize()
+
+Traceback for thread 25591 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1012, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/lib/python3.12/concurrent/futures/thread.py", line 90, in _worker
+        work_item = work_queue.get(block=True)
+
+Traceback for thread 25544 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1012, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 1186, in process_output_sockets
+        output = self.output_queue.get()
+    (Python) File "/usr/lib/python3.12/queue.py", line 171, in get
+        self.not_empty.wait()
+    (Python) File "/usr/lib/python3.12/threading.py", line 355, in wait
+        waiter.acquire()
+
+Traceback for thread 25543 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1012, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 1121, in process_input_sockets
+        for input_socket, _ in poller.poll():
+    (Python) File "/usr/local/lib/python3.12/dist-packages/zmq/sugar/poll.py", line 106, in poll
+        return zmq_poll(self.sockets, timeout=timeout)
+
+Traceback for thread 25513 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1012, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/kv_transfer/kv_connector/v1/nixl_connector.py", line 617, in _nixl_handshake_listener
+        identity, _, msg = sock.recv_multipart()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/zmq/sugar/socket.py", line 799, in recv_multipart
+        parts = [self.recv(flags, copy=copy, track=track)]
+
+Traceback for thread 13322 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/tqdm/_monitor.py", line 60, in run
+        self.was_killed.wait(self.sleep_interval)
+    (Python) File "/usr/lib/python3.12/threading.py", line 655, in wait
+        signaled = self._cond.wait(timeout)
+    (Python) File "/usr/lib/python3.12/threading.py", line 359, in wait
+        gotit = waiter.acquire(True, timeout)
+
+Traceback for thread 3583 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/tqdm/_monitor.py", line 60, in run
+        self.was_killed.wait(self.sleep_interval)
+    (Python) File "/usr/lib/python3.12/threading.py", line 655, in wait
+        signaled = self._cond.wait(timeout)
+    (Python) File "/usr/lib/python3.12/threading.py", line 359, in wait
+        gotit = waiter.acquire(True, timeout)
+
+Traceback for thread 3508 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1012, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/usage/usage_lib.py", line 174, in _report_usage_worker
+        self._report_continuous_usage()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/usage/usage_lib.py", line 251, in _report_continuous_usage
+        time.sleep(600)
+
+Traceback for thread 444 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "<string>", line 1, in <module>
+    (Python) File "/usr/lib/python3.12/multiprocessing/spawn.py", line 122, in spawn_main
+        exitcode = _main(fd, parent_sentinel)
+    (Python) File "/usr/lib/python3.12/multiprocessing/spawn.py", line 135, in _main
+        return self._bootstrap(parent_sentinel)
+    (Python) File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+        self.run()
+    (Python) File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 928, in run_engine_core
+        engine_core.run_busy_loop()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 1357, in run_busy_loop
+        executed = self._process_engine_step()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 988, in _process_engine_step
+        outputs, model_executed = self.step_fn()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 438, in step_with_batch_queue
+        exec_future = self.model_executor.execute_model(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/executor/uniproc_executor.py", line 100, in execute_model
+        return self.collective_rpc(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/executor/uniproc_executor.py", line 79, in collective_rpc
+        result = run_method(self.driver_worker, method, args, kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/serial_utils.py", line 461, in run_method
+        return func(*args, **kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/worker_base.py", line 365, in execute_model
+        return self.worker.execute_model(scheduler_output)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+        return func(*args, **kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_worker.py", line 630, in execute_model
+        output = self.model_runner.execute_model(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+        return func(*args, **kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_model_runner.py", line 3435, in execute_model
+        self._build_attention_metadata(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_model_runner.py", line 1842, in _build_attention_metadata
+        _build_attn_group_metadata(kv_cache_gid, attn_gid, cm)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_model_runner.py", line 1794, in _build_attn_group_metadata
+        attn_metadata_i = builder.build(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/model_executor/layers/attention/mla_attention.py", line 1082, in build
+        decode_metadata = self._build_decode(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/attention/backends/mla/rocm_aiter_mla.py", line 126, in _build_decode
+        paged_kv_indices = block_table_tensor[mask]
+
+
+=== pystack remote 445 ===
+Traceback for thread 25628 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1012, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/lib/python3.12/concurrent/futures/thread.py", line 93, in _worker
+        work_item.run()
+    (Python) File "/usr/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+        result = self.fn(*self.args, **self.kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_model_runner.py", line 239, in get_output
+        self.async_copy_ready_event.synchronize()
+
+Traceback for thread 25590 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1012, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/lib/python3.12/concurrent/futures/thread.py", line 90, in _worker
+        work_item = work_queue.get(block=True)
+
+Traceback for thread 25562 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1012, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 1186, in process_output_sockets
+        output = self.output_queue.get()
+    (Python) File "/usr/lib/python3.12/queue.py", line 171, in get
+        self.not_empty.wait()
+    (Python) File "/usr/lib/python3.12/threading.py", line 355, in wait
+        waiter.acquire()
+
+Traceback for thread 25561 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1012, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 1121, in process_input_sockets
+        for input_socket, _ in poller.poll():
+    (Python) File "/usr/local/lib/python3.12/dist-packages/zmq/sugar/poll.py", line 106, in poll
+        return zmq_poll(self.sockets, timeout=timeout)
+
+Traceback for thread 25519 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1012, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/kv_transfer/kv_connector/v1/nixl_connector.py", line 617, in _nixl_handshake_listener
+        identity, _, msg = sock.recv_multipart()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/zmq/sugar/socket.py", line 799, in recv_multipart
+        parts = [self.recv(flags, copy=copy, track=track)]
+
+Traceback for thread 13319 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/tqdm/_monitor.py", line 60, in run
+        self.was_killed.wait(self.sleep_interval)
+    (Python) File "/usr/lib/python3.12/threading.py", line 655, in wait
+        signaled = self._cond.wait(timeout)
+    (Python) File "/usr/lib/python3.12/threading.py", line 359, in wait
+        gotit = waiter.acquire(True, timeout)
+
+Traceback for thread 3576 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/tqdm/_monitor.py", line 60, in run
+        self.was_killed.wait(self.sleep_interval)
+    (Python) File "/usr/lib/python3.12/threading.py", line 655, in wait
+        signaled = self._cond.wait(timeout)
+    (Python) File "/usr/lib/python3.12/threading.py", line 359, in wait
+        gotit = waiter.acquire(True, timeout)
+
+Traceback for thread 3506 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1012, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/usage/usage_lib.py", line 174, in _report_usage_worker
+        self._report_continuous_usage()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/usage/usage_lib.py", line 251, in _report_continuous_usage
+        time.sleep(600)
+
+Traceback for thread 445 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "<string>", line 1, in <module>
+    (Python) File "/usr/lib/python3.12/multiprocessing/spawn.py", line 122, in spawn_main
+        exitcode = _main(fd, parent_sentinel)
+    (Python) File "/usr/lib/python3.12/multiprocessing/spawn.py", line 135, in _main
+        return self._bootstrap(parent_sentinel)
+    (Python) File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+        self.run()
+    (Python) File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 928, in run_engine_core
+        engine_core.run_busy_loop()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 1357, in run_busy_loop
+        executed = self._process_engine_step()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 988, in _process_engine_step
+        outputs, model_executed = self.step_fn()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 438, in step_with_batch_queue
+        exec_future = self.model_executor.execute_model(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/executor/uniproc_executor.py", line 100, in execute_model
+        return self.collective_rpc(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/executor/uniproc_executor.py", line 79, in collective_rpc
+        result = run_method(self.driver_worker, method, args, kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/serial_utils.py", line 461, in run_method
+        return func(*args, **kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/worker_base.py", line 365, in execute_model
+        return self.worker.execute_model(scheduler_output)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+        return func(*args, **kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_worker.py", line 630, in execute_model
+        output = self.model_runner.execute_model(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+        return func(*args, **kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_model_runner.py", line 3435, in execute_model
+        self._build_attention_metadata(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_model_runner.py", line 1842, in _build_attention_metadata
+        _build_attn_group_metadata(kv_cache_gid, attn_gid, cm)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_model_runner.py", line 1794, in _build_attn_group_metadata
+        attn_metadata_i = builder.build(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/model_executor/layers/attention/mla_attention.py", line 1082, in build
+        decode_metadata = self._build_decode(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/attention/backends/mla/rocm_aiter_mla.py", line 126, in _build_decode
+        paged_kv_indices = block_table_tensor[mask]
+
+
+=== pystack remote 446 ===
+Traceback for thread 25631 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1012, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/lib/python3.12/concurrent/futures/thread.py", line 93, in _worker
+        work_item.run()
+    (Python) File "/usr/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+        result = self.fn(*self.args, **self.kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_model_runner.py", line 239, in get_output
+        self.async_copy_ready_event.synchronize()
+
+Traceback for thread 25587 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1012, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/lib/python3.12/concurrent/futures/thread.py", line 90, in _worker
+        work_item = work_queue.get(block=True)
+
+Traceback for thread 25532 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1012, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 1186, in process_output_sockets
+        output = self.output_queue.get()
+    (Python) File "/usr/lib/python3.12/queue.py", line 171, in get
+        self.not_empty.wait()
+    (Python) File "/usr/lib/python3.12/threading.py", line 355, in wait
+        waiter.acquire()
+
+Traceback for thread 25531 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1012, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 1121, in process_input_sockets
+        for input_socket, _ in poller.poll():
+    (Python) File "/usr/local/lib/python3.12/dist-packages/zmq/sugar/poll.py", line 106, in poll
+        return zmq_poll(self.sockets, timeout=timeout)
+
+Traceback for thread 25507 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1012, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/kv_transfer/kv_connector/v1/nixl_connector.py", line 617, in _nixl_handshake_listener
+        identity, _, msg = sock.recv_multipart()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/zmq/sugar/socket.py", line 799, in recv_multipart
+        parts = [self.recv(flags, copy=copy, track=track)]
+
+Traceback for thread 13318 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/tqdm/_monitor.py", line 60, in run
+        self.was_killed.wait(self.sleep_interval)
+    (Python) File "/usr/lib/python3.12/threading.py", line 655, in wait
+        signaled = self._cond.wait(timeout)
+    (Python) File "/usr/lib/python3.12/threading.py", line 359, in wait
+        gotit = waiter.acquire(True, timeout)
+
+Traceback for thread 3573 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/tqdm/_monitor.py", line 60, in run
+        self.was_killed.wait(self.sleep_interval)
+    (Python) File "/usr/lib/python3.12/threading.py", line 655, in wait
+        signaled = self._cond.wait(timeout)
+    (Python) File "/usr/lib/python3.12/threading.py", line 359, in wait
+        gotit = waiter.acquire(True, timeout)
+
+Traceback for thread 3507 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1012, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/usage/usage_lib.py", line 174, in _report_usage_worker
+        self._report_continuous_usage()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/usage/usage_lib.py", line 251, in _report_continuous_usage
+        time.sleep(600)
+
+Traceback for thread 446 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "<string>", line 1, in <module>
+    (Python) File "/usr/lib/python3.12/multiprocessing/spawn.py", line 122, in spawn_main
+        exitcode = _main(fd, parent_sentinel)
+    (Python) File "/usr/lib/python3.12/multiprocessing/spawn.py", line 135, in _main
+        return self._bootstrap(parent_sentinel)
+    (Python) File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+        self.run()
+    (Python) File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 928, in run_engine_core
+        engine_core.run_busy_loop()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 1357, in run_busy_loop
+        executed = self._process_engine_step()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 988, in _process_engine_step
+        outputs, model_executed = self.step_fn()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 438, in step_with_batch_queue
+        exec_future = self.model_executor.execute_model(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/executor/uniproc_executor.py", line 100, in execute_model
+        return self.collective_rpc(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/executor/uniproc_executor.py", line 79, in collective_rpc
+        result = run_method(self.driver_worker, method, args, kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/serial_utils.py", line 461, in run_method
+        return func(*args, **kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/worker_base.py", line 365, in execute_model
+        return self.worker.execute_model(scheduler_output)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+        return func(*args, **kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_worker.py", line 630, in execute_model
+        output = self.model_runner.execute_model(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+        return func(*args, **kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_model_runner.py", line 3435, in execute_model
+        self._build_attention_metadata(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_model_runner.py", line 1842, in _build_attention_metadata
+        _build_attn_group_metadata(kv_cache_gid, attn_gid, cm)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_model_runner.py", line 1794, in _build_attn_group_metadata
+        attn_metadata_i = builder.build(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/model_executor/layers/attention/mla_attention.py", line 1082, in build
+        decode_metadata = self._build_decode(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/attention/backends/mla/rocm_aiter_mla.py", line 126, in _build_decode
+        paged_kv_indices = block_table_tensor[mask]
+
+
+=== pystack remote 447 ===
+Traceback for thread 25630 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1012, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/lib/python3.12/concurrent/futures/thread.py", line 93, in _worker
+        work_item.run()
+    (Python) File "/usr/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+        result = self.fn(*self.args, **self.kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_model_runner.py", line 239, in get_output
+        self.async_copy_ready_event.synchronize()
+
+Traceback for thread 25588 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1012, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/lib/python3.12/concurrent/futures/thread.py", line 90, in _worker
+        work_item = work_queue.get(block=True)
+
+Traceback for thread 25556 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1012, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 1186, in process_output_sockets
+        output = self.output_queue.get()
+    (Python) File "/usr/lib/python3.12/queue.py", line 171, in get
+        self.not_empty.wait()
+    (Python) File "/usr/lib/python3.12/threading.py", line 355, in wait
+        waiter.acquire()
+
+Traceback for thread 25555 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1012, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 1121, in process_input_sockets
+        for input_socket, _ in poller.poll():
+    (Python) File "/usr/local/lib/python3.12/dist-packages/zmq/sugar/poll.py", line 106, in poll
+        return zmq_poll(self.sockets, timeout=timeout)
+
+Traceback for thread 25516 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1012, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/distributed/kv_transfer/kv_connector/v1/nixl_connector.py", line 617, in _nixl_handshake_listener
+        identity, _, msg = sock.recv_multipart()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/zmq/sugar/socket.py", line 799, in recv_multipart
+        parts = [self.recv(flags, copy=copy, track=track)]
+
+Traceback for thread 13320 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/tqdm/_monitor.py", line 60, in run
+        self.was_killed.wait(self.sleep_interval)
+    (Python) File "/usr/lib/python3.12/threading.py", line 655, in wait
+        signaled = self._cond.wait(timeout)
+    (Python) File "/usr/lib/python3.12/threading.py", line 359, in wait
+        gotit = waiter.acquire(True, timeout)
+
+Traceback for thread 3577 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/tqdm/_monitor.py", line 60, in run
+        self.was_killed.wait(self.sleep_interval)
+    (Python) File "/usr/lib/python3.12/threading.py", line 655, in wait
+        signaled = self._cond.wait(timeout)
+    (Python) File "/usr/lib/python3.12/threading.py", line 359, in wait
+        gotit = waiter.acquire(True, timeout)
+
+Traceback for thread 3502 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "/usr/lib/python3.12/threading.py", line 1032, in _bootstrap
+        self._bootstrap_inner()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1075, in _bootstrap_inner
+        self.run()
+    (Python) File "/usr/lib/python3.12/threading.py", line 1012, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/usage/usage_lib.py", line 174, in _report_usage_worker
+        self._report_continuous_usage()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/usage/usage_lib.py", line 251, in _report_continuous_usage
+        time.sleep(600)
+
+Traceback for thread 447 (VLLM::EngineCor) [] (most recent call last):
+    (Python) File "<string>", line 1, in <module>
+    (Python) File "/usr/lib/python3.12/multiprocessing/spawn.py", line 122, in spawn_main
+        exitcode = _main(fd, parent_sentinel)
+    (Python) File "/usr/lib/python3.12/multiprocessing/spawn.py", line 135, in _main
+        return self._bootstrap(parent_sentinel)
+    (Python) File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+        self.run()
+    (Python) File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+        self._target(*self._args, **self._kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 928, in run_engine_core
+        engine_core.run_busy_loop()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 1357, in run_busy_loop
+        executed = self._process_engine_step()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 988, in _process_engine_step
+        outputs, model_executed = self.step_fn()
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/engine/core.py", line 438, in step_with_batch_queue
+        exec_future = self.model_executor.execute_model(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/executor/uniproc_executor.py", line 100, in execute_model
+        return self.collective_rpc(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/executor/uniproc_executor.py", line 79, in collective_rpc
+        result = run_method(self.driver_worker, method, args, kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/serial_utils.py", line 461, in run_method
+        return func(*args, **kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/worker_base.py", line 365, in execute_model
+        return self.worker.execute_model(scheduler_output)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+        return func(*args, **kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_worker.py", line 630, in execute_model
+        output = self.model_runner.execute_model(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+        return func(*args, **kwargs)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_model_runner.py", line 3435, in execute_model
+        self._build_attention_metadata(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_model_runner.py", line 1842, in _build_attention_metadata
+        _build_attn_group_metadata(kv_cache_gid, attn_gid, cm)
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu_model_runner.py", line 1794, in _build_attn_group_metadata
+        attn_metadata_i = builder.build(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/model_executor/layers/attention/mla_attention.py", line 1082, in build
+        decode_metadata = self._build_decode(
+    (Python) File "/usr/local/lib/python3.12/dist-packages/vllm/v1/attention/backends/mla/rocm_aiter_mla.py", line 126, in _build_decode
+        paged_kv_indices = block_table_tensor[mask]
+
+

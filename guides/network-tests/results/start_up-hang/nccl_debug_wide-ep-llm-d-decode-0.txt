@@ -1,0 +1,250 @@
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:444:444 [3] NCCL INFO ROCr version 1.18
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:444:444 [3] NCCL INFO Dmabuf feature disabled without NCCL_DMABUF_ENABLE=1
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:444:444 [3] NCCL INFO Kernel version: 5.15.0-1074-oracle
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:447:447 [6] NCCL INFO Hipruntime version: 70226015, firmware version: 189
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:447:447 [6] NCCL INFO NCCL_SOCKET_IFNAME set by environment to eth0
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:447:447 [6] NCCL INFO Bootstrap: Using eth0:10.0.74.185<0>
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:447:447 [6] NCCL INFO RCCL version : 2.27.7-HEAD:0d2c4fd
+HIP version  : 7.2.26015-fc0010cf6a
+ROCm version : 7.2.0.0-43-fc0010cf6a
+Hostname     : inst-povmb-instancepool-nrqg7-mi300x-rdma-pool
+Librccl path : /opt/rocm/lib/librccl.so.1
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:442:442 [1] NCCL INFO NET/Plugin: Could not find: none librccl-net-none.so. 
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:442:442 [1] NCCL INFO NCCL_SOCKET_IFNAME set by environment to eth0
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:442:442 [1] NCCL INFO NCCL_IB_HCA set to mlx5_0,mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_7,mlx5_8,mlx5_9
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:442:442 [1] NCCL INFO NET/IB : Using [0]mlx5_0:1/RoCE [1]mlx5_2:1/RoCE [2]mlx5_3:1/RoCE [3]mlx5_4:1/RoCE [4]mlx5_5:1/RoCE [5]mlx5_7:1/RoCE [6]mlx5_8:1/RoCE [7]mlx5_9:1/RoCE [RO]; OOB eth0:10.0.74.185<0>
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:442:442 [1] NCCL INFO Initialized NET plugin IB
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:442:442 [1] NCCL INFO Found /sys/kernel/mm/memory_peers/amdkfd/version
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:442:442 [1] NCCL INFO Assigned NET plugin IB to comm
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:442:442 [1] NCCL INFO Using network IB
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:442:442 [1] NCCL INFO [node_id = 8; gpu_id = 4769; unique_id = 2270236378490737950; location_id = 49664; bdf = 49664; domain = 0; partition = 0], 
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:442:442 [1] NCCL INFO [node_id = 4; gpu_id = 29122; unique_id = 3943107733453879536; location_id = 17920; bdf = 17920; domain = 0; partition = 0], 
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:442:442 [1] NCCL INFO [node_id = 6; gpu_id = 46166; unique_id = 5492818600486375425; location_id = 35584; bdf = 35584; domain = 0; partition = 0], 
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:442:442 [1] NCCL INFO [node_id = 2; gpu_id = 32700; unique_id = 7765227872296429455; location_id = 4352; bdf = 4352; domain = 0; partition = 0], 
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:442:442 [1] NCCL INFO [node_id = 5; gpu_id = 35464; unique_id = 14571881944465612178; location_id = 23808; bdf = 23808; domain = 0; partition = 0], 
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:442:442 [1] NCCL INFO [node_id = 7; gpu_id = 64654; unique_id = 15506710329834556276; location_id = 43520; bdf = 43520; domain = 0; partition = 0], 
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:442:442 [1] NCCL INFO [node_id = 3; gpu_id = 3884; unique_id = 15534978331759267561; location_id = 12032; bdf = 12032; domain = 0; partition = 0], 
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:442:442 [1] NCCL INFO [node_id = 9; gpu_id = 6315; unique_id = 18325758265507731359; location_id = 55808; bdf = 55808; domain = 0; partition = 0], 
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:442:442 [1] NCCL INFO initialized internal alternative rsmi functionality
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:442:442 [1] NCCL INFO ncclCommInitRank_impl comm 0x459c9910 rank 1 nranks 16 cudaDev 1 nvmlDev 1 busId 2f000 commId 0x9ba085424fa8aa45 - Init START
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO RAS client listening socket at ::1<28028>
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:444:444 [3] NCCL INFO Bootstrap timings total 1.159144 (create 0.000035, send 0.000111, recv 0.000109, ring 1.138340, delay 0.000001)
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:445:445 [4] NCCL INFO initialized internal alternative rsmi functionality
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:444:444 [3] NCCL INFO NCCL_PXN_DISABLE set by environment to 0.
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:444:444 [3] NCCL INFO Setting affinity for GPU 3 to 0-55,112-167
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:444:444 [3] NCCL INFO GFX9 cheap fence is ON
+ininst-povmb-instancepool-nrqg7-mi300x-rdma-pool:445:445 [4] NCCL INFO comm 0x2826f050 rank 4 nRanks 16 nNodes 2 localRanks 8 localRank 4 MNNVL ininst-povmb-instancepool-nrqg7-mi300x-rdma-pool:447:447 [6] NCCL INFO Trees [0] 5/-1/-1->6->3 [1] -1/-1/-1->6->2 [2] 1/-1/-1->6->5 [3] 4/-1/-1->6->0 [4] 0/-1/-1->6->1 [5] 2/-1/-1->6->4 [6] 7/14/-1->6->-1 [7] 3/-1/-1->6->7 [8] 1/-1/-1->6->5 [9] 4/-1/-1->6->0 [10] 0/-1/-1->6->1 [11] 2/-1/-1->6->4 [12] 7/14/-1->6->-1 [13] 3/-1/-1->6->7 [14] 5/-1/-1->6->3 [15] -1/-1/-1->6->2 [16] 0/-1/-1->6->1 [17] 2/-1/-1->6->4 [18] 7/14/-1->6->-1 [19] 3/-1/-1->6->7 [20] 5/-1/-1->6->3 [21] -1/-1/-1->6->2 [22] 1/-1/-1->6->5 [23] 4/-1/-1->6->0 [24] 7/14/-1->6->-1 [25] 3/-1/-1->6->7 [26] 5/-1/-1->6->3 [27] -1/-1/-1->6->2 [28] 1/-1/-1->6->5 [29] 4/-1/-1->6->0 [30] 0/-1/-1->6->1 [31] 2/-1/-1->6->4 [32] -1/-1/-1->6->2 [33] 5/-1/-1->6->3 [34] 4/-1/-1->6->0 [35] 1/-1/-1->6->5 [36] 2/-1/-1->6->4 [37] 0/-1/-1->6->1 [38] 3/-1/-1->6->7 [39] 7/-1/-1->6->14 [40] 4/-1/-1->6->0 [41] 1/-1/-1->6->5 [42] 2/-1/-1->6->4 [43] 0/-1/-1->6->1 [44] 3/-1/-1->6->7 [45] 7/-1/-1->6->14 [46] -1/-1/-1->6->2 [47] 5/-1/-1->6->3 [48] 2/-1/-1->6->4 [49] 0/-1/-1->6
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO RCCL P2P net chunk size default set to: 131072
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO P2P Chunksize set to 13107ininst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO PROFILER/Plugin: Could not find: librccl-profiler.so.inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:444:2608 [3] NCCL INFO [Proxy Service] Device 3 CPU core 5
+instinst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:2614 [7] NCCL INFO [Proxy Service UDS] Device 7 CPU corinstininst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:2632 [7] NCCL INFO [Proxy Progress] Device 7 CPU core 65
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 07/0 : 15[7] -> 7[7] [receive] via NET/IB/7/GDRDMA comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 14/0 : 15[7] -> 7[7] [receive] via NET/IB/7/GDRDMA comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 21/0 : 15[7] -> 7[7] [receive] via NET/IB/7/GDRDMA comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 28/0 : 15[7] -> 7[7] [receive] via NET/IB/7/GDRDMA comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 35/0 : 15[7] -> 7[7] [receive] via NET/IB/7/GDRDMA comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 42/0 : 15[7] -> 7[7] [receive] via NET/IB/7/GDRDMA comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 49/0 : 15[7] -> 7[7] [receive] via NET/IB/7/GDRDMA comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 56/0 : 15[7] -> 7[7] [receive] via NET/IB/7/GDRDMA comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 00/0 : 7[7] -> 15[7] [send] via NET/IB/7/GDRDMA comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 15/0 : 7[7] -> 15[7] [send] via NET/IB/7/GDRDMA comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 22/0 : 7[7] -> 15[7] [send] via NET/IB/7/GDRDMA comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 29/0 : 7[7] -> 15[7] [send] via NET/IB/7/GDRDMA comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 36/0 : 7[7] -> 15[7] [send] via NET/IB/7/GDRDMA comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 43/0 : 7[7] -> 15[7] [send] via NET/IB/7/GDRDMA comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 50/0 : 7[7] -> 15[7] [send] via NET/IB/7/GDRDMA comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 57/0 : 7[7] -> 15[7] [send] via NET/IB/7/GDRDMA comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 03/0 : 7[da000] -> 0[11000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 10/0 : 7[da000] -> 0[11000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 17/0 : 7[da000] -> 0[11000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 24/0 : 7[da000] -> 0[11000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 39/0 : 7[da000] -> 0[11000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 46/0 : 7[da000] -> 0[11000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 53/0 : 7[da000] -> 0[11000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 60/0 : 7[da000] -> 0[11000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 05/0 : 7[da000] -> 1[2f000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 12/0 : 7[da000] -> 1[2f000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 19/0 : 7[da000] -> 1[2f000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 26/0 : 7[da000] -> 1[2f000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 33/0 : 7[da000] -> 1[2f000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 40/0 : 7[da000] -> 1[2f000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 55/0 : 7[da000] -> 1[2f000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 62/0 : 7[da000] -> 1[2f000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+iinst-povmb-instancepool-nrqg7-mi300x-rdma-pool:447:447 [6] NCCL INFO Channel 02/0 : 6[c2000] -> 1[2f000] via P2P/IPC comm 0x4fd37d50 nRanks 16iinst-povmb-instancepool-nrqg7-mi300x-rdma-pool:447:447 [6] NCCL INFO Channel 09/0 : 6[c2000] -> 1[2f000] via P2P/IPC comm 0x4fd37d50 nRanks 16iinst-povmb-instancepool-nrqg7-mi300x-rdma-pool:447:447 [6] NCCL INFO Channel 16/0 : 6[c2000] -> 1[2f000] via P2P/IPC comm 0x4fd37d50 nRanks 16iinst-povmb-instancepool-nrqg7-mi300x-rdma-pool:447:447 [6] NCCL INFO Channel 31/0 : 6[c2000] -> 1[2f000] via P2P/IPC comm 0x4fd37d50 nRanks 16iinst-povmb-instancepool-nrqg7-mi300x-rdma-pool:447:447 [6] NCCL INFO Channel 38/0 : 6[c2000] -> 1[2f000] via P2P/IPC comm 0x4fd37d50 nRanks 16iinst-povmb-instancepool-nrqg7-mi300x-rdma-pool:447:447 [6] NCCL INFO Channel 45/0 : 6[c2000] -> 1[2f000] via P2P/IPC comm 0x4fd37d50 nRanks 16iinst-povmb-instancepool-nrqg7-mi300x-rdma-pool:447:447 [6] NCCL INFO Channel 52/0 : 6[c2000] -> 1[2f000] via P2P/IPC comm 0x4fd37d50 nRanks 16iinst-povmb-instancepool-nrqg7-mi300x-rdma-pool:447:447 [6] NCCL INFO Channel 59/0 : 6[c2000] -> 1[2f000] via P2P/IPC comm 0x4fd37d50 nRanks insinst-povmb-instancepool-nrqg7-mi300x-rdma-pool:447:447 [6] NCCL INFO Channel 04/0 : 6[c2000] -> 2[46000] via P2P/IPC comm 0x4fd37d50 nRanks insinst-povmb-instancepool-nrqg7-mi300x-rdma-pool:447:447 [6] NCCL INFO Channel 11/0 : 6[c2000] -> 2[46000] via P2P/IPC comm 0x4fd37d50 nRanks insinst-povmb-instancepool-nrqg7-mi300x-rdma-pool:447:447 [6] NCCL INFO Channel 18/0 : 6[c2000] -> 2[46000] via P2P/IPC comm 0x4fd37d50 nRanks insinst-povmb-instancepool-nrqg7-mi300x-rdma-pool:447:447 [6] NCCL INFO Channel 25/0 : 6[c2000] -> 2[46000] via P2P/IPC comm 0x4fd37d50 nRanks insinst-povmb-instancepool-nrqg7-mi300x-rdma-pool:447:447 [6] NCCL INFO Channel 32/0 : 6[c2000] -> 2[46000] via P2P/IPC comm 0x4fd37d50 nRanks insinst-povmb-instancepool-nrqg7-mi300x-rdma-pool:447:447 [6] NCCL INFO Channel 47/0 : 6[c2000] -> 2[46000] via P2P/IPC comm 0x4fd37d50 nRanks insinst-povmb-instancepool-nrqg7-mi300x-rdma-pool:447:447 [6] NCCL INFO Channel 54/0 : 6[c2000] -> 2[46000] via P2P/IPC comm 0x4fd37d50 nRanks insinst-povmb-instancepool-nrqg7-mi300x-rdma-pool:447:447 [6] NCCL INFO Channel 61/0 : 6[c2000] -> 2[46000] via P2P/IPC comm 0x4fd37d50 nRinst-poinst-povmb-instancepool-nrqg7-mi300x-rdma-pool:445:445 [4] NCCL INFO Channel 07/0 : 4[8b000] -> 1[2f000] via P2P/IPC comm 0x2826f050 nRainst-poinst-povmb-instancepool-nrqg7-mi300x-rdma-pool:445:445 [4] NCCL INFO Channel 14/0 : 4[8b000] -> 1[2f000] via P2P/IPC comm 0x2826f050 nRainst-poinst-povmb-instancepool-nrqg7-mi300x-rdma-pool:445:445 [4] NCCL INFO Channel 21/0 : 4[8b000] -> 1[2f000] via P2P/IPC comm 0x2826f050 nRainst-poinst-povmb-instancepool-nrqg7-mi300x-rdma-pool:445:445 [4] NCCL INFO Channel 28/0 : 4[8b000] -> 1[2f000] via P2P/IPC comm 0x2826f050 nRainst-poinst-povmb-instancepool-nrqg7-mi300x-rdma-pool:445:445 [4] NCCL INFO Channel 35/0 : 4[8b000] -> 1[2f000] via P2P/IPC comm 0x2826f050 nRainst-poinst-povmb-instancepool-nrqg7-mi300x-rdma-pool:445:445 [4] NCCL INFO Channel 42/0 : 4[8b000] -> 1[2f000] via P2P/IPC comm 0x2826f050 nRainst-poinst-povmb-instancepool-nrqg7-mi300x-rdma-pool:445:445 [4] NCCL INFO Channel 49/0 : 4[8b000] -> 1[2f000] via P2P/IPC comm 0x2826f050 nRainst-poinst-povmb-instancepool-nrqg7-mi300x-rdma-pool:445:445 [4] NCCL INFO Channel 56/0 : 4[8b000] -> 1[2f000] via P2P/IPC comm 0x2826f050 nRainst-poinst-povmb-instancepool-nrqg7-mi300x-rdma-pool:445:445 [4] NCCL INFO Channel 03/0 : 4[8b000] -> 2[46000] via P2P/IPC comm 0x2826f050 nRainst-poinst-povmb-instancepool-nrqg7-mi300x-rdma-pool:445:445 [4] NCCL INFO Channel 10/0 : 4[8b000] -> 2[46000] via P2P/IPC comm 0x2826f050 nRainst-poinst-povmb-instancepool-nrqg7-mi300x-rdma-pool:445:445 [4] NCCL INFO Channel 17/0 : 4[8b000] -> 2[46000] via P2P/IPC comm 0x2826f050 nRainst-poinst-povmb-instancepool-nrqg7-mi300x-rdma-pool:445:445 [4] NCCL INFO Channel 24/0 : 4[8b000] -> 2[46000] via P2P/IPC comm 0x2826f050 nRainst-poinst-povmb-instancepool-nrqg7-mi300x-rdma-pool:445:445 [4] NCCL INFO Channel 39/0 : 4[8b000] -> 2[46000] via P2P/IPC comm 0x2826f050 nRainst-poinst-povmb-instancepool-nrqg7-mi300x-rdma-pool:445:445 [4] NCCL INFO Channel 46/0 : 4[8b000] -> 2[46000] via P2P/IPC comm 0x2826f050 nRainst-poinst-povmb-instancepool-nrqg7-mi300x-rdma-pool:445:445 [4] NCCL INFO Channel 53/0 : 4[8b000] -> 2[46000] via P2P/IPC comm 0x2826f050 nRainst-poinst-povmb-instancepool-nrqg7-mi300x-rdma-pool:445:445 [4] NCCL INFO Channel 60/0 : 4[8b000] -> 2[46000] via P2P/IPC comm 0x28inst-povmb-insinst-povmb-instancepool-nrqg7-mi300x-rdma-pool:443:443 [2] NCCL INFO Channel 03/0 : 2[46000] -> 1[2f000] via P2P/IPC comm 0x2cd9ainst-povmb-insinst-povmb-instancepool-nrqg7-mi300x-rdma-pool:443:443 [2] NCCL INFO Channel 10/0 : 2[46000] -> 1[2f000] via P2P/IPC comm 0x2cd9ainst-povmb-insinst-povmb-instancepool-nrqg7-mi300x-rdma-pool:443:443 [2] NCCL INFO Channel 17/0 : 2[46000] -> 1[2f000] via P2P/IPC comm 0x2cd9ainst-povmb-insinst-povmb-instancepool-nrqg7-mi300x-rdma-pool:443:443 [2] NCCL INFO Channel 24/0 : 2[46000] -> 1[2f000] via P2P/IPC comm 0x2cd9ainst-povmb-insinstinst-povmb-instancepool-nrqg7-mi300x-rdma-pool:447:447 [6] NCCL INFO Channel 39/0 : 6[c2000] -> 5[aa000] via P2P/IPC comm 0x4inst-povmb-insinstinst-povmb-instancepool-nrqg7-mi300x-rdma-pool:447:447 [6] NCCL INFO Channel 46/0 : 6[c2000] -> 5[aa000] via P2P/IPC comm 0x4inst-povmb-insinst-povmb-instancepool-nrqg7-mi300x-rdma-pool:443:443 [2] NCCL INFO Channel 53/0 : 2[46000] -> 1[2f000] via P2P/IPC comm 0x2cd9ainst-povmb-insinstinst-povmb-instancepool-nrqg7-mi300x-rdma-pool:447:447 [6] NCCL INFO Channel 60/0 : 6[c2000] -> 5[aa000] via P2P/IPC comm 0x4inst-povmbinst-poinst-povmb-instancepool-nrqg7-mi300x-rdma-pool:445:2605 [4] NCCL INFO NCCL_IB_QPS_PER_CONNECTION set by environmentinst-ininst-povmb-instancepool-nrqg7-mi300x-rdma-pool:445:2605 [4] NCCL INFO NCCL_IB_GID_INDEX set by environment to 3.
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:445:2605 [4] NCCL INFO NCCL_IB_SL set by environment to 0.
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:445:2605 [4] NCCL INFO NCCL_IB_TC set by eninst-povmbinst-ininst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:2606 [7] NCCL INFO NCCL_IB_TIMEOUT set by eninst-povmbinst-povmb-instancepool-nrqg7-mi300x-rdma-pool:444:444 [3] NCCL INFO Connected all rings, use ring PXinst-povmb-insiininst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 13/0 : 15[7] -> 7[7] [receive] via NET/IB/7/GDRDMA comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 19/0 : 15[7] -> 7[7] [receive] via NET/IB/7/GDRDMA comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 25/0 : 15[7] -> 7[7] [receive] via NET/IB/7/GDRDMA comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 38/0 : 15[7] -> 7[7] [receive] via NET/IB/7/GDRDMA comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 44/0 : 15[7] -> 7[7] [receive] via NET/IB/7/GDRDMA comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 50/0 : 15[7] -> 7[7] [receive] via NET/IB/7/GDRDMA comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 07/0 : 7[7] -> 15[7] [send] via NET/IB/7/GDRDMA comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 13/0 : 7[7] -> 15[7] [send] via NET/IB/7/GDRDMA comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 19/0 : 7[7] -> 15[7] [send] via NET/IB/7/GDRDMA comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 25/0 : 7[7] -> 15[7] [send] via NET/IB/7/GDRDMA comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 38/0 : 7[7] -> 15[7] [send] via NET/IB/7/GDRDMA comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 44/0 : 7[7] -> 15[7] [send] via NET/IB/7/GDRDMA comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 56/0 : 7[7] -> 15[7] [send] via NET/IB/7/GDRDMA comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 05/0 : 7[da000] -> 0[11000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 09/0 : 7[da000] -> 0[11000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 11/0 : 7[da000] -> 0[11000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 23/0 : 7[da000] -> 0[11000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 29/0 : 7[da000] -> 0[11000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 31/0 : 7[da000] -> 0[11000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 34/0 : 7[da000] -> 0[11000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 36/0 : 7[da000] -> 0[11000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 40/0 : 7[da000] -> 0[11000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 42/0 : 7[da000] -> 0[11000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 48/0 : 7[da000] -> 0[11000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 54/0 : 7[da000] -> 0[11000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 62/0 : 7[da000] -> 0[11000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 02/0 : 7[da000] -> 1[2f000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 08/0 : 7[da000] -> 1[2f000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 11/0 : 7[da000] -> 1[2f000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 17/0 : 7[da000] -> 1[2f000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 22/0 : 7[da000] -> 1[2f000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 28/0 : 7[da000] -> 1[2f000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 31/0 : 7[da000] -> 1[2f000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 35/0 : 7[da000] -> 1[2f000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 36/0 : 7[da000] -> 1[2f000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 41/0 : 7[da000] -> 1[2f000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 42/0 : 7[da000] -> 1[2f000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 48/0 : 7[da000] -> 1[2f000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 61/0 : 7[da000] -> 1[2f000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 03/0 : 7[da000] -> 2[46000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 04/0 : 7[da000] -> 2[46000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 09/0 : 7[da000] -> 2[46000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 10/0 : 7[da000] -> 2[46000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 16/0 : 7[da000] -> 2[46000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 23/0 : 7[da000] -> 2[46000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 29/0 : 7[da000] -> 2[46000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 30/0 : 7[da000] -> 2[46000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 34/0 : 7[da000] -> 2[46000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 37/0 : 7[da000] -> 2[46000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 40/0 : 7[da000] -> 2[46000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 43/0 : 7[da000] -> 2[46000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 54/0 : 7[da000] -> 2[46000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 60/0 : 7[da000] -> 2[46000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 63/0 : 7[da000] -> 2[46000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 01/0 : 7[da000] -> 3[5d000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 10/0 : 7[da000] -> 3[5d000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 15/0 : 7[da000] -> 3[5d000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 16/0 : 7[da000] -> 3[5d000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 21/0 : 7[da000] -> 3[5d000] via P2P/IPC comm 0x1c9587e0 nRanks 1ininst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 27/0 : 7[da000] -> 3[5d000] via P2P/IPC comm 0x1c9587e0 nRanks 1ininst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 30/0 : 7[da000] -> 3[5d000] via P2P/IPC comm 0x1c9587e0 nRanks 1inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:446:446 [5] NCCL INFO Channel 29/0 : 5[aa000] -> 1[2f000] via P2P/IPC comm 0x1782f1b0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:446:446 [5] NCCL INFO Channel 30/0 : 5[aa000] -> 1[2f000] via P2P/IPC comm 0x1782f1b0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:446:446 [5] NCCL INFO Channel 34/0 : 5[aa000] -> 1[2f000] via P2P/IPC comm 0x1782f1b0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:446:446 [5] NCCL INFO Channel 37/0 : 5[aa000] -> 1[2f000] via P2P/IPC comm 0x1782f1b0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:446:446 [5] NCCL INFO Channel 40/0 : 5[aa000] -> 1[2f000] via P2P/IPC comm 0x1782f1b0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:446:446 [5] NCCL INFO Channel 43/0 : 5[aa000] -> 1[2f000] via P2P/IPC comm 0x1782f1b0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:446:446 [5] NCCL INFO Channel 49/0 : 5[aa000] -> 1[2f000] via P2P/IPC comm 0x1782f1b0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:446:446 [5] NCCL INFO Channel 60/0 : 5[aa000] -> 1[2f000] via P2P/IPC comm 0x1782f1b0 nRanks 16
+insinst-povmb-instancepool-nrqg7-mi300x-rdma-pool:444:444 [3] NCCL INFO Channel 02/0 : 3[5d000] -> 0[11000] via P2P/IPC comm 0x26251b10 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:444:444 [3] NCCL INFO Channel 08/0 : 3[5d000] -> 0[11000] via P2P/IPC comm 0x26251b10 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:444:444 [3] NCCL INFO Channel 10/0 : 3[5d000] -> 0[11000] via P2P/IPC comm 0x26251b10 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:444:444 [3] NCCL INFO Channel 16/0 : 3[5d000] -> 0[11000] via P2P/IPC comm 0x26251b10 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:444:444 [3] NCCL INFO Channel 22/0 : 3[5d000] -> 0[11000] via P2P/IPC comm 0x26251b10 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:444:444 [3] NCCL INFO Channel 28/0 : 3[5d000] -> 0[11000] via P2P/IPC comm 0x26251b10 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:444:444 [3] NCCL INFO Channel 30/0 : 3[5d000] -> 0[11000] via P2P/IPC comm 0x26251b10 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:444:444 [3] NCCL INFO Channel 35/0 : 3[5d000] -> 0[11000] via P2P/IPC comm 0x26251b10 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:444:444 [3] NCCL INFO Channel 37/0 : 3[5d000] -> 0[11000] via P2P/IPC comm 0x26251b10 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:444:444 [3] NCCL INFO Channel 41/0 : 3[5d000] -> 0[11000] via P2P/IPC comm 0x26251b10 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:444:444 [3] NCCL INFO Channel 43/0 : 3[5d000] -> 0[11000] via P2P/IPC comm 0x26251b10 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:444:444 [3] NCCL INFO Channel 49/0 : 3[5d000] -> 0[11000] via P2P/IPC comm 0x26251b10 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:444:444 [3] NCCL INFO Channel 55/0 : 3[5d000] -> 0[11000] via P2P/IPC comm 0x26251b10 nRanks 16inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 00/0 : 7[da000] -> 5[aa000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+iinst-povmb-instancepool-nrqg7-mi300x-rdma-pool:444:444 [3] NCCL INFO Channel 05/0 : 3[5d000] -> 1[2f000] via P2P/IPC comm 0x26251b10 nRanks inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:446:446 [5] NCCL INFO Channel 01/0 : 5[aa000] -> 3[5d000] via P2P/IPC comm 0x1782f1b0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:446:446 [5] NCCL INFO Channel 06/0 : 5[aa000] -> 3[5d000] via P2P/IPC comm 0x1782f1b0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:446:446 [5] NCCL INFO Channel 12/0 : 5[aa000] -> 3[5d000] via P2P/IPC comm 0x1782f1b0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:446:446 [5] NCCL INFO Channel 15/0 : 5[aa000] -> 3[5d000] via P2P/IPC comm 0x1782f1b0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:446:446 [5] NCCL INFO Channel 18/0 : 5[aa000] -> 3[5d000] via P2P/IPC comm 0x1782f1b0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:446:446 [5] NCCL INFO Channel 24/0 : 5[aa000] -> 3[5d000] via P2P/IPC comm 0x1782f1b0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:446:446 [5] NCCL INFO Channel 27/0 : 5[aa000] -> 3[5d000] via P2P/IPC comm 0x1782f1b0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:446:446 [5] NCCL INFO Channel 32/0 : 5[aa000] -> 3[5d000] via P2P/IPC comm 0x1782f1b0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:446:446 [5] NCCL INFO Channel 39/0 : 5[aa000] -> 3[5d000] via P2P/IPC comm 0x1782f1b0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:446:446 [5] NCCL INFO Channel 45/0 : 5[aa000] -> 3[5d000] via P2P/IPC comm 0x1782f1b0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:446:446 [5] NCCL INFO Channel 46/0 : 5[aa000] -> 3[5d000] via P2P/IPC comm 0x1782f1b0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:446:446 [5] NCCL INFO Channel 51/0 : 5[aa000] -> 3[5d000] via P2P/IPC comm 0x1782f1b0 nRanks 16
+ininst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Channel 06/0 : 7[da000] -> 6[c2000] via P2P/IPC comm 0x1c9587e0 nRanks 16
+iinst-povmb-instancepool-nrqg7-mi300x-rdma-pool:444:444 [3] NCCL INFO Channel 02/0 : 3[5d000] -> 2[46000] via P2P/IPC comm 0x26251b10 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:444:444 [3] NCCL INFO Channel 03/0 : 3[5d000] -> 2[46000] via P2P/IPC comm 0x26251b10 nRanks inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:446:446 [5] NCCL INFO Channel 04/0 : 5[aa000] -> 4[8b000] via P2P/IPC comm 0x1782f1b0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:446:446 [5] NCCL INFO Channel 10/0 : 5[aa000] -> 4[8b000] via P2P/IPC comm 0x1782f1b0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:446:446 [5] NCCL INFO Channel 11/0 : 5[aa000] -> 4[8b000] via P2P/IPC comm 0x1782f1b0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:446:446 [5] NCCL INFO Channel 16/0 : 5[aa000] -> 4[8b000] via P2P/IPC comm 0x1782f1b0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:446:446 [5] NCCL INFO Channel 17/0 : 5[aa000] -> 4[8b000] via P2P/IPC comm 0x1782f1b0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:446:446 [5] NCCL INFO Channel 30/0 : 5[aa000] -> 4[8b000] via P2P/IPC comm 0x1782f1b0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:446:446 [5] NCCL INFO Channel 31/0 : 5[aa000] -> 4[8b000] via P2P/IPC comm 0x1782f1b0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:446:446 [5] NCCL INFO Channel 36/0 : 5[aa000] -> 4[8b000] via P2P/IPC comm 0x1782f1b0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:446:446 [5] NCCL INFO Channel 37/0 : 5[aa000] -> 4[8b000] via P2P/IPC comm 0x1782f1b0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:446:446 [5] NCCL INFO Channel 42/0 : 5[aa000] -> 4[8b000] via P2P/IPC comm 0x1782f1b0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:446:446 [5] NCCL INFO Channel 43/0 : 5[aa000] -> 4[8b000] via P2P/IPC comm 0x1782f1b0 nRanks 16
+ininst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Connected all trees
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO threadThresholds 8/8/64 | 128/8/64 | 256 | 256
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO comm:0x1c9587e0, nRanks:16, nNodes:2, coll channels:64 collnet channels:64, nvls channels:0, p2p channels:64, p2p channels per peer:2
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO RCCL Unroll Factor (pre-set): 2
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO TUNER/Plugin: Could not find: libnccl-tuner.so. Using internal tuner pluginininst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO ncclCommInitRank_impl comm 0x1c9587e0 rank 7 nranks 16 cudaDev 7 nvmlDev 7 busId da000 commId 0x9ba085424fa8aa45 - Init COMPLETE
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO Init timings - ncclCommInitRank_impl: rank 7 nranks 16 total 30.19 (kernels 21.51, alloc 0.25, bootstrap 1.17, allgathers 0.03, topo 0.83, graphs 0.00, connections 6.37, rest 0.03)
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO pre-adjustment threadThreshold:8 nBytes:4 nc:64
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO minNChannels:-2
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:448:448 [7] NCCL INFO post-adjustment based on threadThreshold:8 nBytes:4 nc:1
+-adjustment threadThreshold:8 nBytes:4 nc:64
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:442:442inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:446:446 [5] NCCL INFO pre-adjustment threadThreshold:8 nBytes:4 nc:64
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:446:446 [5] NCCL INFO minNChannels:-2
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:446:446 [5] NCCL INFO post-adjustment based on threinst-povmb-instancepool-nrqg7-mi300x-rdma-pool:447:447 [6] NCCL INFO pre-adjustment threadThreshold:8 nBytes:4 nc:64
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:447:447 [6] NCCL INFO minNChannels:-2
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:447:447 [6] NCCL INFO post-adjustment based on threadThreshold:8 nBytes:4 nc:1
+mb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO Channel 41/0 : 0[11000] -> 5[aa000] via P2P/IPC comm 0x1dc812e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO Channel 44/0 : 0[11000] -> 5[aa000] via P2P/IPC comm 0x1dc812e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO Channel 50/0 : 0[11000] -> 5[aa000] via P2P/IPC comm 0x1dc812e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO Channel 55/0 : 0[11000] -> 5[aa000] via P2P/IPC comm 0x1dc812e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO Channel 56/0 : 0[11000] -> 5[aa000] via P2P/IPC comm 0x1dc812e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO Channel 03/0 : 0[11000] -> 6[c2000] via P2P/IPC comm 0x1dc812e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO Channel 04/0 : 0[11000] -> 6[c2000] via P2P/IPC comm 0x1dc812e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO Channel 09/0 : 0[11000] -> 6[c2000] via P2P/IPC comm 0x1dc812e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO Channel 10/0 : 0[11000] -> 6[c2000] via P2P/IPC comm 0x1dc812e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO Channel 16/0 : 0[11000] -> 6[c2000] via P2P/IPC comm 0x1dc812e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO Channel 23/0 : 0[11000] -> 6[c2000] via P2P/IPC comm 0x1dc812e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO Channel 29/0 : 0[11000] -> 6[c2000] via P2P/IPC comm 0x1dc812e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO Channel 30/0 : 0[11000] -> 6[c2000] via P2P/IPC comm 0x1dc812e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO Channel 34/0 : 0[11000] -> 6[c2000] via P2P/IPC comm 0x1dc812e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO Channel 37/0 : 0[11000] -> 6[c2000] via P2P/IPC comm 0x1dc812e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO Channel 40/0 : 0[11000] -> 6[c2000] via P2P/IPC comm 0x1dc812e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO Channel 43/0 : 0[11000] -> 6[c2000] via P2P/IPC comm 0x1dc812e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO Channel 54/0 : 0[11000] -> 6[c2000] via P2P/IPC comm 0x1dc812e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO Channel 60/0 : 0[11000] -> 6[c2000] via P2P/IPC comm 0x1dc812e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO Channel 63/0 : 0[11000] -> 6[c2000] via P2P/IPC comm 0x1dc812e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO Channel 03/0 : 0[11000] -> 7[da000] via P2P/IPC comm 0x1dc812e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO Channel 05/0 : 0[11000] -> 7[da000] via P2P/IPC comm 0x1dc812e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO Channel 09/0 : 0[11000] -> 7[da000] via P2P/IPC comm 0x1dc812e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO Channel 11/0 : 0[11000] -> 7[da000] via P2P/IPC comm 0x1dc812e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO Channel 17/0 : 0[11000] -> 7[da000] via P2P/IPC comm 0x1dc812e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO Channel 23/0 : 0[11000] -> 7[da000] via P2P/IPC comm 0x1dc812e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO Channel 29/0 : 0[11000] -> 7[da000] via P2P/IPC comm 0x1dc812e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO Channel 31/0 : 0[11000] -> 7[da000] via P2P/IPC comm 0x1dc812e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO Channel 36/0 : 0[11000] -> 7[da000] via P2P/IPC comm 0x1dc812e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO Channel 40/0 : 0[11000] -> 7[da000] via P2P/IPC comm 0x1dc812e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO Channel 42/0 : 0[11000] -> 7[da000] via P2P/IPC comm 0x1dc812e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO Channel 54/0 : 0[11000] -> 7[da000] via P2P/IPC comm 0x1dc812e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO Channel 60/0 : 0[11000] -> 7[da000] via P2P/IPC comm 0x1dc812e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO Channel 62/0 : 0[11000] -> 7[da000] via P2P/IPC comm 0x1dc812e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO Channel 14/0 : 8[0] -> 0[0] [receive] via NET/IB/0/GDRDMA comm 0x1dc812e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO Channel 20/0 : 8[0] -> 0[0] [receive] via NET/IB/0/GDRDMA comm 0x1dc812e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO Channel 26/0 : 8[0] -> 0[0] [receive] via NET/IB/0/GDRDMA comm 0x1dc812e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO Channel 33/0 : 8[0] -> 0[0] [receive] via NET/IB/0/GDRDMA comm 0x1dc812e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO Channel 47/0 : 8[0] -> 0[0] [receive] via NET/IB/0/GDRDMA comm 0x1dc812e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO Channel 53/0 : 8[0] -> 0[0] [receive] via NET/IB/0/GDRDMA comm 0x1dc812e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO Channel 59/0 : 8[0] -> 0[0] [receive] via NET/IB/0/GDRDMA comm 0x1dc812e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO Channel 00/0 : 0[0] -> 8[0] [send] via NET/IB/0/GDRDMA comm 0x1dc812e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO Channel 14/0 : 0[0] -> 8[0] [send] via NET/IB/0/GDRDMA comm 0x1dc812e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO Channel 20/0 : 0[0] -> 8[0] [send] via NET/IB/0/GDRDMA comm 0x1dc812e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO Channel 47/0 : 0[0] -> 8[0] [send] via NET/IB/0/GDRDMA comm 0x1dc812e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO Channel 53/0 : 0[0] -> 8[0] [send] via NET/IB/0/GDRDMA comm 0x1dc812e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO Channel 59/0 : 0[0] -> 8[0] [send] via NET/IB/0/GDRDMA comm 0x1dc812e0 nRanks 16
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO Connected all trees
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO threadThresholds 8/8/64 | 128/8/64 | 256 | 256
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO comm:0x1dc812e0, nRanks:16, nNodes:2, coll channels:64 collnet channels:64, nvls channels:0, p2p channels:64, p2p channels per peer:2
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO CC Off, workFifoBytes 4194304
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO RCCL Unroll Factor (pre-set): 2
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO TUNER/Plugin: Could not find: libnccl-tuner.so. Using internal tuner plugin.
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO ncclCommInitRank_impl comm 0x1dc812e0 rank 0 nranks 16 cudaDev 0 nvmlDev 0 busId 11000 commId 0x9ba085424fa8aa45 - Init COMPLETE
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO Init timings - ncclCommInitRank_impl: rank 0 nranks 16 total 30.30 (kernels 21.83, alloc 0.12, bootstrap 1.08, allgathers 0.04, topo 0.82, graphs 0.00, connections 6.35, rest 0.05)
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO pre-adjustment threadThreshold:8 nBytes:4 nc:64
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO minNChannels:-2
+inst-povmb-instancepool-nrqg7-mi300x-rdma-pool:441:441 [0] NCCL INFO post-adjustment based on threadThreshold:8 nBytes:4 nc:1
