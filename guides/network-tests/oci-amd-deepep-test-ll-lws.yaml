@@ -28,11 +28,11 @@ data:
     export UCX_NET_DEVICES=mlx5_0:1,mlx5_2:1,mlx5_3:1,mlx5_4:1,mlx5_5:1,mlx5_7:1,mlx5_8:1,mlx5_9:1
     export UCX_IB_GID_INDEX=3
     # Traffic Class = (DSCP << 2) | ECN = (26 << 2) | 2 = 106 for priority 5 with ECN
-    export UCX_IB_TRAFFIC_CLASS=106
+    export UCX_IB_TRAFFIC_CLASS=41
     
     # rocSHMEM GDA backend Traffic Class (this is the key one for DeepEP!)
     # TC = (DSCP << 2) | ECN = (26 << 2) | 2 = 106 for priority 5 with ECN
-    export ROCSHMEM_GDA_TRAFFIC_CLASS=106
+    export ROCSHMEM_GDA_TRAFFIC_CLASS=41
     
     # NCCL/RCCL configuration for RoCE
     export NCCL_SOCKET_IFNAME="eth0"
@@ -127,9 +127,9 @@ spec:
           env:
             # Traffic Class for rocSHMEM GDA backend - set at container level
             - name: ROCSHMEM_GDA_TRAFFIC_CLASS
-              value: "106"
+              value: "41"
             - name: UCX_IB_TRAFFIC_CLASS
-              value: "106"
+              value: "41"
             - name: NCCL_IB_TC
               value: "41"
           volumeMounts:
