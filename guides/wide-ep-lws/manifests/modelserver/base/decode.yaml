@@ -17,6 +17,16 @@ spec:
           llm-d.ai/model: Qwen3-30B-A3B-FP8
           llm-d.ai/role: decode
       spec:
+        #affinity:
+        #  nodeAffinity:
+        #    requiredDuringSchedulingIgnoredDuringExecution:
+        #      nodeSelectorTerms:
+        #        - matchExpressions:
+        #            - key: kubernetes.io/hostname
+        #              operator: In
+        #              values:
+        #                - 10.0.65.77   # replace with your decode node names
+        #                - 10.0.73.3
         dnsPolicy: ClusterFirstWithHostNet
         hostNetwork: true
         serviceAccountName: qwen
@@ -44,7 +54,7 @@ spec:
           - name: dshm
             emptyDir:
               medium: Memory
-              sizeLimit: 2Gi # roughly 32MB per local DP plus scratch space
+              sizeLimit: 6Gi # roughly 32MB per local DP plus scratch space
           - name: hf-cache
             emptyDir: {}
           - name: jit-cache
@@ -62,7 +72,8 @@ spec:
               type: Directory
         containers:
         - name: vllm
-          image: quay.io/rh-ee-vsundarr/amd-vllm:latest
+          #image: quay.io/rh-ee-vsundarr/amd-vllm:latest
+          image: quay.io/rh-ee-vsundarr/amd-vllm:rebase-dp-eplb-fix
           securityContext:
             privileged: true # FIXME(varun)
             capabilities:
@@ -86,11 +97,13 @@ spec:
               #################
               START_RANK=$(( ${LWS_WORKER_INDEX:-0} * DP_SIZE_LOCAL ))
             
+
               # --data-parallel-hybrid-lb: Use exernal load balancing across nodes, and internal load balancing within a node
               # --enable-expert-parallel:  Use TPxDP in attention, EP in MoE layers
               # --async-scheduling: Reduce white space between engine steps
               # --enable-dbo:  Dual batch overlap (DBO) overlaps compute with collective communication.
               # --enable-eplb: Expert-parallel load balancing reduces EP load imbalance by replicating heavily-used experts Performance-memory tradeoff: on DeepSeekV3 eplb uses an extra 2GB per redundant expert per GPU Divisibility constraint: num_routed_experts (256 for DSv3) + num_redundant_experts must be divisible by the number of GPUs.
+
 
               # TODO (varun) : Investigate DBO enablement
               # TODO (varun) : Use Mistral's default max-model-len
@@ -109,9 +122,6 @@ spec:
                 --data-parallel-address ${LWS_LEADER_ADDRESS} \
                 --data-parallel-rpc-port 5555 \
                 --data-parallel-start-rank $START_RANK \
-                #--kv_transfer_config '{"kv_connector":"NixlConnector",
-                #                        "kv_role":"kv_both",
-                #                        "kv_load_failure_policy":"fail"}' \
                 --kv-transfer-config '{
                     "kv_connector": "DecodeBenchConnector",
                     "kv_role": "kv_both",
@@ -120,15 +130,20 @@ spec:
                         "fill_std": 0.0
                     }
                 }' \
-                --async-scheduling \
                 --enable-eplb \
-                --eplb-config '{"window_size":"1000",
-                                "step_interval":"3000",
+                --eplb-config '{"window_size":"5000",
+                                "step_interval":"50000",
                                 "num_redundant_experts":"32",
-                                "log_balancedness":"False"}' \
+                                "log_balancedness":"False",
+                                "use_async": "True",
+                                "num_communication_groups": "4",
+                                "communication_experts_batch_size":"32"}' \
+                --async-scheduling \
                 --compilation_config '{"cudagraph_mode": "FULL_DECODE_ONLY"}' \
+                --block-size 1 \
+                --api-server-count 1 \
                 --kv-cache-memory-bytes=${KV_CACHE_MEMORY_BYTES-} \
-                --gpu-memory-utilization 0.80
+                --gpu-memory-utilization 0.70
 
           env:
           # VLLM_MOE_DP_CHUNK_SIZE is a tunable parameter.
@@ -208,6 +223,8 @@ spec:
             value: "1"
           - name: NCCL_IB_SPLIT_DATA_ON_QPS
             value: "0"
+          - name: NCCL_P2P_DISABLE 
+            value: "0"
           - name: NCCL_IB_HCA
             value: "mlx5_0,mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_7,mlx5_8,mlx5_9"
           - name: NCCL_PXN_DISABLE
@@ -216,6 +233,15 @@ spec:
             value: none
           - name: ROCSHMEM_HEAP_SIZE 
             value: "12884901888"
+
+          - name: NCCL_MIN_NCHANNELS
+            value: "1"
+          - name: NCCL_MAX_NCHANNELS
+            value: "2"
+          # Force larger, fewer packets (Aggressive Batching)
+          - name: NCCL_BUFFSIZE
+            value: "4194304"  # 4MB
+
           - name: VLLM_ROCM_USE_AITER
             value: "1"
           - name: VLLM_ROCM_USE_AITER_MOE

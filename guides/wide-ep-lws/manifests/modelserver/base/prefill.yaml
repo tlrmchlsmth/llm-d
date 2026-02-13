@@ -7,7 +7,7 @@ metadata:
     llm-d.ai/model: Qwen3-30B-A3B-FP8
     llm-d.ai/role: prefill
 spec:
-  replicas: 1
+  replicas: 0
   leaderWorkerTemplate:
     size: 2
     workerTemplate:
@@ -17,6 +17,16 @@ spec:
           llm-d.ai/model: Qwen3-30B-A3B-FP8
           llm-d.ai/role: prefill
       spec:
+        #affinity:
+        #  nodeAffinity:
+        #    requiredDuringSchedulingIgnoredDuringExecution:
+        #      nodeSelectorTerms:
+        #        - matchExpressions:
+        #            - key: kubernetes.io/hostname
+        #              operator: In
+        #              values:
+        #                - 10.0.67.106   # replace with your decode node names
+        #                - 10.0.69.254 
         dnsPolicy: ClusterFirstWithHostNet
         hostNetwork: true
         serviceAccountName: qwen
@@ -42,7 +52,8 @@ spec:
               type: Directory
         containers:
         - name: vllm
-          image: quay.io/rh-ee-vsundarr/amd-vllm:latest
+          #image: quay.io/rh-ee-vsundarr/amd-vllm:latest
+          image: quay.io/rh-ee-vsundarr/amd-vllm:rebase-dp-eplb-fix
           securityContext:
             privileged: true # FIXME (varun)
             capabilities:
@@ -65,6 +76,7 @@ spec:
               # RUN vLLM prefill worker
               #################
               START_RANK=$(( ${LWS_WORKER_INDEX:-0} * DP_SIZE_LOCAL ))
+
             
               # --data-parallel-hybrid-lb: Use exernal load balancing across nodes, and internal load balancing within a node
               # --enable-expert-parallel: Use TPxDP in attention, EP in MoE layers
@@ -89,22 +101,19 @@ spec:
                 --data-parallel-address ${LWS_LEADER_ADDRESS} \
                 --data-parallel-rpc-port 5555 \
                 --data-parallel-start-rank $START_RANK \
-                #--kv_transfer_config '{"kv_connector":"NixlConnector",
-                #                        "kv_role":"kv_both",
-                #                        "kv_load_failure_policy":"fail"}' \
-                --kv-transfer-config '{
-                    "kv_connector": "DecodeBenchConnector",
-                    "kv_role": "kv_both",
-                    "kv_connector_extra_config": {
-                        "fill_mean": 0.015,
-                        "fill_std": 0.0
-                    }
-                }' \
+                --kv_transfer_config '{"kv_connector":"NixlConnector",
+                                        "kv_role":"kv_producer",
+                                        "kv_load_failure_policy":"fail"}' \
                 --enable-eplb \
-                --eplb-config '{"window_size":"1000",
-                                "step_interval":"3000",
+                --eplb-config '{"window_size":"5000",
+                                "step_interval":"50000",
                                 "num_redundant_experts":"32",
-                                "log_balancedness":"False"}' \
+                                "log_balancedness":"False",
+                                "use_async": "True",
+                                "num_communication_groups": "8",
+                                "communication_experts_batch_size":"64"}' \
+                --block-size 1 \
+                --api-server-count 1 \
                 --async-scheduling \
                 --gpu-memory-utilization 0.90
 
@@ -141,6 +150,8 @@ spec:
             value: eth0
           - name: VLLM_LOGGING_LEVEL
             value: INFO
+          - name: NCCL_P2P_DISABLE 
+            value: "0"
           # Deepep HT
           - name: ROCSHMEM_HCA_LIST
             value: "mlx5_0,mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_7,mlx5_8,mlx5_9"
